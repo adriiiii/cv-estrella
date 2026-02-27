@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adrià Rodriguez | Administrador de Sistemas & Redes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #38bdf8;
+            --accent-gradient: linear-gradient(90deg, #38bdf8, #818cf8);
+            --border: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+            padding: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .profile-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            font-family: 'Fira Code', monospace;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid var(--accent);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2::after {
+            content: "";
+            height: 1px;
+            background: var(--border);
+            flex-grow: 1;
+        }
+
+        /* Grid de Habilidades */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .skill-card h3 {
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .skill-list {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Timeline / Experiencia */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .event {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .event::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .event h3 { font-size: 1.1rem; }
+        .event span { color: var(--accent); font-size: 0.85rem; font-family: 'Fira Code'; }
+        .event p { color: var(--text-dim); margin-top: 8px; font-size: 0.95rem; }
+
+        /* Contacto */
+        .contact-box {
+            background: var(--accent-gradient);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #fff;
+            color: #0f172a;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="badge">Sistemas & Redes</div>
+        <h1 class="profile-title">Adrià Rodriguez Estrella</h1>
+        <p style="color: var(--text-dim); max-width: 600px;">
+            [cite_start]Especialista en Sistemas Microinformáticos enfocado en la administración de redes y soluciones proactivas. [cite: 10, 11]
+        </p>
+    </header>
+
+    <div class="container">
+        
+        <section>
+            <h2>01. Perfil Profesional</h2>
+            [cite_start]<p>Persona responsable y organizada con un fuerte enfoque en el aprendizaje continuo dentro del ámbito tecnológico. [cite: 10] [cite_start]Mi objetivo es aplicar mis conocimientos técnicos para optimizar infraestructuras informáticas. [cite: 11]</p>
+        </section>
+
+        <section>
+            <h2>02. Stack Técnico</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Infraestructura</h3>
+                    <ul class="skill-list">
+                        [cite_start]<li>Cisco Packet Tracer [cite: 15]</li>
+                        [cite_start]<li>VirtualBox [cite: 15]</li>
+                        [cite_start]<li>Administración ASIX [cite: 20, 21]</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Software & Web</h3>
+                    <ul class="skill-list">
+                        [cite_start]<li>HTML / CSS [cite: 28]</li>
+                        [cite_start]<li>Visual Studio Code [cite: 15]</li>
+                        [cite_start]<li>WordPress [cite: 15]</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Bases de Datos</h3>
+                    <ul class="skill-list">
+                        [cite_start]<li>PgAdmin [cite: 15]</li>
+                        [cite_start]<li>MS Access [cite: 15]</li>
+                        [cite_start]<li>Appsheet [cite: 15]</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>03. Experiencia & Trayectoria</h2>
+            <div class="timeline">
+                <div class="event">
+                    <span>2024 - ACTUALIDAD</span>
+                    <h3>Administración de Sistemas Informáticos en Redes (ASIX)</h3>
+                    [cite_start]<p>Instituto Sa Palomera, Blanes. [cite: 20, 21]</p>
+                </div>
+                <div class="event">
+                    <span>ENERO - MAYO 2024</span>
+                    <h3>Soporte Técnico (Prácticas)</h3>
+                    [cite_start]<p>Escola Ignasi Iglesias, Tordera. [cite: 25]</p>
+                </div>
+                <div class="event">
+                    <span>JULIO 2023</span>
+                    <h3>Erasmus+: Especialización en Domótica</h3>
+                    <p>Vitalis BMH, Schelkitz, Alemania. [cite_start]Inmersión técnica internacional. [cite: 26, 27]</p>
+                </div>
+                <div class="event">
+                    <span>2022 - 2024</span>
+                    <h3>CFGM Sistemas Microinformáticos y Redes</h3>
+                    [cite_start]<p>Institut Lluís Companys, Tordera. [cite: 18, 19]</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>04. Idiomas</h2>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                [cite_start]<p><strong>Catalán:</strong> Nativo (C1) [cite: 23]</p>
+                [cite_start]<p><strong>Castellano:</strong> Nativo [cite: 23]</p>
+                [cite_start]<p><strong>Inglés:</strong> Técnico / Básico [cite: 23]</p>
+            </div>
+        </section>
+
+        <section class="contact-box">
+            <h3>¿Hablamos?</h3>
+            <p>Busco mi próxima oportunidad en el sector IT.</p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">📍 Tordera, Barcelona | [cite_start]🚗 Carnet B [cite: 5, 16]</p>
+            <a href="mailto:adriare2006@gmail.com" class="contact-link">Enviar Email</a>
+        </section>
+
+    </div>
+
+    <footer>
+        [cite_start]<p>Diseñado con código limpio por Adrià Rodriguez Estrella [cite: 2]</p>
+        [cite_start]<p style="margin-top: 10px;">608 99 64 60 [cite: 7]</p>
+    </footer>
+
+</body>
+</html>
