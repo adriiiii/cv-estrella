@@ -3,289 +3,531 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrià Rodriguez | Administrador de Sistemas & Maricon de elite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <title>Adrià Rodriguez Estrella | Portafolio ASIR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* =========================================
+           VARIABLES Y CONFIGURACIÓN BASE
+           ========================================= 
+        */
         :root {
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
+            --bg-body: #05080f;
+            --bg-card: #0f172a;
             --accent: #38bdf8;
-            --accent-gradient: linear-gradient(90deg, #38bdf8, #818cf8);
-            --border: #334155;
+            --accent-glow: rgba(56, 189, 248, 0.3);
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --nav-h: 70px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            line-height: 1.6;
+            font-family: 'Plus+Jakarta+Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* Hero Section */
-        header {
-            height: 60vh;
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* =========================================
+           MENÚ DE NAVEGACIÓN
+           ========================================= 
+        */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--nav-h);
+            background: rgba(5, 8, 15, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            z-index: 2000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--accent);
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* =========================================
+           HERO SECTION (AJUSTE FOTO)
+           ========================================= 
+        */
+        .hero {
+            padding-top: calc(var(--nav-h) + 80px); 
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
-            padding: 20px;
-            border-bottom: 1px solid var(--border);
+            padding-inline: 20px;
         }
 
-        .profile-title {
+        .profile-box {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-card);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .hero h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
         }
 
-        .badge {
-            font-family: 'Fira Code', monospace;
-            background: rgba(56, 189, 248, 0.1);
+        .hero h2 {
             color: var(--accent);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid var(--accent);
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
         }
 
-        /* Layout */
-        .container {
+        .hero p {
+            max-width: 650px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* =========================================
+           SOBRE MÍ (NATURAL)
+           ========================================= 
+        */
+        .content-section {
             max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            margin: 100px auto;
+            padding: 0 20px;
         }
 
-        section {
-            margin-bottom: 80px;
-        }
-
-        h2 {
-            font-size: 1.5rem;
+        .section-title {
+            font-size: 1.8rem;
             margin-bottom: 30px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
-        h2::after {
+        .section-title::after {
             content: "";
             height: 1px;
-            background: var(--border);
             flex-grow: 1;
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Grid de Habilidades */
-        .skills-grid {
+        .bio-text {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* =========================================
+           EXPERIENCIA Y LICENCIAS
+           ========================================= 
+        */
+        .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
         }
 
-        .skill-card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease;
+        .card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .skill-card h3 {
-            font-size: 1rem;
+        .card h3 {
             color: var(--accent);
             margin-bottom: 10px;
         }
 
-        .skill-list {
-            list-style: none;
-            font-size: 0.85rem;
-            color: var(--text-dim);
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        /* Timeline / Experiencia */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border);
-        }
-
-        .event {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        .event::before {
-            content: "";
-            position: absolute;
-            left: -36px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        .event h3 { font-size: 1.1rem; }
-        .event span { color: var(--accent); font-size: 0.85rem; font-family: 'Fira Code'; }
-        .event p { color: var(--text-dim); margin-top: 8px; font-size: 0.95rem; }
-
-        /* Contacto */
-        .contact-box {
-            background: var(--accent-gradient);
-            padding: 40px;
+        .tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent);
+            padding: 5px 12px;
             border-radius: 20px;
-            text-align: center;
-            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        .contact-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: #fff;
-            color: #0f172a;
-            text-decoration: none;
+        /* =========================================
+           TECNOLOGÍAS (COMPACTO)
+           ========================================= 
+        */
+        .tech-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-box {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .tech-box h4 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent);
+            padding-left: 10px;
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .tech-item {
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-item i { color: var(--accent); width: 15px; }
+
+        /* =========================================
+           PROYECTO ÚNICO
+           ========================================= 
+        */
+        .project-card {
+            display: flex;
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover { transform: scale(1.02); }
+
+        .project-info { padding: 40px; flex: 1; }
+
+        .btn-git {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: #000;
+            padding: 12px 25px;
             border-radius: 30px;
-            font-weight: 600;
-            transition: opacity 0.3s;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        /* =========================================
+           FORMULARIO (HUMANO)
+           ========================================= 
+        */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            outline: none;
+        }
+
+        input:focus, textarea:focus { border-color: var(--accent); }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: none;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+            color: #000;
         }
 
         footer {
+            padding: 50px;
             text-align: center;
-            padding: 40px;
-            border-top: 1px solid var(--border);
-            color: var(--text-dim);
+            color: var(--text-secondary);
             font-size: 0.8rem;
         }
 
         @media (max-width: 768px) {
-            .skills-grid { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="badge">Sistemas & Pollas</div>
-        <h1 class="profile-title">Adrià Rodriguez Estrella</h1>
-        <p style="color: var(--text-dim); max-width: 600px;">
-            [cite_start]Especialista en Sistemas Microinformáticos enfocado en la administración de redes y soluciones proactivas. [cite: 10, 11]
-        </p>
+    <canvas id="bg-canvas"></canvas>
+
+    <nav class="navbar">
+        <div class="logo">A. RODRIGUEZ</div>
+        <ul class="nav-links">
+            <li><a href="#sobre-mi">Quién soy</a></li>
+            <li><a href="#experiencia">Trayectoria</a></li>
+            <li><a href="#tecnologias">Skills</a></li>
+            <li><a href="#proyectos">Proyecto</a></li>
+            <li><a href="#contacto">Escríbeme</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="profile-box">
+            <img src="tu-foto.jpg" alt="Adrià Rodriguez" class="profile-img">
+        </div>
+        <h1>Adrià Rodriguez Estrella</h1>
+        <h2>System Administrator | Técnico ASIR</h2>
+        <p>Recién graduado en Administración de Sistemas. Me gusta trastear con servidores, configurar redes y asegurar que todo funcione como debería.</p>
     </header>
 
-    <div class="container">
-        
-        <section>
-            <h2>01. Perfil Profesional</h2>
-            [cite_start]<p>Persona responsable y organizada con un fuerte enfoque en el aprendizaje continuo dentro del ámbito tecnológico. [cite: 10] [cite_start]Mi objetivo es aplicar mis conocimientos técnicos para optimizar infraestructuras informáticas. [cite: 11]</p>
-        </section>
+    <section id="sobre-mi" class="content-section">
+        <h2 class="section-title">Sobre mí</h2>
+        <div class="bio-text">
+            <p>
+                Soy un apasionado de la informática que acaba de terminar el ciclo de <b>ASIR</b>. Siempre me ha gustado entender cómo funcionan las cosas por dentro, desde montar un PC hasta configurar un servidor desde cero.
+            </p>
+            <br>
+            <p>
+                No me considero el "gurú" definitivo, pero me sobra curiosidad y ganas de aprender. Disfruto enfrentándome a problemas reales de redes o sistemas y buscando la solución más eficiente. Fuera de las pantallas, me gusta moverme y tener la mente activa.
+            </p>
+        </div>
+    </section>
 
-        <section>
-            <h2>02. Stack Técnico</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Infraestructura</h3>
-                    <ul class="skill-list">
-                        [cite_start]<li>Cisco Packet Tracer [cite: 15]</li>
-                        [cite_start]<li>VirtualBox [cite: 15]</li>
-                        [cite_start]<li>Administración ASIX [cite: 20, 21]</li>
-                    </ul>
+    <section id="experiencia" class="content-section">
+        <div class="info-grid">
+            <div class="card">
+                <h2 class="section-title" style="font-size: 1.4rem;">Prácticas</h2>
+                <h3>Tarinas Law & Economy</h3>
+                <p style="color: var(--accent);">Soporte IT / Calella</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary);">
+                    Aprendí cómo funciona el entorno IT de una empresa real, dando soporte a usuarios, gestionando incidencias de hardware/software y manteniendo la infraestructura de red estable.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title" style="font-size: 1.4rem;">Datos de interés</h2>
+                <div style="margin-bottom: 20px;">
+                    <p><strong>Idiomas:</strong></p>
+                    <div class="tag-list">
+                        <span class="tag">Catalán (Nativo/C1)</span>
+                        <span class="tag">Castellano (Nativo)</span>
+                        <span class="tag">Inglés (Técnico)</span>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <h3>Software & Web</h3>
-                    <ul class="skill-list">
-                        [cite_start]<li>HTML / CSS [cite: 28]</li>
-                        [cite_start]<li>Visual Studio Code [cite: 15]</li>
-                        [cite_start]<li>WordPress [cite: 15]</li>
-                    </ul>
-                </div>
-                <div class="skill-card">
-                    <h3>Bases de Datos</h3>
-                    <ul class="skill-list">
-                        [cite_start]<li>PgAdmin [cite: 15]</li>
-                        [cite_start]<li>MS Access [cite: 15]</li>
-                        [cite_start]<li>Appsheet [cite: 15]</li>
-                    </ul>
+                <div>
+                    <p><strong>Licencias:</strong></p>
+                    <div class="tag-list">
+                        <span class="tag"><i class="fas fa-car"></i> Carnet de conducir B</span>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section>
-            <h2>03. Experiencia & Trayectoria</h2>
-            <div class="timeline">
-                <div class="event">
-                    <span>2024 - ACTUALIDAD</span>
-                    <h3>Administración de Sistemas Informáticos en Redes (ASIX)</h3>
-                    [cite_start]<p>Instituto Sa Palomera, Blanes. [cite: 20, 21]</p>
-                </div>
-                <div class="event">
-                    <span>ENERO - MAYO 2024</span>
-                    <h3>Soporte Técnico (Prácticas)</h3>
-                    [cite_start]<p>Escola Ignasi Iglesias, Tordera. [cite: 25]</p>
-                </div>
-                <div class="event">
-                    <span>JULIO 2023</span>
-                    <h3>Erasmus+: Especialización en Domótica</h3>
-                    <p>Vitalis BMH, Schelkitz, Alemania. [cite_start]Inmersión técnica internacional. [cite: 26, 27]</p>
-                </div>
-                <div class="event">
-                    <span>2022 - 2024</span>
-                    <h3>CFGM Sistemas Microinformáticos y Redes</h3>
-                    [cite_start]<p>Institut Lluís Companys, Tordera. [cite: 18, 19]</p>
+    <section id="tecnologias" class="content-section">
+        <h2 class="section-title">Tecnologías</h2>
+        <div class="tech-categories">
+            <div class="tech-box">
+                <h4>Sistemas</h4>
+                <div class="mini-grid">
+                    <div class="tech-item"><i class="fab fa-linux"></i> Linux</div>
+                    <div class="tech-item"><i class="fab fa-windows"></i> Win Server</div>
+                    <div class="tech-item"><i class="fas fa-box"></i> Virtualización</div>
+                    <div class="tech-item"><i class="fas fa-shield-alt"></i> Seguridad</div>
                 </div>
             </div>
-        </section>
-
-        <section>
-            <h2>04. Idiomas</h2>
-            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                [cite_start]<p><strong>Catalán:</strong> Nativo (C1) [cite: 23]</p>
-                [cite_start]<p><strong>Castellano:</strong> Nativo [cite: 23]</p>
-                [cite_start]<p><strong>Inglés:</strong> Técnico / Básico [cite: 23]</p>
+            <div class="tech-box">
+                <h4>Redes</h4>
+                <div class="mini-grid">
+                    <div class="tech-item"><i class="fas fa-route"></i> Cisco</div>
+                    <div class="tech-item"><i class="fas fa-network-wired"></i> Routing</div>
+                    <div class="tech-item"><i class="fas fa-lock"></i> VPN/Firewalls</div>
+                    <div class="tech-item"><i class="fas fa-ethernet"></i> Switching</div>
+                </div>
             </div>
-        </section>
+            <div class="tech-box">
+                <h4>Web/Otros</h4>
+                <div class="mini-grid">
+                    <div class="tech-item"><i class="fab fa-html5"></i> HTML/CSS</div>
+                    <div class="tech-item"><i class="fas fa-database"></i> SQL / NoSQL</div>
+                    <div class="tech-item"><i class="fab fa-js"></i> Básico JS</div>
+                    <div class="tech-item"><i class="fab fa-git-alt"></i> Git</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <section class="contact-box">
-            <h3>¿Hablamos?</h3>
-            <p>Busco mi próxima oportunidad en el sector IT.</p>
-            <p style="font-size: 0.9rem; margin-top: 10px;">📍 Tordera, Barcelona | [cite_start]🚗 Carnet B [cite: 5, 16]</p>
-            <a href="mailto:adriare2006@gmail.com" class="contact-link">Enviar Email</a>
-        </section>
+    <section id="proyectos" class="content-section">
+        <h2 class="section-title">Mi Proyecto Destacado</h2>
+        <div class="project-card">
+            <div class="project-info">
+                <h3>NOSQLPATI</h3>
+                <p style="margin-top: 15px; color: var(--text-secondary);">
+                    Un proyecto enfocado en la exploración y gestión de bases de datos NoSQL. Desarrollado para poner a prueba la flexibilidad y escalabilidad de datos fuera del esquema tradicional relacional.
+                </p>
+                <a href="https://github.com/adriiiii/NoSQLPATi" target="_blank" class="btn-git">
+                    <i class="fab fa-github"></i> Ver en GitHub
+                </a>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <section id="contacto" class="content-section">
+        <h2 class="section-title">Hablamos</h2>
+        <div class="contact-form bio-text">
+            <p style="margin-bottom: 25px; text-align: center;">¿Tienes alguna propuesta o quieres preguntarme algo? Escríbeme y te respondo en cuanto lo vea.</p>
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Tu email" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="¿Qué necesitas?" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">ENVIAR MENSAJE</button>
+            </form>
+        </div>
+    </section>
 
     <footer>
-        [cite_start]<p>Diseñado con código limpio por Adrià Rodriguez Estrella [cite: 2]</p>
-        [cite_start]<p style="margin-top: 10px;">608 99 64 60 [cite: 7]</p>
+        <p>Adrià Rodriguez Estrella &copy; 2024 - Hecho con código y café.</p>
     </footer>
 
+    <script>
+        /* Partículas de fondo sencillas */
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = '#38bdf8';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
 </body>
 </html>
