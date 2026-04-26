@@ -3,364 +3,413 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrià Rodriguez Estrella | System Administrator</title>
+    <title>Portafolio | Adrià Rodriguez Estrella</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* CSS EXTENDIDO - ADRIÀ RODRIGUEZ ESTRELLA 
-           ========================================
-        */
         :root {
-            --bg: #0a192f;
-            --card-bg: #112240;
-            --text-main: #e6f1ff;
-            --text-dim: #8892b0;
-            --accent: #64ffda;
-            --accent-glow: rgba(100, 255, 218, 0.3);
-            --border: #233554;
+            --bg-color: #0b1120;
+            --card-bg: #161d2f;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #38bdf8;
+            --accent-gradient: linear-gradient(90deg, #38bdf8, #818cf8);
+            --border-color: #1e293b;
+            --nav-height: 80px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --nav-h: 80px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
+            background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- Solución Menú (z-index y backdrop) --- */
+        /* --- Navegación Estilo Captura --- */
         nav {
-            background: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(10px);
-            padding: 0 10%;
+            height: var(--nav-height);
+            background: rgba(11, 17, 32, 0.8);
+            backdrop-filter: blur(12px);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             position: fixed;
             width: 100%;
-            height: var(--nav-h);
             top: 0;
-            z-index: 2000;
-            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .nav-links { display: flex; list-style: none; gap: 25px; }
-        .nav-links a { 
-            text-decoration: none; 
-            color: var(--text-main); 
-            font-family: 'Fira Code', monospace; 
-            font-size: 0.8rem;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            font-weight: 500;
             transition: var(--transition);
         }
-        .nav-links a:hover { color: var(--accent); }
 
-        /* --- Hero Section (Ajuste de solapamiento) --- */
-        header {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            margin-top: var(--nav-h); /* Evita que el menú tape la foto */
+        .nav-links a:hover {
+            color: var(--text-main);
         }
 
-        .profile-container {
+        /* --- Hero Section con Foto --- */
+        .hero {
+            padding-top: calc(var(--nav-height) + 60px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 100px;
+            background: radial-gradient(circle at top, #1e293b 0%, #0b1120 100%);
+        }
+
+        .profile-wrapper {
             position: relative;
-            margin-bottom: 2rem;
+            padding: 5px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            margin-bottom: 30px;
         }
 
         .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 12px;
-            border: 2px solid var(--accent);
-            padding: 10px;
-            background: var(--card-bg);
-            transition: var(--transition);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            border: 4px solid var(--bg-color);
         }
 
-        .profile-img:hover { transform: translateY(-5px); box-shadow: 0 10px 30px var(--accent-glow); }
-
-        .profile-title {
-            font-size: clamp(2rem, 6vw, 4rem);
+        .profile-name {
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
-            color: var(--text-main);
-            line-height: 1.1;
+            margin-bottom: 10px;
         }
 
         .profile-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color: var(--text-dim);
-            margin: 10px 0 20px;
-        }
-
-        /* --- Layout Container --- */
-        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-
-        section { padding: 80px 0; border-top: 1px solid var(--border); }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        h2 span { color: var(--accent); font-family: 'Fira Code', monospace; }
-
-        /* --- Grid de Tecnologías (Muchas y Pequeñas) --- */
-        .tech-category { margin-bottom: 40px; }
-        .tech-category h3 { 
-            font-family: 'Fira Code', monospace; 
-            font-size: 1.1rem; 
-            color: var(--accent); 
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            font-size: 1.1rem;
             margin-bottom: 20px;
         }
 
+        /* --- Contenedor Principal --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .section-header span {
+            color: var(--accent);
+            font-family: 'Fira Code', monospace;
+            font-size: 1.2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            white-space: nowrap;
+        }
+
+        .section-header::after {
+            content: "";
+            height: 1px;
+            background: var(--border-color);
+            flex-grow: 1;
+        }
+
+        /* --- Estilo de Tarjetas de Currículum --- */
+        .cv-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        .cv-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .cv-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .cv-card .institution {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .cv-card .date {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* --- Grid de Tecnologías (Fiel a tu imagen) --- */
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
         }
 
         .tech-card {
             background: var(--card-bg);
-            padding: 15px 10px;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .tech-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-
-        .tech-card i { font-size: 1.5rem; margin-bottom: 10px; display: block; color: var(--accent); }
-        .tech-card span { font-size: 0.75rem; font-family: 'Fira Code', monospace; color: var(--text-dim); }
-
-        /* --- Experiencia Laboral --- */
-        .work-card {
-            background: var(--card-bg);
-            padding: 30px;
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--accent);
-        }
-
-        .work-card h3 { margin-bottom: 5px; }
-        .work-card .company { color: var(--accent); font-family: 'Fira Code', monospace; }
-        .work-card .date { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 15px; }
-
-        /* --- Proyecto Único --- */
-        .project-single {
-            background: linear-gradient(145deg, #112240, #0a192f);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            text-align: left;
-        }
-
-        .project-single h3 { font-size: 1.8rem; color: var(--accent); margin-bottom: 15px; }
-        
-        .github-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 12px 25px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-family: 'Fira Code', monospace;
-            margin-top: 20px;
+            padding: 30px 20px;
+            text-align: center;
             transition: var(--transition);
         }
 
-        .github-btn:hover { background: rgba(100, 255, 218, 0.1); }
-
-        /* --- Formulario Mejorado --- */
-        .form-container { max-width: 600px; margin: 0 auto; }
-        .form-group { margin-bottom: 15px; }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 12px;
-            border-radius: 4px;
-            color: white;
-            outline: none;
+        .tech-card:hover {
+            background: #1e293b;
+            border-color: var(--accent);
         }
-        .form-group input:focus { border-color: var(--accent); }
-        .btn-submit {
-            width: 100%;
-            padding: 15px;
-            background: var(--accent);
-            color: var(--bg);
-            border: none;
+
+        .tech-card i, .tech-card img {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tech-card span {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* --- Otros Datos --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .contact-footer {
+            text-align: center;
+            padding: 100px 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn-contact {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--accent-gradient);
+            color: #000;
+            text-decoration: none;
+            border-radius: 12px;
             font-weight: 700;
-            border-radius: 4px;
-            cursor: pointer;
+            margin-top: 30px;
+            transition: var(--transition);
         }
 
-        footer { padding: 40px; text-align: center; color: var(--text-dim); font-size: 0.8rem; }
+        .btn-contact:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { gap: 15px; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">A. RODRIGUEZ</div>
         <ul class="nav-links">
-            <li><a href="#perfil">01. Perfil</a></li>
-            <li><a href="#stack">02. Skills</a></li>
-            <li><a href="#trayectoria">03. Experiencia</a></li>
-            <li><a href="#proyectos">04. Proyecto</a></li>
-            <li><a href="#contacto">05. Contacto</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#experiencia">Experiencia</a></li>
+            <li><a href="#formacion">Formación</a></li>
+            <li><a href="#tecnologias">Tecnologías</a></li>
+            <li><a href="#contacto">Contacto</a></li>
         </ul>
     </nav>
 
-    <header>
-        <div class="profile-container">
-            <img src="https://via.placeholder.com/200" alt="Adrià Rodriguez" class="profile-img">
+    <header class="hero">
+        <div class="profile-wrapper">
+            <img src="tu-foto.png" alt="Adrià Rodriguez Estrella" class="profile-img">
         </div>
-        <h1 class="profile-title">Adrià Rodriguez Estrella</h1>
-        <p class="profile-subtitle">System Administrator</p>
-        <p style="color: var(--text-dim); max-width: 600px;">
-           Construyendo infraestructuras seguras y escalables. Recién graduado de ASIR con muchas ganas de aprender y aportar valor en entornos críticos.
+        <h1 class="profile-name">Adrià Rodriguez Estrella</h1>
+        <p class="profile-subtitle">System Administrator & Network Specialist</p>
+        <p style="color: var(--text-dim); max-width: 600px; font-size: 1.1rem; padding: 0 20px;">
+            Persona proactiva y organizada enfocada en la administración de infraestructuras críticas y aprendizaje continuo. [cite: 10, 11]
         </p>
     </header>
 
     <div class="container">
         
-        <section id="perfil">
-            <h2><span>01.</span> Sobre mí</h2>
-            <div style="font-size: 1.1rem; color: var(--text-dim);">
-                <p>Soy un apasionado de los sistemas que acaba de terminar el ciclo formativo de ASIR. Me gusta entender cómo funcionan las redes por dentro y asegurar que los servidores funcionen sin fallos.</p>
-                <br>
-                <p>No soy de los que se rinden ante un error de consola; prefiero investigar hasta dar con la solución. Busco mi primera oportunidad real para demostrar lo que sé y seguir formándome en el sector IT.</p>
-                
-                <div style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <div class="work-card">
-                        <h4 style="color: var(--accent);">Idiomas</h4>
-                        <p>Catalán: Nativo (C1)</p>
-                        <p>Castellano: Nativo</p>
-                        <p>Inglés: Técnico / Básico</p>
-                    </div>
-                    <div class="work-card">
-                        <h4 style="color: var(--accent);">Licencias</h4>
-                        <p><i class="fas fa-car"></i> Carnet de conducir B</p>
-                    </div>
+        <section id="formacion">
+            <div class="section-header">
+                <span>01.</span>
+                <h2>Formación Académica</h2>
+            </div>
+            <div class="cv-grid">
+                <div class="cv-card">
+                    <span class="date">2024 - EN CURSO</span>
+                    <h3>Administración de Sistemas Informáticos en Redes (ASIX)</h3>
+                    <span class="institution">Instituto Sa Palomera, Blanes</span>
+                    <p style="color: var(--text-dim);">Especialización en gestión de servicios de red, seguridad y alta disponibilidad. [cite: 20, 21]</p>
+                </div>
+                <div class="cv-card">
+                    <span class="date">2022 - 2024</span>
+                    <h3>CFGM Sistemas Microinformáticos y Redes</h3>
+                    <span class="institution">Institut Lluís Companys, Tordera</span>
+                    <p style="color: var(--text-dim);">Fundamentos de hardware, redes locales y sistemas operativos. [cite: 18, 19]</p>
                 </div>
             </div>
         </section>
 
-        <section id="stack">
-            <h2><span>02.</span> Stack Técnico</h2>
-            
-            <div class="tech-category">
-                <h3>Sistemas Operativos</h3>
-                <div class="tech-grid">
-                    <div class="tech-card"><i class="fab fa-linux"></i><span>Linux Ubuntu</span></div>
-                    <div class="tech-card"><i class="fab fa-debian"></i><span>Debian</span></div>
-                    <div class="tech-card"><i class="fab fa-windows"></i><span>Win Server</span></div>
-                    <div class="tech-card"><i class="fas fa-user-shield"></i><span>Kali Linux</span></div>
-                    <div class="tech-card"><i class="fab fa-apple"></i><span>macOS</span></div>
-                </div>
+        <section id="experiencia">
+            <div class="section-header">
+                <span>02.</span>
+                <h2>Experiencia Laboral</h2>
             </div>
-
-            <div class="tech-category">
-                <h3>Infraestructura & Redes</h3>
-                <div class="tech-grid">
-                    <div class="tech-card"><i class="fas fa-server"></i><span>Active Dir.</span></div>
-                    <div class="tech-card"><i class="fas fa-network-wired"></i><span>Cisco CCNA</span></div>
-                    <div class="tech-card"><i class="fas fa-cloud"></i><span>Virtualización</span></div>
-                    <div class="tech-card"><i class="fas fa-project-diagram"></i><span>Routing</span></div>
-                    <div class="tech-card"><i class="fas fa-shield-alt"></i><span>Firewalls</span></div>
-                    <div class="tech-card"><i class="fas fa-terminal"></i><span>SSH/Bash</span></div>
+            <div class="cv-grid">
+                <div class="cv-card" style="border-left: 4px solid var(--accent);">
+                    <span class="date">JUNIO 2024 - AGOSTO 2024</span>
+                    <h3>Técnico de Soporte IT (Prácticas)</h3>
+                    <span class="institution">Tarinas Law & Economy, Calella</span>
+                    <p style="color: var(--text-dim);">Administración de sistemas internos, soporte técnico avanzado a usuarios y mantenimiento de infraestructura de red corporativa.</p>
                 </div>
-            </div>
-
-            <div class="tech-category">
-                <h3>Desarrollo & Datos</h3>
-                <div class="tech-grid">
-                    <div class="tech-card"><i class="fab fa-html5"></i><span>HTML5</span></div>
-                    <div class="tech-card"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
-                    <div class="tech-card"><i class="fas fa-database"></i><span>MySQL</span></div>
-                    <div class="tech-card"><i class="fas fa-leaf"></i><span>NoSQL</span></div>
-                    <div class="tech-card"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
-                    <div class="tech-card"><i class="fab fa-git-alt"></i><span>Git</span></div>
+                <div class="cv-card">
+                    <span class="date">ENERO 2024 - MAYO 2024</span>
+                    <h3>Soporte Técnico (Prácticas)</h3>
+                    <span class="institution">Escola Ignasi Iglesias, Tordera</span>
+                    <p style="color: var(--text-dim);">Mantenimiento del parque informático y resolución de incidencias. [cite: 25]</p>
+                </div>
+                <div class="cv-card">
+                    <span class="date">JULIO 2023</span>
+                    <h3>Erasmus+ Domótica</h3>
+                    <span class="institution">Vitalis BMH, Alemania</span>
+                    <p style="color: var(--text-dim);">Inmersión técnica en sistemas automatizados y control industrial. [cite: 26, 27]</p>
                 </div>
             </div>
         </section>
 
-        <section id="trayectoria">
-            <h2><span>03.</span> Experiencia Laboral</h2>
-            <div class="work-card">
-                <h3>Técnico IT (Prácticas)</h3>
-                <p class="company">Tarinas Law & Economy - Calella</p>
-                <p class="date">2023 - 2024</p>
-                <p style="color: var(--text-dim);">Soporte técnico a usuarios, mantenimiento de equipos informáticos, gestión de incidencias en red local y configuración de terminales corporativos.</p>
+        <section id="tecnologias">
+            <div class="section-header">
+                <span>03.</span>
+                <h2>Tecnologías</h2>
             </div>
-            
-            <div class="work-card">
-                <h3>Estudiante ASIR</h3>
-                <p class="company">Sa Palomera / Lluís Companys</p>
-                <p class="date">2022 - 2026</p>
-                <p style="color: var(--text-dim);">Formación especializada en administración de sistemas informáticos en red, seguridad y servicios de red.</p>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <i class="fab fa-linux" style="color: #f1f5f9;"></i>
+                    <span>Linux</span>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-windows" style="color: #00a4ef;"></i>
+                    <span>Windows Server</span>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-network-wired" style="color: #38bdf8;"></i>
+                    <span>Cisco Networking</span>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-database" style="color: #336791;"></i>
+                    <span>PostgreSQL</span>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-html5" style="color: #e34f26;"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-css3-alt" style="color: #1572b6;"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="tech-card">
+                    <i class="fab fa-wordpress" style="color: #21759b;"></i>
+                    <span>WordPress</span>
+                </div>
+                <div class="tech-card">
+                    <i class="fas fa-code" style="color: #007acc;"></i>
+                    <span>VS Code</span>
+                </div>
             </div>
         </section>
 
-        <section id="proyectos">
-            <h2><span>04.</span> Proyecto Destacado</h2>
-            <div class="project-single">
-                <h3>NoSQLPATi</h3>
-                <p style="color: var(--text-dim); margin-bottom: 20px;">
-                    Un repositorio dedicado a la investigación e implementación de bases de datos no relacionales, enfocado en la flexibilidad y gestión eficiente de grandes volúmenes de datos.
-                </p>
-                <div class="tag-list" style="display: flex; gap: 10px;">
-                    <span style="font-family: 'Fira Code'; font-size: 0.8rem; color: var(--accent);">#NoSQL</span>
-                    <span style="font-family: 'Fira Code'; font-size: 0.8rem; color: var(--accent);">#Database</span>
-                    <span style="font-family: 'Fira Code'; font-size: 0.8rem; color: var(--accent);">#Learning</span>
+        <section>
+            <div class="section-header">
+                <span>04.</span>
+                <h2>Datos Personales & Idiomas</h2>
+            </div>
+            <div class="info-grid">
+                <div class="cv-card">
+                    <h3>Idiomas</h3>
+                    <ul style="list-style: none; color: var(--text-dim);">
+                        <li style="margin-bottom: 10px;"><b style="color: var(--text-main);">Catalán:</b> Nativo (C1) [cite: 23]</li>
+                        <li style="margin-bottom: 10px;"><b style="color: var(--text-main);">Castellano:</b> Nativo [cite: 23]</li>
+                        <li><b style="color: var(--text-main);">Inglés:</b> Técnico / Básico [cite: 23]</li>
+                    </ul>
                 </div>
-                <a href="https://github.com/adriiiii/NoSQLPATi" target="_blank" class="github-btn">
-                    <i class="fab fa-github"></i> Ver en GitHub
-                </a>
+                <div class="cv-card">
+                    <h3>Otros Datos</h3>
+                    <ul style="list-style: none; color: var(--text-dim);">
+                        <li style="margin-bottom: 10px;"><i class="fas fa-car"></i> Carnet de conducir B [cite: 16]</li>
+                        <li style="margin-bottom: 10px;"><i class="fas fa-map-marker-alt"></i> Tordera, Barcelona [cite: 6]</li>
+                        <li><i class="fas fa-project-diagram"></i> Proyecto NoSQLPATi: <a href="https://github.com/adriiiii/NoSQLPATi" style="color: var(--accent);">GitHub</a></li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <section id="contacto">
-            <h2><span>05.</span> Contacto</h2>
-            <div class="form-container">
-                <form class="contact-form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Tu nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Tu email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="5" placeholder="¿Cómo podemos colaborar?" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit">Enviar Mensaje</button>
-                </form>
-                <div style="margin-top: 30px; text-align: center; font-family: 'Fira Code', monospace; font-size: 0.9rem;">
-                    📧 adriare2006@gmail.com | 📞 +34 608 99 64 60
-                </div>
-            </div>
+        <section id="contacto" class="contact-footer">
+            <h2 style="justify-content: center; border: none;">¿Hablamos?</h2>
+            <p style="color: var(--text-dim);">Actualmente buscando nuevas oportunidades para aportar valor en el sector IT.</p>
+            <p style="font-family: 'Fira Code'; margin-top: 15px;">adriare2006@gmail.com | 608 99 64 60 [cite: 7, 8]</p>
+            <a href="mailto:adriare2006@gmail.com" class="btn-contact">Enviar mensaje</a>
         </section>
 
     </div>
 
-    <footer>
-        <p>&copy; 2026 Diseñado por Adrià Rodriguez Estrella. Construido con código limpio.</p>
+    <footer style="padding: 40px; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-dim); font-size: 0.85rem;">
+        &copy; 2024 Adrià Rodriguez Estrella. Desarrollado con VS Code y pasión por los sistemas.
     </footer>
 
 </body>
