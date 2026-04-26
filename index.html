@@ -3,32 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrià Rodriguez | Especialista en Sistemas & Redes</title>
+    <title>Adrià Rodriguez Estrella | System Administrator</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* CSS EXTENDIDO - ADRIÀ RODRIGUEZ ESTRELLA 
+           ========================================
+        */
         :root {
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --accent: #38bdf8;
-            --accent-gradient: linear-gradient(90deg, #38bdf8, #818cf8);
-            --border: #334155;
+            --bg: #0a192f;
+            --card-bg: #112240;
+            --text-main: #e6f1ff;
+            --text-dim: #8892b0;
+            --accent: #64ffda;
+            --accent-glow: rgba(100, 255, 218, 0.3);
+            --border: #233554;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --nav-h: 80px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
@@ -37,371 +33,334 @@
             overflow-x: hidden;
         }
 
-        /* --- Barra de Navegación --- */
+        /* --- Solución Menú (z-index y backdrop) --- */
         nav {
-            background: rgba(15, 23, 42, 0.8);
+            background: rgba(10, 25, 47, 0.85);
             backdrop-filter: blur(10px);
-            padding: 1rem 10%;
+            padding: 0 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: fixed;
             width: 100%;
+            height: var(--nav-h);
             top: 0;
-            z-index: 1000;
+            z-index: 2000;
             border-bottom: 1px solid var(--border);
         }
 
-        .logo {
-            font-family: 'Fira Code', monospace;
-            font-weight: 700;
-            color: var(--accent);
+        .nav-links { display: flex; list-style: none; gap: 25px; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-family: 'Fira Code', monospace; 
+            font-size: 0.8rem;
+            transition: var(--transition);
         }
+        .nav-links a:hover { color: var(--accent); }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section (Ajuste de solapamiento) --- */
         header {
-            height: 80vh;
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
             padding: 20px;
-            margin-top: 60px;
+            margin-top: var(--nav-h); /* Evita que el menú tape la foto */
         }
 
-        .badge {
-            font-family: 'Fira Code', monospace;
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent);
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid var(--accent);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .profile-container {
+            position: relative;
+            margin-bottom: 2rem;
         }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+            padding: 10px;
+            background: var(--card-bg);
+            transition: var(--transition);
+        }
+
+        .profile-img:hover { transform: translateY(-5px); box-shadow: 0 10px 30px var(--accent-glow); }
 
         .profile-title {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-size: clamp(2rem, 6vw, 4rem);
             font-weight: 800;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-main);
             line-height: 1.1;
-            margin-bottom: 15px;
         }
 
-        /* --- Layout --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 40px 20px;
+        .profile-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--text-dim);
+            margin: 10px 0 20px;
         }
 
-        section {
-            margin-bottom: 100px;
-            padding-top: 60px;
-        }
+        /* --- Layout Container --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        section { padding: 80px 0; border-top: 1px solid var(--border); }
 
         h2 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 40px;
+            color: var(--text-main);
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        h2 span {
-            color: var(--accent);
-            font-family: 'Fira Code', monospace;
-            font-size: 1.2rem;
+        h2 span { color: var(--accent); font-family: 'Fira Code', monospace; }
+
+        /* --- Grid de Tecnologías (Muchas y Pequeñas) --- */
+        .tech-category { margin-bottom: 40px; }
+        .tech-category h3 { 
+            font-family: 'Fira Code', monospace; 
+            font-size: 1.1rem; 
+            color: var(--accent); 
+            margin-bottom: 20px;
         }
 
-        h2::after {
-            content: "";
-            height: 1px;
-            background: var(--border);
-            flex-grow: 1;
-        }
-
-        /* --- Grid de Habilidades --- */
-        .skills-grid {
+        .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 15px;
         }
 
-        .skill-card {
+        .tech-card {
+            background: var(--card-bg);
+            padding: 15px 10px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .tech-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+        .tech-card i { font-size: 1.5rem; margin-bottom: 10px; display: block; color: var(--accent); }
+        .tech-card span { font-size: 0.75rem; font-family: 'Fira Code', monospace; color: var(--text-dim); }
+
+        /* --- Experiencia Laboral --- */
+        .work-card {
             background: var(--card-bg);
             padding: 30px;
-            border-radius: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .work-card h3 { margin-bottom: 5px; }
+        .work-card .company { color: var(--accent); font-family: 'Fira Code', monospace; }
+        .work-card .date { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 15px; }
+
+        /* --- Proyecto Único --- */
+        .project-single {
+            background: linear-gradient(145deg, #112240, #0a192f);
+            padding: 40px;
+            border-radius: 20px;
             border: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .project-single h3 { font-size: 1.8rem; color: var(--accent); margin-bottom: 15px; }
+        
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'Fira Code', monospace;
+            margin-top: 20px;
             transition: var(--transition);
         }
 
-        .skill-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.2);
-        }
+        .github-btn:hover { background: rgba(100, 255, 218, 0.1); }
 
-        .skill-card i {
-            font-size: 2rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .skill-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .skill-list {
-            list-style: none;
-            color: var(--text-dim);
-            font-size: 0.95rem;
-        }
-
-        .skill-list li {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .skill-list li::before {
-            content: "▹";
-            color: var(--accent);
-        }
-
-        /* --- Timeline --- */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border);
-        }
-
-        .event {
-            position: relative;
-            margin-bottom: 50px;
-        }
-
-        .event::before {
-            content: "";
-            position: absolute;
-            left: -39px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--bg);
-            border: 2px solid var(--accent);
-            z-index: 2;
-        }
-
-        .event-date {
-            font-family: 'Fira Code', monospace;
-            color: var(--accent);
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .event h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .event p {
-            color: var(--text-dim);
-        }
-
-        /* --- Contact Box --- */
-        .contact-box {
+        /* --- Formulario Mejorado --- */
+        .form-container { max-width: 600px; margin: 0 auto; }
+        .form-group { margin-bottom: 15px; }
+        .form-group input, .form-group textarea {
+            width: 100%;
             background: var(--card-bg);
-            padding: 60px 40px;
-            border-radius: 24px;
-            text-align: center;
             border: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
+            padding: 12px;
+            border-radius: 4px;
+            color: white;
+            outline: none;
         }
-
-        .contact-box::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
-            background: var(--accent-gradient);
-        }
-
-        .contact-link {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 16px 40px;
+        .form-group input:focus { border-color: var(--accent); }
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
             background: var(--accent);
             color: var(--bg);
-            text-decoration: none;
-            border-radius: 12px;
+            border: none;
             font-weight: 700;
-            transition: var(--transition);
+            border-radius: 4px;
+            cursor: pointer;
         }
 
-        .contact-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .profile-title { font-size: 2.8rem; }
-            section { padding-top: 40px; }
-        }
+        footer { padding: 40px; text-align: center; color: var(--text-dim); font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">&lt;AR /&gt;</div>
-        <div style="font-size: 0.9rem; color: var(--text-dim);">Tordera, BCN</div>
+        <div class="logo">A. RODRIGUEZ</div>
+        <ul class="nav-links">
+            <li><a href="#perfil">01. Perfil</a></li>
+            <li><a href="#stack">02. Skills</a></li>
+            <li><a href="#trayectoria">03. Experiencia</a></li>
+            <li><a href="#proyectos">04. Proyecto</a></li>
+            <li><a href="#contacto">05. Contacto</a></li>
+        </ul>
     </nav>
 
     <header>
-        <div class="badge">Sistemas & Infraestructura de Élite</div>
-        <h1 class="profile-title">Adrià Rodriguez <br> Estrella</h1>
-        <p style="color: var(--text-dim); max-width: 600px; font-size: 1.1rem;">
-           Especialista en Sistemas Microinformáticos enfocado en la administración de redes y soluciones proactivas. [cite: 10, 11]
+        <div class="profile-container">
+            <img src="https://via.placeholder.com/200" alt="Adrià Rodriguez" class="profile-img">
+        </div>
+        <h1 class="profile-title">Adrià Rodriguez Estrella</h1>
+        <p class="profile-subtitle">System Administrator</p>
+        <p style="color: var(--text-dim); max-width: 600px;">
+           Construyendo infraestructuras seguras y escalables. Recién graduado de ASIR con muchas ganas de aprender y aportar valor en entornos críticos.
         </p>
-        <a href="#contacto" class="contact-link" style="margin-top: 40px;">Ver disponibilidad</a>
     </header>
 
     <div class="container">
         
         <section id="perfil">
-            <h2><span>01.</span> Perfil Profesional</h2>
-            <div style="max-width: 800px; font-size: 1.2rem; color: var(--text-dim);">
-                <p>Persona proactiva, responsable y organizada con un fuerte enfoque en el aprendizaje continuo dentro del ámbito tecnológico. [cite: 10]</p>
-                <p style="margin-top: 20px;">Mi objetivo es aplicar mis conocimientos técnicos para optimizar y asegurar infraestructuras informáticas críticas. [cite: 11]</p>
+            <h2><span>01.</span> Sobre mí</h2>
+            <div style="font-size: 1.1rem; color: var(--text-dim);">
+                <p>Soy un apasionado de los sistemas que acaba de terminar el ciclo formativo de ASIR. Me gusta entender cómo funcionan las redes por dentro y asegurar que los servidores funcionen sin fallos.</p>
+                <br>
+                <p>No soy de los que se rinden ante un error de consola; prefiero investigar hasta dar con la solución. Busco mi primera oportunidad real para demostrar lo que sé y seguir formándome en el sector IT.</p>
+                
+                <div style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="work-card">
+                        <h4 style="color: var(--accent);">Idiomas</h4>
+                        <p>Catalán: Nativo (C1)</p>
+                        <p>Castellano: Nativo</p>
+                        <p>Inglés: Técnico / Básico</p>
+                    </div>
+                    <div class="work-card">
+                        <h4 style="color: var(--accent);">Licencias</h4>
+                        <p><i class="fas fa-car"></i> Carnet de conducir B</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="stack">
             <h2><span>02.</span> Stack Técnico</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <i class="fas fa-network-wired"></i>
-                    <h3>Infraestructura</h3>
-                    <ul class="skill-list">
-                        <li>Administración ASIX [cite: 20, 21]</li>
-                        <li>Cisco Packet Tracer [cite: 15]</li>
-                        <li>VirtualBox / Virtualización [cite: 15]</li>
-                        <li>Domótica Avanzada [cite: 27]</li>
-                    </ul>
+            
+            <div class="tech-category">
+                <h3>Sistemas Operativos</h3>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fab fa-linux"></i><span>Linux Ubuntu</span></div>
+                    <div class="tech-card"><i class="fab fa-debian"></i><span>Debian</span></div>
+                    <div class="tech-card"><i class="fab fa-windows"></i><span>Win Server</span></div>
+                    <div class="tech-card"><i class="fas fa-user-shield"></i><span>Kali Linux</span></div>
+                    <div class="tech-card"><i class="fab fa-apple"></i><span>macOS</span></div>
                 </div>
-                <div class="skill-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Software & Web</h3>
-                    <ul class="skill-list">
-                        <li>HTML5 / CSS3 [cite: 28]</li>
-                        <li>Visual Studio Code [cite: 15]</li>
-                        <li>WordPress CMS [cite: 15]</li>
-                        <li>Google Drive / Office 365 [cite: 13]</li>
-                    </ul>
+            </div>
+
+            <div class="tech-category">
+                <h3>Infraestructura & Redes</h3>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fas fa-server"></i><span>Active Dir.</span></div>
+                    <div class="tech-card"><i class="fas fa-network-wired"></i><span>Cisco CCNA</span></div>
+                    <div class="tech-card"><i class="fas fa-cloud"></i><span>Virtualización</span></div>
+                    <div class="tech-card"><i class="fas fa-project-diagram"></i><span>Routing</span></div>
+                    <div class="tech-card"><i class="fas fa-shield-alt"></i><span>Firewalls</span></div>
+                    <div class="tech-card"><i class="fas fa-terminal"></i><span>SSH/Bash</span></div>
                 </div>
-                <div class="skill-card">
-                    <i class="fas fa-database"></i>
-                    <h3>Bases de Datos</h3>
-                    <ul class="skill-list">
-                        <li>PgAdmin (PostgreSQL) [cite: 15]</li>
-                        <li>Microsoft Access [cite: 15]</li>
-                        <li>Appsheet Cloud [cite: 15]</li>
-                    </ul>
+            </div>
+
+            <div class="tech-category">
+                <h3>Desarrollo & Datos</h3>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fab fa-html5"></i><span>HTML5</span></div>
+                    <div class="tech-card"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+                    <div class="tech-card"><i class="fas fa-database"></i><span>MySQL</span></div>
+                    <div class="tech-card"><i class="fas fa-leaf"></i><span>NoSQL</span></div>
+                    <div class="tech-card"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+                    <div class="tech-card"><i class="fab fa-git-alt"></i><span>Git</span></div>
                 </div>
             </div>
         </section>
 
         <section id="trayectoria">
-            <h2><span>03.</span> Experiencia & Formación</h2>
-            <div class="timeline">
-                <div class="event">
-                    <span class="event-date">2024 - ACTUALIDAD</span>
-                    <h3>Administración de Sistemas Informáticos en Redes (ASIX)</h3>
-                    <p>Instituto Sa Palomera, Blanes. Enfoque en gestión de servidores y redes corporativas. [cite: 20, 21]</p>
-                </div>
-                <div class="event">
-                    <span class="event-date">ENERO - MAYO 2024</span>
-                    <h3>Soporte Técnico Especializado (Prácticas)</h3>
-                    <p>Escola Ignasi Iglesias, Tordera. Mantenimiento de parque informático y resolución de incidencias. [cite: 25]</p>
-                </div>
-                <div class="event">
-                    <span class="event-date">JULIO 2023</span>
-                    <h3>Erasmus+: Domótica e Inmersión Técnica</h3>
-                    <p>Vitalis BMH, Schelkitz, Alemania. Especialización internacional en sistemas automatizados. [cite: 26, 27]</p>
-                </div>
-                <div class="event">
-                    <span class="event-date">2022 - 2024</span>
-                    <h3>CFGM Sistemas Microinformáticos y Redes</h3>
-                    <p>Institut Lluís Companys, Tordera. [cite: 18, 19]</p>
-                </div>
+            <h2><span>03.</span> Experiencia Laboral</h2>
+            <div class="work-card">
+                <h3>Técnico IT (Prácticas)</h3>
+                <p class="company">Tarinas Law & Economy - Calella</p>
+                <p class="date">2023 - 2024</p>
+                <p style="color: var(--text-dim);">Soporte técnico a usuarios, mantenimiento de equipos informáticos, gestión de incidencias en red local y configuración de terminales corporativos.</p>
+            </div>
+            
+            <div class="work-card">
+                <h3>Estudiante ASIR</h3>
+                <p class="company">Sa Palomera / Lluís Companys</p>
+                <p class="date">2022 - 2026</p>
+                <p style="color: var(--text-dim);">Formación especializada en administración de sistemas informáticos en red, seguridad y servicios de red.</p>
             </div>
         </section>
 
-        <section>
-            <h2><span>04.</span> Comunicación</h2>
-            <div style="display: flex; gap: 40px; flex-wrap: wrap;">
-                <div>
-                    <h4 style="color: var(--accent);">Catalán</h4>
-                    <p>Nativo (C1) [cite: 23]</p>
+        <section id="proyectos">
+            <h2><span>04.</span> Proyecto Destacado</h2>
+            <div class="project-single">
+                <h3>NoSQLPATi</h3>
+                <p style="color: var(--text-dim); margin-bottom: 20px;">
+                    Un repositorio dedicado a la investigación e implementación de bases de datos no relacionales, enfocado en la flexibilidad y gestión eficiente de grandes volúmenes de datos.
+                </p>
+                <div class="tag-list" style="display: flex; gap: 10px;">
+                    <span style="font-family: 'Fira Code'; font-size: 0.8rem; color: var(--accent);">#NoSQL</span>
+                    <span style="font-family: 'Fira Code'; font-size: 0.8rem; color: var(--accent);">#Database</span>
+                    <span style="font-family: 'Fira Code'; font-size: 0.8rem; color: var(--accent);">#Learning</span>
                 </div>
-                <div>
-                    <h4 style="color: var(--accent);">Castellano</h4>
-                    <p>Nativo [cite: 23]</p>
-                </div>
-                <div>
-                    <h4 style="color: var(--accent);">Inglés</h4>
-                    <p>Técnico / Básico [cite: 23]</p>
-                </div>
+                <a href="https://github.com/adriiiii/NoSQLPATi" target="_blank" class="github-btn">
+                    <i class="fab fa-github"></i> Ver en GitHub
+                </a>
             </div>
         </section>
 
-        <section id="contacto" class="contact-box">
-            <h3>¿Listo para el siguiente nivel?</h3>
-            <p style="margin-top: 15px; color: var(--text-dim);">Busco mi próxima oportunidad en el sector IT para aportar valor y seguir creciendo.</p>
-            <div style="margin-top: 20px; font-family: 'Fira Code', monospace; font-size: 0.9rem;">
-                📍 Tordera, Barcelona | 🚗 Carnet de conducir B [cite: 5, 16]
+        <section id="contacto">
+            <h2><span>05.</span> Contacto</h2>
+            <div class="form-container">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Tu email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="¿Cómo podemos colaborar?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                </form>
+                <div style="margin-top: 30px; text-align: center; font-family: 'Fira Code', monospace; font-size: 0.9rem;">
+                    📧 adriare2006@gmail.com | 📞 +34 608 99 64 60
+                </div>
             </div>
-            <a href="mailto:adriare2006@gmail.com" class="contact-link">
-                <i class="fas fa-paper-plane"></i> Enviar Correo Directo
-            </a>
         </section>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 Diseñado por Adrià Rodriguez Estrella [cite: 2]</p>
-        <div style="margin-top: 15px; color: var(--accent); font-weight: 600;">
-            <i class="fas fa-phone"></i> +34 608 99 64 60 [cite: 7]
-        </div>
+        <p>&copy; 2026 Diseñado por Adrià Rodriguez Estrella. Construido con código limpio.</p>
     </footer>
 
 </body>
