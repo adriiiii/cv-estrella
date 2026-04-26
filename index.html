@@ -3,416 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrià Rodriguez Estrella | Portafolio Profesional</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;700;900&family=Fira+Code:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Portafolio | Adrià Rodriguez Estrella</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
-        /* =========================================
-           SISTEMA DE DISEÑO (VARIABLES)
-           ========================================= */
         :root {
-            --primary: #38bdf8;
-            --secondary: #818cf8;
-            --bg-dark: #020617;
-            --bg-card: rgba(15, 23, 42, 0.8);
-            --border-color: rgba(56, 189, 248, 0.2);
-            --text-main: #f1f5f9;
-            --text-dim: #94a3b8;
-            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-            --shadow-blue: 0 8px 32px 0 rgba(56, 189, 248, 0.1);
+            --bg-color: #0b1120;
+            --card-bg: #111827;
+            --accent-blue: #3b82f6;
+            --text-main: #ffffff;
+            --text-secondary: #94a3b8;
+            --nav-bg: rgba(11, 17, 32, 0.9);
         }
 
-        /* =========================================
-           BASE & ANIMACIONES DE FONDO
-           ========================================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: default;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
-        /* Efecto de Luces de Fondo (Ambiente) */
-        .ambient-light {
-            position: fixed;
-            width: 100vw;
-            height: 100vh;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(129, 140, 248, 0.05) 0%, transparent 50%);
-        }
-
-        /* =========================================
-           NAVEGACIÓN (ESTILO VIDRIO)
-           ========================================= */
+        /* --- Navegación --- */
         nav {
+            background-color: var(--nav-bg);
+            padding: 1rem 10%;
             position: fixed;
+            width: 100%;
             top: 0;
-            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1e293b;
             z-index: 1000;
-            background: rgba(2, 6, 23, 0.7);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            height: 80px;
-            display: flex;
-            align-items: center;
         }
 
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 40px;
-        }
-
-        .nav-logo {
-            font-family: 'Fira Code', monospace;
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
+        nav a {
+            color: var(--text-secondary);
             text-decoration: none;
-            color: var(--text-dim);
-            font-size: 0.9rem;
             font-weight: 500;
             transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .nav-links a:hover { color: var(--primary); }
+        nav a:hover {
+            color: var(--accent-blue);
+        }
 
-        /* =========================================
-           HERO SECTION (CON FOTO)
-           ========================================= */
-        header {
+        /* --- Hero Section --- */
+        .hero {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 0 1rem;
+            margin-top: 50px;
         }
 
-        .profile-box {
+        .profile-container {
             position: relative;
-            margin-bottom: 40px;
+            margin-bottom: 2rem;
         }
 
-        /* LA FOTO QUE ME PEDISTE */
-        .my-photo {
-            width: 220px;
-            height: 220px;
+        .profile-img {
+            width: 250px;
+            height: 250px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--primary);
-            padding: 8px;
-            background: var(--bg-dark);
-            box-shadow: 0 0 50px rgba(56, 189, 248, 0.3);
-            transition: 0.5s ease;
+            border: 3px dashed var(--accent-blue);
+            padding: 10px;
         }
 
-        .my-photo:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 0 70px rgba(56, 189, 248, 0.5);
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
         }
 
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 900;
-            margin-bottom: 10px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -2px;
+        .hero h2 {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .hero-subtitle {
-            font-family: 'Fira Code', monospace;
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 30px;
+        .contact-info-hero {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
-        /* =========================================
-           CONTENEDOR GLOBAL
-           ========================================= */
+        /* --- Secciones Generales --- */
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 4rem 1.5rem;
         }
 
-        section { padding: 120px 0; }
-
-        .section-title {
+        h2.section-title {
             font-size: 2rem;
-            margin-bottom: 60px;
+            margin-bottom: 3rem;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 1rem;
         }
 
-        .section-title span { color: var(--primary); font-family: 'Fira Code'; }
-
-        .section-title::after {
+        h2.section-title::before {
             content: "";
-            height: 1px;
-            background: var(--border-color);
-            flex-grow: 1;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-blue);
         }
 
-        /* =========================================
-           SECCIÓN PROYECTOS (NOSQLPATI)
-           ========================================= */
-        .featured-project {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 50px;
-            transition: 0.4s;
-            position: relative;
-            overflow: hidden;
+        /* --- Experiencia y Formación --- */
+        .timeline {
+            display: grid;
+            gap: 2rem;
         }
 
-        .featured-project:hover {
-            border-color: var(--primary);
-            transform: translateY(-10px);
+        .card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+            transition: 0.3s;
         }
 
-        .project-meta { font-family: 'Fira Code'; color: var(--primary); font-size: 0.9rem; }
-        .project-name { font-size: 2.5rem; margin: 15px 0; }
-        .project-desc { color: var(--text-dim); font-size: 1.1rem; margin-bottom: 30px; }
+        .card:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-5px);
+        }
 
-        .btn-action {
+        .card h3 {
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .card span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* --- Proyecto Destacado (NoSQLPaTi) --- */
+        .project-section {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid #1e293b;
+            margin-top: 2rem;
+        }
+
+        .project-header {
+            color: var(--accent-blue);
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .github-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: var(--gradient);
+            gap: 0.5rem;
+            background-color: #24292e;
             color: white;
-            padding: 15px 35px;
-            border-radius: 12px;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 500;
             transition: 0.3s;
         }
 
-        /* =========================================
-           SECCIÓN LABORAL (DETALLE TARINAS)
-           ========================================= */
-        .experience-card {
-            margin-bottom: 40px;
-            padding: 40px;
-            border-left: 2px solid var(--primary);
-            background: rgba(255,255,255,0.02);
-            border-radius: 0 20px 20px 0;
-            transition: 0.3s;
+        .github-btn:hover {
+            background-color: #404448;
         }
 
-        .experience-card:hover { background: rgba(56, 189, 248, 0.05); }
-
-        .exp-date { font-family: 'Fira Code'; color: var(--primary); font-size: 0.9rem; }
-        .exp-company { font-size: 1.4rem; font-weight: 700; margin-top: 5px; }
-        .exp-role { color: var(--secondary); font-weight: 600; display: block; margin-bottom: 15px; }
-
-        /* =========================================
-           SECCIÓN FORMACIÓN
-           ========================================= */
-        .edu-grid {
+        /* --- Tecnologías --- */
+        .tech-grid {
             display: grid;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
         }
 
-        .edu-item {
-            padding: 30px;
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-        }
-
-        /* =========================================
-           FOOTER
-           ========================================= */
-        footer {
-            padding: 80px 20px;
+        .tech-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
             text-align: center;
-            border-top: 1px solid var(--border-color);
-            background: rgba(2,6,23,0.5);
+            border: 1px solid #1e293b;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            display: block;
         }
 
-        .social-links a { font-size: 1.5rem; color: var(--text-dim); transition: 0.3s; }
-        .social-links a:hover { color: var(--primary); transform: translateY(-5px); }
+        /* --- Formulario de Contacto --- */
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
 
+        .form-group {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        input, textarea {
+            background-color: var(--bg-color);
+            border: 1px solid #1e293b;
+            padding: 1rem;
+            border-radius: 8px;
+            color: white;
+        }
+
+        button {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .contact-info-hero { flex-direction: column; gap: 0.5rem; }
+            .hero h1 { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="ambient-light"></div>
-
     <nav>
-        <div class="nav-content">
-            <div class="nav-logo">AR.DEV</div>
-            <ul class="nav-links">
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#experiencia">Laboral</a></li>
-                <li><a href="#formacion">Formación</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </div>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#tecnologias">Tecnologías</a>
+        <a href="#contacto">Contacto</a>
     </nav>
 
-    <header>
-        <div class="profile-box" data-aos="zoom-in">
-            <img src="tu-foto.png" alt="Adrià Rodriguez Estrella" class="my-photo">
+    <header class="hero">
+        <div class="profile-container">
+            <img src="tu-foto.png" alt="Adrià Rodriguez" class="profile-img">
         </div>
-        <h1 class="hero-title" data-aos="fade-up">Adrià Rodriguez</h1>
-        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">System Administrator | Network Specialist | ASIX</p>
-        <div data-aos="fade-up" data-aos-delay="400">
-            <a href="mailto:adriare2006@gmail.com" class="btn-action">
-                <i class="fas fa-paper-plane"></i> Contactar ahora
-            </a>
+        <h1>Adrià Rodriguez Estrella</h1>
+        <h2>Sistemas & Redes</h2>
+        <div class="contact-info-hero">
+            <span><i class="fas fa-map-marker-alt"></i> Tordera, Barcelona</span>
+            <span><i class="fas fa-phone"></i> 608 99 64 60</span>
+            <span><i class="fas fa-envelope"></i> adriare2006@gmail.com</span>
         </div>
     </header>
 
-    <div class="container">
-
-        <section id="proyectos">
-            <div class="section-title" data-aos="fade-right">
-                <span>01.</span> <h2>Proyecto Destacado</h2>
-            </div>
-            
-            <div class="featured-project" data-aos="fade-up">
-                <span class="project-meta">Base de Datos / Backend</span>
-                <h3 class="project-name">NoSQLPATI</h3>
-                <p class="project-desc">
-                    Un sistema avanzado de gestión de datos NoSQL diseñado para optimizar el rendimiento de las consultas y la escalabilidad. 
-                    Este proyecto demuestra la capacidad de gestionar arquitecturas de datos no relacionales de manera eficiente y proactiva.
-                </p>
-                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 40px;">
-                    <span style="background: rgba(56, 189, 248, 0.1); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; color: var(--primary);">MongoDB</span>
-                    <span style="background: rgba(56, 189, 248, 0.1); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; color: var(--primary);">Data Architecture</span>
-                    <span style="background: rgba(56, 189, 248, 0.1); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; color: var(--primary);">GitHub</span>
-                </div>
-                <a href="https://github.com/adriiiii/NoSQLPATi" target="_blank" class="btn-action" style="background: #24292e;">
-                    <i class="fab fa-github"></i> Ver en GitHub
-                </a>
-            </div>
-        </section>
-
-        <section id="experiencia">
-            <div class="section-title" data-aos="fade-right">
-                <span>02.</span> <h2>Experiencia Laboral</h2>
-            </div>
-
-            <div class="experience-card" data-aos="fade-left">
-                <span class="exp-date">JUNIO 2024 - AGOSTO 2024</span>
-                <h3 class="exp-company">Tarinas Law & Economy</h3>
-                <span class="exp-role">Técnico de Soporte IT (Prácticas)</span>
-                <p style="color: var(--text-dim); margin-top: 15px;">
-                    Gestión integral de la infraestructura informática de la firma en Calella. Responsable del mantenimiento de redes corporativas, soporte técnico directo a abogados y economistas, y configuración de terminales de trabajo bajo normativas de seguridad estrictas.
-                </p>
-            </div>
-
-            <div class="experience-card" data-aos="fade-left" data-aos-delay="200">
-                <span class="exp-date">ENERO 2024 - MAYO 2024</span>
-                <h3 class="exp-company">Escola Ignasi Iglesias</h3>
-                <span class="exp-role">Técnico de Mantenimiento (Prácticas)</span>
-                <p style="color: var(--text-dim); margin-top: 15px;">
-                    Mantenimiento proactivo del parque informático del centro educativo. Resolución de incidencias de red, configuración de aulas digitales y soporte técnico a profesorado.
-                </p>
-            </div>
-
-            <div class="experience-card" data-aos="fade-left" data-aos-delay="300">
-                <span class="exp-date">JULIO 2023</span>
-                <h3 class="exp-company">Vitalis BMH (Alemania)</h3>
-                <span class="exp-role">Estancia Erasmus+ Domótica</span>
-                <p style="color: var(--text-dim); margin-top: 15px;">
-                    Inmersión técnica internacional en sistemas de automatización y domótica avanzada en Schelkitz, Alemania.
-                </p>
-            </div>
-        </section>
-
-        <section id="formacion">
-            <div class="section-title" data-aos="fade-right">
-                <span>03.</span> <h2>Formación Académica</h2>
-            </div>
-
-            <div class="edu-grid">
-                <div class="edu-item" data-aos="fade-up">
-                    <span class="exp-date">2024 - ACTUALIDAD</span>
-                    <h3 style="margin-top: 10px;">Grado Superior ASIX</h3>
-                    <p style="color: var(--primary);">Instituto Sa Palomera, Blanes</p>
-                    <p style="color: var(--text-dim); margin-top: 10px;">Administración de Sistemas Informáticos en Redes.</p>
-                </div>
-
-                <div class="edu-item" data-aos="fade-up" data-aos-delay="200">
-                    <span class="exp-date">2022 - 2024</span>
-                    <h3 style="margin-top: 10px;">Grado Medio SMR</h3>
-                    <p style="color: var(--primary);">Institut Lluís Companys, Tordera</p>
-                    <p style="color: var(--text-dim); margin-top: 10px;">Sistemas Microinformáticos y Redes.</p>
-                </div>
-            </div>
-        </section>
-
+    <div class="container" id="sobre-mi">
+        <h2 class="section-title">Sobre mí</h2>
+        <p style="color: var(--text-secondary); font-size: 1.1rem;">
+            Soy una persona proactiva, responsable y organizada, con el deseo de seguir aprendiendo y desarrollándome en el ámbito profesional. Mi objetivo es adquirir experiencia, mejorar mis habilidades y contribuir al éxito de los proyectos en los que participe.
+        </p>
     </div>
 
-    <footer id="contacto">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">¿Hablamos?</h2>
-        <p style="color: var(--text-dim); max-width: 500px; margin: 0 auto 40px auto;">
-            Actualmente estoy abierto a nuevas oportunidades en el sector IT. Mi base es Tordera, pero tengo movilidad total.
-        </p>
-        
-        <div style="font-family: 'Fira Code'; color: var(--primary); font-size: 1.2rem; margin-bottom: 20px;">
-            608 99 64 60 | adriare2006@gmail.com
+    <div class="container" id="proyectos">
+        <h2 class="section-title">Proyecto</h2>
+        <div class="project-section">
+            <span class="project-header">Collaboration: Adrià Rodríguez & Youssef Fouad</span>
+            <h3 class="project-title">NoSQLPaTi</h3>
+            <p class="project-desc">
+                Proyecto especializado en la implementación y gestión de bases de datos NoSQL. Análisis de escalabilidad, modelado de datos no relacionales y optimización de consultas para entornos distribuidos.
+            </p>
+            <a href="https://github.com/adriiiii/NoSQLPATi" target="_blank" class="github-btn">
+                <i class="fab fa-github"></i> Ver Proyecto en GitHub
+            </a>
         </div>
+    </div>
 
-        <div class="social-links">
-            <a href="https://github.com/adriiiii" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="mailto:adriare2006@gmail.com"><i class="fas fa-envelope"></i></a>
+    <div class="container" id="experiencia">
+        <h2 class="section-title">Experiencia Laboral</h2>
+        <div class="timeline">
+            <div class="card">
+                <h3>Escola Ignasi Iglesias</h3>
+                <span>01/01/24 — 30/05/24 | Tordera</span>
+                <p>Prácticas profesionales enfocadas en el mantenimiento de sistemas y soporte técnico.</p>
+            </div>
+            <div class="card">
+                <h3>Vitalis BMH (Erasmus+)</h3>
+                <span>10/07/23 — 28/07/23 | Schelkitz, Alemania</span>
+                <p>Formación técnica especializada en Domótica.</p>
+            </div>
         </div>
+    </div>
 
-        <p style="margin-top: 60px; font-size: 0.8rem; color: var(--text-dim);">
-            © 2024 Adrià Rodriguez Estrella - Desarrollado bajo estándares ASIX.
-        </p>
+    <div class="container" id="formacion">
+        <h2 class="section-title">Formación Académica</h2>
+        <div class="timeline">
+            <div class="card">
+                <h3>ASIX (Administración de Sistemas Informáticos en Red)</h3>
+                <span>2024 — En curso | Instituto Sa Palomera, Blanes</span>
+            </div>
+            <div class="card">
+                <h3>GM Sistemas Microinformáticos y Redes</h3>
+                <span>2022 — 2024 | Institut Lluís Companys, Tordera</span>
+            </div>
+            <div class="card">
+                <h3>ESO</h3>
+                <span>2018 — 2022 | Escola Brianxa, Tordera</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="tecnologias">
+        <h2 class="section-title">Tecnologías</h2>
+        <div class="tech-grid">
+            <div class="tech-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+            <div class="tech-item"><i class="fab fa-windows"></i><span>Windows Server</span></div>
+            <div class="tech-item"><i class="fas fa-network-wired"></i><span>Cisco Networking</span></div>
+            <div class="tech-item"><i class="fas fa-database"></i><span>PostgreSQL</span></div>
+            <div class="tech-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+            <div class="tech-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+            <div class="tech-item"><i class="fab fa-wordpress"></i><span>WordPress</span></div>
+            <div class="tech-item"><i class="fas fa-code"></i><span>VS Code</span></div>
+        </div>
+    </div>
+
+    <div class="container" id="contacto">
+        <h2 class="section-title">Contacto Directo</h2>
+        <form class="contact-form">
+            <div class="form-group">
+                <label>NOMBRE COMPLETO</label>
+                <input type="text" placeholder="Ej: Juan Pérez">
+            </div>
+            <div class="form-group">
+                <label>CORREO ELECTRÓNICO</label>
+                <input type="email" placeholder="tu@email.com">
+            </div>
+            <div class="form-group">
+                <label>MENSAJE</label>
+                <textarea rows="5" placeholder="Escribe tu mensaje aquí..."></textarea>
+            </div>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </div>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--text-secondary); border-top: 1px solid #1e293b;">
+        <p>© 2024 Adrià Rodriguez Estrella</p>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-    </script>
 </body>
 </html>
