@@ -3,531 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adrià Rodriguez Estrella | Portafolio ASIR</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Adrià Rodriguez Estrella | System Administrator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* =========================================
-           VARIABLES Y CONFIGURACIÓN BASE
-           ========================================= 
+        /* CSS DE ALTO NIVEL - ESTRUCTURA MONOLÍTICA 
         */
         :root {
-            --bg-body: #05080f;
-            --bg-card: #0f172a;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.3);
-            --text-primary: #f1f5f9;
-            --text-secondary: #94a3b8;
-            --nav-h: 70px;
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --bg-deep: #0a192f;
+            --bg-light: #112240;
+            --accent: #64ffda; /* El color verde/cian clásico de portafolio pro */
+            --text-white: #e6f1ff;
+            --text-slate: #8892b0;
+            --nav-height: 100px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
-
-        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Plus+Jakarta+Sans', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-primary);
-            line-height: 1.7;
-            overflow-x: hidden;
+            background-color: var(--bg-deep);
+            color: var(--text-slate);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        /* =========================================
-           MENÚ DE NAVEGACIÓN
-           ========================================= 
-        */
-        .navbar {
+        /* BARRA DE NAVEGACIÓN - SOLUCIÓN SOLAPAMIENTO */
+        header {
             position: fixed;
             top: 0;
             width: 100%;
-            height: var(--nav-h);
-            background: rgba(5, 8, 15, 0.85);
+            height: var(--nav-height);
+            background: rgba(10, 25, 47, 0.85);
             backdrop-filter: blur(10px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 10%;
-            z-index: 2000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--accent);
-            letter-spacing: -1px;
+            padding: 0 50px;
+            z-index: 1000;
+            transition: all 0.3s;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 30px;
+            counter-reset: item 0;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+            font-family: 'Fira Code', monospace;
+            font-size: 13px;
+        }
+
+        .nav-links li::before {
+            counter-increment: item;
+            content: "0" counter(item) ". ";
+            color: var(--accent);
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: var(--transition);
+            color: var(--text-white);
+            transition: 0.3s;
         }
 
         .nav-links a:hover {
             color: var(--accent);
         }
 
-        /* =========================================
-           HERO SECTION (AJUSTE FOTO)
-           ========================================= 
-        */
+        /* SECCIÓN HERO - FOTO Y TÍTULO */
         .hero {
-            padding-top: calc(var(--nav-h) + 80px); 
-            min-height: 80vh;
+            padding-top: calc(var(--nav-height) + 50px); /* Aquí se soluciona el margen */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding-inline: 20px;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
-        .profile-box {
+        .profile-container {
             position: relative;
-            margin-bottom: 2rem;
+            width: fit-content;
+            margin-bottom: 30px;
         }
 
         .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--bg-card);
-            box-shadow: 0 0 40px var(--accent-glow);
+            width: 250px;
+            height: 250px;
+            border-radius: 4px;
+            border: 2px solid var(--accent);
+            filter: grayscale(100%) contrast(1);
+            transition: 0.3s;
+        }
+
+        .profile-img:hover {
+            filter: none;
+            transform: translate(-5px, -5px);
+        }
+
+        .hero span {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
         }
 
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 0.5rem;
+            font-size: clamp(40px, 8vw, 80px);
+            color: var(--text-white);
+            font-weight: 700;
+            line-height: 1.1;
         }
 
         .hero h2 {
-            color: var(--accent);
-            font-size: 1.2rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
+            font-size: clamp(30px, 5vw, 50px);
+            color: var(--text-slate);
+            margin-top: 10px;
         }
 
-        .hero p {
-            max-width: 650px;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
+        /* SECCIONES GENERALES */
+        section {
+            padding: 100px 0;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        /* =========================================
-           SOBRE MÍ (NATURAL)
-           ========================================= 
-        */
-        .content-section {
-            max-width: 1000px;
-            margin: 100px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 30px;
+        .numbered-heading {
             display: flex;
             align-items: center;
-            gap: 15px;
+            font-size: clamp(26px, 5vw, 32px);
+            color: var(--text-white);
+            margin-bottom: 40px;
+            white-space: nowrap;
         }
 
-        .section-title::after {
+        .numbered-heading::before {
+            content: "0" attr(data-num) ".";
+            margin-right: 10px;
+            font-family: 'Fira Code', monospace;
+            color: var(--accent);
+            font-size: clamp(16px, 3vw, 20px);
+        }
+
+        .numbered-heading::after {
             content: "";
+            display: block;
+            width: 300px;
             height: 1px;
-            flex-grow: 1;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--bg-light);
+            margin-left: 20px;
         }
 
-        .bio-text {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* =========================================
-           EXPERIENCIA Y LICENCIAS
-           ========================================= 
-        */
-        .info-grid {
+        /* SOBRE MÍ - NATURAL */
+        .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            font-size: 18px;
         }
 
-        .card {
-            background: var(--bg-card);
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        /* TECNOLOGÍAS - ICONOS PEQUEÑOS Y CATEGORIZADOS */
+        .tech-wrapper {
+            margin-top: 40px;
         }
 
-        .card h3 {
-            color: var(--accent);
-            margin-bottom: 10px;
+        .tech-category {
+            margin-bottom: 30px;
         }
 
-        .tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .tag {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* =========================================
-           TECNOLOGÍAS (COMPACTO)
-           ========================================= 
-        */
-        .tech-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .tech-box {
-            background: rgba(15, 23, 42, 0.5);
-            padding: 20px;
-            border-radius: 12px;
-        }
-
-        .tech-box h4 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
+        .tech-category h4 {
+            color: var(--text-white);
+            font-family: 'Fira Code', monospace;
             margin-bottom: 15px;
-            border-left: 3px solid var(--accent);
-            padding-left: 10px;
+            font-size: 14px;
         }
 
-        .mini-grid {
+        .tech-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             gap: 10px;
         }
 
         .tech-item {
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            background: var(--bg-light);
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
+            text-align: center;
+            border: 1px solid transparent;
+            transition: 0.3s;
         }
 
-        .tech-item i { color: var(--accent); width: 15px; }
-
-        /* =========================================
-           PROYECTO ÚNICO
-           ========================================= 
-        */
-        .project-card {
-            display: flex;
-            background: linear-gradient(145deg, #0f172a, #1e293b);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease;
+        .tech-item:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
         }
 
-        .project-card:hover { transform: scale(1.02); }
+        /* EXPERIENCIA */
+        .exp-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 4px;
+            border-left: 2px solid var(--accent);
+        }
 
-        .project-info { padding: 40px; flex: 1; }
+        .exp-card h3 { color: var(--text-white); }
+        .exp-card span { font-family: 'Fira Code', monospace; color: var(--accent); font-size: 13px; }
 
-        .btn-git {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--accent);
-            color: #000;
-            padding: 12px 25px;
-            border-radius: 30px;
+        /* PROYECTO */
+        .project-box {
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .project-box h3 { color: var(--accent); margin-bottom: 20px; }
+        .project-link {
+            color: var(--text-white);
             text-decoration: none;
-            font-weight: 700;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            border: 1px solid var(--accent);
+            padding: 10px 20px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .project-link:hover { background: rgba(100, 255, 218, 0.1); }
+
+        /* DATOS PERSONALES / LICENCIAS */
+        .personal-data {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
             margin-top: 20px;
         }
 
-        /* =========================================
-           FORMULARIO (HUMANO)
-           ========================================= 
-        */
+        /* FORMULARIO */
+        .contact-container { text-align: center; }
         .contact-form {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 50px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        .form-group { margin-bottom: 20px; }
-
-        input, textarea {
-            width: 100%;
+        .contact-form input, .contact-form textarea {
+            background: var(--bg-light);
+            border: 1px solid var(--text-slate);
             padding: 15px;
-            background: #1e293b;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            color: white;
-            outline: none;
+            color: var(--text-white);
+            border-radius: 4px;
         }
-
-        input:focus, textarea:focus { border-color: var(--accent); }
 
         .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: none;
-            border: 2px solid var(--accent);
+            background: transparent;
+            border: 1px solid var(--accent);
             color: var(--accent);
-            border-radius: 10px;
-            font-weight: 800;
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        .submit-btn:hover {
-            background: var(--accent);
-            color: #000;
-        }
+        .submit-btn:hover { background: rgba(100, 255, 218, 0.1); }
 
         footer {
-            padding: 50px;
             text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
+            padding: 40px;
+            font-family: 'Fira Code', monospace;
+            font-size: 12px;
         }
 
-        @media (max-width: 768px) {
-            .info-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-        }
+        /* ANIMACIONES JS SIMULADAS CON CSS */
+        .fade-in { opacity: 0; transform: translateY(20px); transition: 0.6s all ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <canvas id="bg-canvas"></canvas>
-
-    <nav class="navbar">
-        <div class="logo">A. RODRIGUEZ</div>
-        <ul class="nav-links">
-            <li><a href="#sobre-mi">Quién soy</a></li>
-            <li><a href="#experiencia">Trayectoria</a></li>
-            <li><a href="#tecnologias">Skills</a></li>
-            <li><a href="#proyectos">Proyecto</a></li>
-            <li><a href="#contacto">Escríbeme</a></li>
-        </ul>
-    </nav>
-
-    <header class="hero">
-        <div class="profile-box">
-            <img src="tu-foto.jpg" alt="Adrià Rodriguez" class="profile-img">
+    <header>
+        <div class="logo">
+            <svg id="logo" viewBox="0 0 100 100" width="40" height="40">
+                <path d="M 50, 5 L 10, 25 L 10, 75 L 50, 95 L 90, 75 L 90, 25 Z" fill="none" stroke="#64ffda" stroke-width="5"/>
+                <text x="35" y="65" fill="#64ffda" font-family="Arial" font-size="35" font-weight="bold">A</text>
+            </svg>
         </div>
-        <h1>Adrià Rodriguez Estrella</h1>
-        <h2>System Administrator | Técnico ASIR</h2>
-        <p>Recién graduado en Administración de Sistemas. Me gusta trastear con servidores, configurar redes y asegurar que todo funcione como debería.</p>
+        <ul class="nav-links">
+            <li><a href="#about">Sobre mí</a></li>
+            <li><a href="#experience">Experiencia</a></li>
+            <li><a href="#work">Proyectos</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
     </header>
 
-    <section id="sobre-mi" class="content-section">
-        <h2 class="section-title">Sobre mí</h2>
-        <div class="bio-text">
-            <p>
-                Soy un apasionado de la informática que acaba de terminar el ciclo de <b>ASIR</b>. Siempre me ha gustado entender cómo funcionan las cosas por dentro, desde montar un PC hasta configurar un servidor desde cero.
+    <main>
+        <section class="hero">
+            <span>Adrià, encantado.</span>
+            <h1>Adrià Rodriguez Estrella.</h1>
+            <h2>System Administrator</h2>
+            <p style="max-width: 540px; margin-top: 20px;">
+                Construyendo infraestructuras seguras y escalables. Acabo de terminar <b>ASIR</b> y estoy listo para gestionar redes, servidores y lo que se ponga por delante.
             </p>
-            <br>
-            <p>
-                No me considero el "gurú" definitivo, pero me sobra curiosidad y ganas de aprender. Disfruto enfrentándome a problemas reales de redes o sistemas y buscando la solución más eficiente. Fuera de las pantallas, me gusta moverme y tener la mente activa.
-            </p>
-        </div>
-    </section>
+        </section>
 
-    <section id="experiencia" class="content-section">
-        <div class="info-grid">
-            <div class="card">
-                <h2 class="section-title" style="font-size: 1.4rem;">Prácticas</h2>
-                <h3>Tarinas Law & Economy</h3>
-                <p style="color: var(--accent);">Soporte IT / Calella</p>
-                <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-secondary);">
-                    Aprendí cómo funciona el entorno IT de una empresa real, dando soporte a usuarios, gestionando incidencias de hardware/software y manteniendo la infraestructura de red estable.
-                </p>
-            </div>
-
-            <div class="card">
-                <h2 class="section-title" style="font-size: 1.4rem;">Datos de interés</h2>
-                <div style="margin-bottom: 20px;">
-                    <p><strong>Idiomas:</strong></p>
-                    <div class="tag-list">
-                        <span class="tag">Catalán (Nativo/C1)</span>
-                        <span class="tag">Castellano (Nativo)</span>
-                        <span class="tag">Inglés (Técnico)</span>
-                    </div>
-                </div>
+        <section id="about">
+            <h2 class="numbered-heading" data-num="1">Sobre mí</h2>
+            <div class="about-content">
                 <div>
-                    <p><strong>Licencias:</strong></p>
-                    <div class="tag-list">
-                        <span class="tag"><i class="fas fa-car"></i> Carnet de conducir B</span>
+                    <p>Soy un apasionado de los sistemas que disfruta configurando entornos desde cero. No busco sonar como un experto de 20 años, sino como alguien que acaba de salir de ASIR con muchas ganas de meterle mano a servidores reales y solucionar problemas de red.</p>
+                    <br>
+                    <p>Me gusta la tecnología que funciona bien y de forma segura. Aquí tienes mis datos clave:</p>
+                    
+                    <div class="personal-data">
+                        <div class="exp-card" style="border-left-color: #fff;">
+                            <h4>Idiomas</h4>
+                            <p>Catalán (Nativo - C1)</p>
+                            <p>Castellano (Nativo)</p>
+                            <p>Inglés (Técnico / Básico)</p>
+                        </div>
+                        <div class="exp-card" style="border-left-color: #fff;">
+                            <h4>Licencias</h4>
+                            <p><i class="fas fa-car"></i> Carnet de conducir B</p>
+                            <p>Vehículo propio</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="tecnologias" class="content-section">
-        <h2 class="section-title">Tecnologías</h2>
-        <div class="tech-categories">
-            <div class="tech-box">
-                <h4>Sistemas</h4>
-                <div class="mini-grid">
-                    <div class="tech-item"><i class="fab fa-linux"></i> Linux</div>
-                    <div class="tech-item"><i class="fab fa-windows"></i> Win Server</div>
-                    <div class="tech-item"><i class="fas fa-box"></i> Virtualización</div>
-                    <div class="tech-item"><i class="fas fa-shield-alt"></i> Seguridad</div>
+        <section id="tech">
+            <h2 class="numbered-heading" data-num="2">Tecnologías</h2>
+            
+            <div class="tech-wrapper">
+                <div class="tech-category">
+                    <h4>Sistemas Operativos</h4>
+                    <div class="tech-grid">
+                        <div class="tech-item">Linux (Ubuntu)</div>
+                        <div class="tech-item">Debian</div>
+                        <div class="tech-item">Windows Server</div>
+                        <div class="tech-item">Kali Linux</div>
+                        <div class="tech-item">MacOS</div>
+                    </div>
                 </div>
-            </div>
-            <div class="tech-box">
-                <h4>Redes</h4>
-                <div class="mini-grid">
-                    <div class="tech-item"><i class="fas fa-route"></i> Cisco</div>
-                    <div class="tech-item"><i class="fas fa-network-wired"></i> Routing</div>
-                    <div class="tech-item"><i class="fas fa-lock"></i> VPN/Firewalls</div>
-                    <div class="tech-item"><i class="fas fa-ethernet"></i> Switching</div>
-                </div>
-            </div>
-            <div class="tech-box">
-                <h4>Web/Otros</h4>
-                <div class="mini-grid">
-                    <div class="tech-item"><i class="fab fa-html5"></i> HTML/CSS</div>
-                    <div class="tech-item"><i class="fas fa-database"></i> SQL / NoSQL</div>
-                    <div class="tech-item"><i class="fab fa-js"></i> Básico JS</div>
-                    <div class="tech-item"><i class="fab fa-git-alt"></i> Git</div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <section id="proyectos" class="content-section">
-        <h2 class="section-title">Mi Proyecto Destacado</h2>
-        <div class="project-card">
-            <div class="project-info">
+                <div class="tech-category">
+                    <h4>Redes e Infraestructura</h4>
+                    <div class="tech-grid">
+                        <div class="tech-item">Cisco CCNA</div>
+                        <div class="tech-item">Routing/Switching</div>
+                        <div class="tech-item">VMware</div>
+                        <div class="tech-item">Active Directory</div>
+                        <div class="tech-item">DHCP/DNS</div>
+                        <div class="tech-item">SSH</div>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h4>Desarrollo y Web</h4>
+                    <div class="tech-grid">
+                        <div class="tech-item">HTML5</div>
+                        <div class="tech-item">CSS3</div>
+                        <div class="tech-item">JavaScript</div>
+                        <div class="tech-item">SQL</div>
+                        <div class="tech-item">NoSQL</div>
+                        <div class="tech-item">WordPress</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="numbered-heading" data-num="3">Experiencia Laboral</h2>
+            <div class="exp-card">
+                <h3>Prácticas IT @ Tarinas Law & Economy</h3>
+                <span>Calella | 2023 - 2024</span>
+                <ul style="margin-top: 15px; padding-left: 20px; font-size: 14px;">
+                    <li>Mantenimiento preventivo y correctivo de equipos.</li>
+                    <li>Soporte técnico a usuarios finales (L1/L2).</li>
+                    <li>Gestión de redes locales y resolución de incidencias.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="work">
+            <h2 class="numbered-heading" data-num="4">Proyectos</h2>
+            <div class="project-box">
                 <h3>NOSQLPATI</h3>
-                <p style="margin-top: 15px; color: var(--text-secondary);">
-                    Un proyecto enfocado en la exploración y gestión de bases de datos NoSQL. Desarrollado para poner a prueba la flexibilidad y escalabilidad de datos fuera del esquema tradicional relacional.
-                </p>
-                <a href="https://github.com/adriiiii/NoSQLPATi" target="_blank" class="btn-git">
-                    <i class="fab fa-github"></i> Ver en GitHub
+                <p>Un proyecto centrado en la implementación y aprendizaje de bases de datos no relacionales, explorando su flexibilidad en entornos de datos modernos.</p>
+                <a href="https://github.com/adriiiii/NoSQLPATi" target="_blank" class="project-link">
+                    <i class="fab fa-github"></i> Ver Repositorio
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="contacto" class="content-section">
-        <h2 class="section-title">Hablamos</h2>
-        <div class="contact-form bio-text">
-            <p style="margin-bottom: 25px; text-align: center;">¿Tienes alguna propuesta o quieres preguntarme algo? Escríbeme y te respondo en cuanto lo vea.</p>
-            <form>
-                <div class="form-group">
-                    <input type="text" placeholder="Tu nombre" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Tu email" required>
-                </div>
-                <div class="form-group">
-                    <textarea rows="5" placeholder="¿Qué necesitas?" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">ENVIAR MENSAJE</button>
-            </form>
-        </div>
-    </section>
+        <section id="contact">
+            <h2 class="numbered-heading" data-num="5">Contacto</h2>
+            <div class="contact-container">
+                <p>¿Buscas un técnico con ganas de trabajar? Mi bandeja de entrada está abierta.</p>
+                <form class="contact-form">
+                    <input type="text" placeholder="Nombre" required>
+                    <input type="email" placeholder="Correo electrónico" required>
+                    <textarea rows="6" placeholder="Cuéntame en qué puedo ayudarte..."></textarea>
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>Adrià Rodriguez Estrella &copy; 2024 - Hecho con código y café.</p>
+        Diseñado y construido por Adrià Rodriguez Estrella.
     </footer>
 
     <script>
-        /* Partículas de fondo sencillas */
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = '#38bdf8';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+        // Efecto de aparición al hacer scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-            requestAnimationFrame(animate);
-        }
+        }, { threshold: 0.1 });
 
-        init();
-        animate();
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('fade-in');
+            observer.observe(section);
+        });
     </script>
 </body>
 </html>
