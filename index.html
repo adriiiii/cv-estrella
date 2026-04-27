@@ -3,34 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de Adrià Rodriguez Estrella - SysAdmin & Network Specialist 2026">
+    <meta name="description" content="Portfolio de Adrià Rodriguez Estrella - Systems & Networks Specialist">
     <title>Adrià Rodriguez | Systems & Networks</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
             --bg-deep: #050810;
             --bg-surface: #0f172a;
-            --bg-card: rgba(30, 41, 59, 0.5);
+            --bg-card: rgba(30, 41, 59, 0.4);
             --accent-primary: #22d3ee;
             --accent-secondary: #6366f1;
             --text-main: #f8fafc;
             --text-dim: #94a3b8;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.08);
             --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; cursor: default; }
-        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
 
         body {
@@ -41,64 +38,53 @@
             overflow-x: hidden;
         }
 
+        /* Background Decor */
         .bg-glow {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(34, 211, 238, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 40%);
+            background: radial-gradient(circle at 10% 20%, rgba(34, 211, 238, 0.03) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.03) 0%, transparent 40%);
             z-index: -1;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
         a, button { cursor: pointer; }
 
-        /* --- Nav --- */
+        /* Navbar */
         nav {
             position: fixed; width: 100%; top: 0; z-index: 1000;
             padding: 20px 0; transition: var(--transition);
         }
         nav.scrolled {
-            background: rgba(5, 8, 16, 0.8);
-            backdrop-filter: blur(15px);
+            background: rgba(5, 8, 16, 0.85);
+            backdrop-filter: blur(12px);
             padding: 12px 0;
             border-bottom: 1px solid var(--border);
         }
         .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-        .nav-brand { font-family: 'JetBrains Mono'; font-weight: 700; color: var(--accent-primary); text-decoration: none; font-size: 1.2rem; }
-        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-brand { font-family: 'JetBrains Mono'; font-weight: 800; color: var(--accent-primary); text-decoration: none; font-size: 1.2rem; }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
         .nav-links a { 
-            text-decoration: none; color: var(--text-dim); font-size: 0.9rem; font-weight: 600;
+            text-decoration: none; color: var(--text-dim); font-size: 0.85rem; font-weight: 600;
             transition: var(--transition); text-transform: uppercase; letter-spacing: 1px;
         }
         .nav-links a:hover { color: var(--accent-primary); }
 
-        /* Selector idiomas */
-        .lang-selector {
-            position: fixed; top: 90px; right: 30px; z-index: 1000;
-            display: flex; gap: 5px; background: var(--bg-surface); padding: 5px; border-radius: 8px; border: 1px solid var(--border);
-        }
-        .lang-btn {
-            padding: 5px 12px; border-radius: 5px; border: none; background: transparent;
-            color: var(--text-dim); font-family: 'JetBrains Mono'; font-size: 0.75rem; transition: var(--transition);
-        }
-        .lang-btn.active { background: var(--accent-primary); color: var(--bg-deep); font-weight: 700; }
-
-        /* --- Hero --- */
-        .hero { height: 100vh; display: flex; align-items: center; position: relative; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .hero-tag { font-family: 'JetBrains Mono'; color: var(--accent-secondary); font-size: 1rem; margin-bottom: 15px; display: block; }
-        .hero-h1 { font-size: 4.5rem; font-weight: 800; line-height: 1; margin-bottom: 25px; }
+        /* Hero */
+        .hero { height: 90vh; display: flex; align-items: center; }
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+        .hero-h1 { font-size: clamp(3rem, 8vw, 4.8rem); font-weight: 800; line-height: 1; margin-bottom: 20px; }
         .hero-h1 span { background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-p { font-size: 1.2rem; color: var(--text-dim); margin-bottom: 40px; max-width: 500px; }
+        .hero-p { font-size: 1.2rem; color: var(--text-dim); margin-bottom: 35px; max-width: 550px; }
         
         .profile-container { position: relative; display: flex; justify-content: center; }
         .profile-frame {
-            width: 380px; height: 380px;
+            width: 350px; height: 350px;
             background: var(--bg-surface);
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             border: 2px solid var(--accent-primary);
             overflow: hidden;
             animation: morph 8s ease-in-out infinite;
+            box-shadow: 0 0 50px rgba(34, 211, 238, 0.1);
         }
         .profile-frame img { width: 100%; height: 100%; object-fit: cover; }
 
@@ -107,95 +93,85 @@
             50% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
         }
 
-        /* --- Sections --- */
-        section { padding: 80px 0; }
+        /* Secciones */
+        section { padding: 70px 0; }
         .section-header { margin-bottom: 40px; }
-        .section-header h2 { font-size: 2.2rem; font-weight: 800; display: flex; align-items: center; gap: 15px; }
+        .section-header h2 { font-size: 2rem; font-weight: 800; display: flex; align-items: center; gap: 15px; }
         .section-header h2::after { content: ""; height: 1px; flex-grow: 1; background: var(--border); }
-        .section-header span { color: var(--accent-primary); font-family: 'JetBrains Mono'; font-size: 1.2rem; }
+        .section-header span { color: var(--accent-primary); font-family: 'JetBrains Mono'; }
 
-        /* --- Especialización --- */
-        .spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .spec-card {
-            background: var(--bg-card); padding: 35px; border-radius: 20px;
+        /* Sobre Mí */
+        .about-content p { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 20px; max-width: 900px; text-align: justify;}
+
+        /* Especialización & Educación Cards */
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card {
+            background: var(--bg-card); padding: 30px; border-radius: 18px;
             border: 1px solid var(--border); transition: var(--transition);
+            position: relative; overflow: hidden;
         }
-        .spec-card:hover { border-color: var(--accent-primary); transform: translateY(-5px); }
-        .spec-card i { font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 20px; display: block; }
-        .spec-card h3 { margin-bottom: 12px; font-size: 1.4rem; }
-        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-        .tag { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 6px; font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--text-dim); border: 1px solid var(--border); }
+        .card:hover { border-color: var(--accent-primary); transform: translateY(-5px); background: rgba(34, 211, 238, 0.02); }
+        .card i { font-size: 2.2rem; color: var(--accent-primary); margin-bottom: 20px; display: block; }
+        .card h3 { margin-bottom: 10px; font-size: 1.3rem; }
+        .card p { color: var(--text-dim); font-size: 0.95rem; }
+        .card .date { font-family: 'JetBrains Mono'; color: var(--accent-secondary); font-size: 0.85rem; display: block; margin-bottom: 10px; }
 
-        /* --- Sobre mí --- */
-        .about-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; }
-        .about-content p { margin-bottom: 20px; font-size: 1.1rem; color: var(--text-dim); text-align: justify; }
-        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .stat-card { background: var(--glass); padding: 20px; border-radius: 15px; border: 1px solid var(--border); }
-        .stat-card h4 { color: var(--accent-primary); font-size: 1.5rem; }
-        .stat-card p { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0; }
-
-        /* --- Timeline --- */
-        .timeline { position: relative; }
+        /* Trayectoria Timeline */
+        .timeline { position: relative; padding-left: 30px; }
         .timeline::before { content: ""; position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: var(--border); }
-        .timeline-item { margin-left: 40px; margin-bottom: 40px; position: relative; }
+        .timeline-item { position: relative; margin-bottom: 40px; }
         .timeline-dot { 
-            position: absolute; left: -49px; top: 5px; width: 16px; height: 16px; 
+            position: absolute; left: -39px; top: 5px; width: 16px; height: 16px; 
             border-radius: 50%; background: var(--accent-primary); border: 4px solid var(--bg-deep); 
         }
-        .exp-card { 
-            background: var(--bg-card); padding: 25px; border-radius: 20px; 
-            border: 1px solid var(--border); transition: var(--transition);
-        }
-        .exp-card:hover { border-color: var(--accent-primary); transform: translateX(10px); }
-        .exp-time { font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--accent-primary); margin-bottom: 8px; display: block; }
-        .exp-card h3 { font-size: 1.3rem; margin-bottom: 5px; }
-        .exp-card h4 { color: var(--accent-secondary); font-size: 1rem; margin-bottom: 12px; font-weight: 400; }
-        .exp-card ul { list-style: none; }
-        .exp-card li { margin-bottom: 8px; color: var(--text-dim); font-size: 0.95rem; display: flex; gap: 10px; }
-        .exp-card li::before { content: "▹"; color: var(--accent-primary); }
+        .exp-box { background: var(--bg-card); padding: 25px; border-radius: 15px; border: 1px solid var(--border); transition: var(--transition); }
+        .exp-box:hover { border-color: var(--accent-primary); }
+        .exp-box h3 { font-size: 1.25rem; margin-bottom: 5px; }
+        .exp-box h4 { color: var(--accent-primary); font-weight: 500; font-size: 1rem; margin-bottom: 15px; }
+        .exp-box ul { list-style: none; padding-left: 5px; }
+        .exp-box li { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 8px; display: flex; gap: 10px; }
+        .exp-box li::before { content: "→"; color: var(--accent-primary); }
 
-        /* --- Skills --- */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .skill-group { background: var(--bg-card); padding: 25px; border-radius: 20px; border: 1px solid var(--border); }
-        .skill-group h3 { margin-bottom: 20px; display: flex; align-items: center; gap: 12px; font-size: 1.1rem; }
-        .skill-item { margin-bottom: 15px; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85rem; }
+        /* Skills Progress */
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .skill-item { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-family: 'JetBrains Mono'; font-size: 0.85rem; }
         .progress-bar { height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); width: 0; transition: width 1.5s ease-in-out; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); width: 0; transition: width 1.5s ease; }
 
-        /* --- Idiomas & Licencia --- */
-        .extra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
-        .lang-card { background: var(--glass); padding: 25px; border-radius: 15px; border: 1px solid var(--border); }
-        .license-box { 
+        /* Extras (Idiomas y Carnet) */
+        .extra-flex { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .license-card { 
             background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             padding: 30px; border-radius: 20px; color: var(--bg-deep); display: flex; align-items: center; gap: 20px;
         }
-        .license-box i { font-size: 3rem; opacity: 0.8; }
-        .license-box h3 { font-weight: 800; font-size: 1.5rem; }
 
-        /* Formulario de Contacto */
-        .contact-flex { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; margin-top: 40px; }
+        /* Contact Form */
+        .contact-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; }
         .contact-form { display: flex; flex-direction: column; gap: 15px; }
         .contact-form input, .contact-form textarea {
             background: var(--bg-surface); border: 1px solid var(--border); padding: 15px;
-            color: white; border-radius: 12px; font-family: inherit; outline: none;
+            color: white; border-radius: 12px; font-family: inherit; outline: none; transition: 0.3s;
         }
-        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent-primary); }
-        .send-btn {
-            background: var(--accent-primary); color: var(--bg-deep); padding: 15px;
-            border: none; border-radius: 12px; font-weight: 800; cursor: pointer; transition: var(--transition);
+        .contact-form input:focus { border-color: var(--accent-primary); }
+        .submit-btn {
+            background: var(--accent-primary); color: var(--bg-deep); padding: 16px;
+            border: none; border-radius: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
         }
-        .send-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+        .submit-btn:hover { filter: brightness(1.1); transform: scale(1.01); }
 
-        footer { padding: 50px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); }
-        .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
-        .social-links a { font-size: 1.5rem; color: var(--text-dim); transition: var(--transition); }
-        .social-links a:hover { color: var(--accent-primary); transform: translateY(-5px); }
+        /* Lang Switcher */
+        .lang-switcher {
+            position: fixed; top: 85px; right: 25px; z-index: 1000;
+            display: flex; gap: 5px; background: var(--bg-surface); padding: 5px; border-radius: 10px; border: 1px solid var(--border);
+        }
+        .lang-btn { padding: 6px 12px; border: none; background: transparent; color: var(--text-dim); font-family: 'JetBrains Mono'; font-size: 0.75rem; border-radius: 6px; }
+        .lang-btn.active { background: var(--accent-primary); color: var(--bg-deep); font-weight: 700; }
 
-        @media (max-width: 992px) {
-            .hero-grid, .about-layout, .extra-grid, .contact-flex { grid-template-columns: 1fr; }
-            .hero-h1 { font-size: 3rem; }
-            .profile-frame { width: 300px; height: 300px; }
+        @media (max-width: 900px) {
+            .hero-grid, .skills-grid, .extra-flex, .contact-grid { grid-template-columns: 1fr; }
+            .hero { height: auto; padding: 120px 0 60px; }
+            .profile-frame { width: 280px; height: 280px; }
         }
     </style>
 </head>
@@ -208,219 +184,207 @@
             <a href="#" class="nav-brand">ADRIÀ<span style="color:var(--accent-secondary)">.</span>SYS</a>
             <ul class="nav-links">
                 <li><a href="#about" data-key="nav-about">Bio</a></li>
-                <li><a href="#spec" data-key="nav-spec">Especialització</a></li>
-                <li><a href="#experience" data-key="nav-exp">Trajectòria</a></li>
-                <li><a href="#skills">Tech Stack</a></li>
+                <li><a href="#spec" data-key="nav-spec">Tech</a></li>
+                <li><a href="#education" data-key="nav-edu">Estudis</a></li>
+                <li><a href="#experience" data-key="nav-exp">Experiència</a></li>
                 <li><a href="#contact" data-key="nav-contact">Contacte</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="lang-selector">
+    <div class="lang-switcher">
         <button class="lang-btn active" onclick="setLang('ca')">CAT</button>
         <button class="lang-btn" onclick="setLang('es')">ESP</button>
     </div>
 
-    <main>
-        <header class="hero container">
+    <main class="container">
+        
+        <header class="hero">
             <div class="hero-grid">
-                <div class="hero-text" data-aos="fade-right">
-                    <span class="hero-tag">System Administrator & Network Enthusiast</span>
+                <div data-aos="fade-right">
+                    <span style="font-family:'JetBrains Mono'; color:var(--accent-primary); font-size: 1rem; margin-bottom: 10px; display: block;">Adrià Rodriguez Estrella</span>
                     <h1 class="hero-h1">SYSTEMS &<br><span>NETWORKS.</span></h1>
-                    <p class="hero-p" data-key="hero-desc">
-                        Gestionant infraestructures crítiques, desplegant nùvols i assegurant que els paquets arribin al seu destí.
-                    </p>
-                    <div style="display:flex; gap:20px;">
-                        <a href="#contact" style="background:var(--accent-primary); color:var(--bg-deep); padding: 15px 35px; border-radius: 50px; text-decoration:none; font-weight:800;" data-key="nav-contact">Contacte</a>
-                        <a href="#experience" style="border:1px solid var(--accent-primary); color:var(--accent-primary); padding: 15px 35px; border-radius: 50px; text-decoration:none; font-weight:600;">Resume</a>
-                    </div>
+                    <p class="hero-p" data-key="hero-desc">Administrador de sistemes especialitzat en infraestructures crítiques, cloud computing i seguretat de xarxes en entorns d'alt rendiment.</p>
+                    <a href="#contact" style="background:var(--accent-primary); color:var(--bg-deep); padding: 16px 40px; border-radius: 50px; text-decoration:none; font-weight:800; display:inline-block;" data-key="nav-contact">Contacte</a>
                 </div>
                 <div class="profile-container" data-aos="zoom-in">
                     <div class="profile-frame">
-                        <img src="https://raw.githubusercontent.com/adriiiii/cv-estrella/a066329812b2bdf6da44a43b3f6c6f230614c051/Imagen_adri.png" alt="Adrià Rodriguez Estrella">
+                        <img src="https://raw.githubusercontent.com/adriiiii/cv-estrella/a066329812b2bdf6da44a43b3f6c6f230614c051/Imagen_adri.png" alt="Adrià Rodriguez">
                     </div>
                 </div>
             </div>
         </header>
 
-        <section id="about" class="container">
+        <section id="about">
             <div class="section-header" data-aos="fade-up">
-                <h2><span data-key="num-01">01.</span> <span data-key="nav-about">Sobre mi</span></h2>
+                <h2><span>01.</span> <span data-key="nav-about">Sobre mi</span></h2>
             </div>
-            <div class="about-layout">
-                <div class="about-content" data-aos="fade-right">
-                    <p data-key="about-p1">
-                        Sóc Tècnic en sistemes microinformàtics i xarxes, actualment ampliant la meva formació superior (ASIX) amb un enfocament especial en arquitectures Cloud (AWS), administració de servidors i ciberseguretat. Em defineixo com una persona proactiva, capaç d'adaptar-me ràpidament a nous entorns i tecnologies, amb una orientació clara cap a l'eficiència operativa i el suport tècnic avançat.
-                    </p>
-                    <p data-key="about-p2">
-                        La meva trajectòria m'ha permès desenvolupar habilitats tècniques sòlides i competències interpersonals klau a través del treball en equips internacionals i en sectors de gran responsabilitat, com el legal i l'educatiu. Tinc experiència en la resolució d'incidències, gestió d'infraestructures crítiques i manteniment de sistemes en entorns Windows, Linux i Cloud.
-                    </p>
-                </div>
-                <div class="stats-grid" data-aos="fade-left">
-                    <div class="stat-card"><h4>ASIX</h4><p>Grado Superior [En curso]</p></div>
-                    <div class="stat-card"><h4>SMX</h4><p>Grado Medio [Completado]</p></div>
-                    <div class="stat-card"><h4>3+</h4><p>Empresas IT</p></div>
-                    <div class="stat-card"><h4>∞</h4><p>Ganas de aprender</p></div>
-                </div>
+            <div class="about-content" data-aos="fade-up">
+                <p data-key="about-p1">Sóc Tècnic en sistemes microinformàtics i xarxes, actualment ampliant la meva formació superior (ASIX) amb un enfocament especial en arquitectures Cloud (AWS), administració de servidors i ciberseguretat. Em defineixo com una persona proactiva, capaç d'adaptar-me ràpidament a nous entorns i tecnologies, amb una orientació clara cap a l'eficiència operativa i el suport tècnic avançat.</p>
+                <p data-key="about-p2">La meva trajectòria m'ha permès desenvolupar habilitats tècniques sòlides i competències interpersonals clau a través del treball en equips internacionals i en sectors de gran responsabilitat, com el legal i l'educatiu. Tinc experiència en la resolució d'incidències, gestió d'infraestructures crítiques i manteniment de sistemes en entorns Windows, Linux i Cloud.</p>
             </div>
         </section>
 
-        <section id="spec" class="container">
+        <section id="spec">
             <div class="section-header" data-aos="fade-up">
-                <h2><span data-key="num-02">02.</span> <span data-key="nav-spec">Especialització</span></h2>
+                <h2><span>02.</span> <span data-key="nav-spec">Especialització</span></h2>
             </div>
-            <div class="spec-grid">
-                <div class="spec-card" data-aos="fade-up">
+            <div class="grid-cards">
+                <div class="card" data-aos="fade-up">
                     <i class="fas fa-server"></i>
-                    <h3 data-key="spec-h1">Server Administration</h3>
-                    <p data-key="spec-p1" style="color:var(--text-dim); font-size:0.95rem;">Instal·lació i configuració de Windows Server. Gestió de rols (AD DS, DNS, DHCP) i polítiques de grup (GPO).</p>
-                    <div class="tag-container">
-                        <span class="tag">Active Directory</span><span class="tag">PowerShell</span><span class="tag">Hyper-V</span>
-                    </div>
+                    <h3 data-key="spec-h1">Server Admin</h3>
+                    <p data-key="spec-p1">Gestió avançada de Windows Server i Linux. Configuració de Rols (AD DS, DNS, GPO) i entorns virtualitzats amb Hyper-V i Proxmox.</p>
                 </div>
-                <div class="spec-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
                     <i class="fas fa-network-wired"></i>
-                    <h3 data-key="spec-h2">Network Engineering</h3>
-                    <p data-key="spec-p2" style="color:var(--text-dim); font-size:0.95rem;">Disseny i manteniment de xarxes LAN/WAN. Configuració de Routers i Switches CISCO i seguretat perimetral.</p>
-                    <div class="tag-container">
-                        <span class="tag">VLAN</span><span class="tag">OSPF</span><span class="tag">CCNA</span>
-                    </div>
+                    <h3 data-key="spec-h2">Networking</h3>
+                    <p data-key="spec-p2">Disseny de xarxes LAN/WAN, configuració de VLANs i protocols d'enrutament en dispositius Cisco. Seguretat perimetral.</p>
                 </div>
-                <div class="spec-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
                     <i class="fas fa-cloud"></i>
-                    <h3 data-key="spec-h3">Cloud Solutions (AWS)</h3>
-                    <p data-key="spec-p3" style="color:var(--text-dim); font-size:0.95rem;">Implementació de solucions al núvol amb AWS. Comprensió del model de responsabilitat compartida i costos cloud.</p>
-                    <div class="tag-container">
-                        <span class="tag">EC2</span><span class="tag">S3</span><span class="tag">VPC</span>
-                    </div>
+                    <h3 data-key="spec-h3">Cloud Architecture</h3>
+                    <p data-key="spec-p3">Desplegament i administració de serveis al núvol amb AWS (EC2, S3, VPC). Automatització de processos i escalabilitat.</p>
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="container">
+        <section id="education">
             <div class="section-header" data-aos="fade-up">
-                <h2><span data-key="num-03">03.</span> <span data-key="nav-exp">Trayectoria Profesional</span></h2>
+                <h2><span>03.</span> <span data-key="nav-edu">Formació Acadèmica</span></h2>
+            </div>
+            <div class="grid-cards">
+                <div class="card" data-aos="fade-right">
+                    <span class="date">2024 — ACTUALITAT</span>
+                    <h3>CFGS ASIX</h3>
+                    <p>Administració de Sistemes Informàtics en Xarxa. Especialització en ciberseguretat i gestió de bases de dades SQL.<br><strong>Inst. Sa Palomera, Blanes.</strong></p>
+                </div>
+                <div class="card" data-aos="fade-left">
+                    <span class="date">2022 — 2024</span>
+                    <h3>CFGM SMX</h3>
+                    <p>Sistemes Microinformàtics i Xarxes. Fonaments de hardware, muntatge i manteniment preventiu.<br><strong>Inst. Lluís Companys, Tordera.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="section-header" data-aos="fade-up">
+                <h2><span>04.</span> <span data-key="nav-exp">Experiència Professional</span></h2>
             </div>
             <div class="timeline">
                 <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-dot"></div>
-                    <div class="exp-card">
-                        <span class="exp-time">Septiembre 2024 — Actualidad</span>
+                    <div class="exp-box">
+                        <span class="date">SETEMBRE 2024 — ACTUALITAT</span>
                         <h3>Tarinas Law & Economy</h3>
                         <h4 data-key="job-law">Soporte IT & Administrador Junior</h4>
                         <ul>
-                            <li>Gestión de infraestructuras críticas y despliegue de sistemas.</li>
-                            <li>Resolución de incidencias de Nivel 2 y mantenimiento.</li>
+                            <li>Administració d'infraestructures crítiques i servidors Windows/Linux.</li>
+                            <li>Resolució d'incidències de Nivell 2 i suport a usuaris.</li>
+                            <li>Gestió de còpies de seguretat i seguretat de dades.</li>
                         </ul>
                     </div>
                 </div>
                 <div class="timeline-item" data-aos="fade-up">
                     <div class="timeline-dot"></div>
-                    <div class="exp-card">
-                        <span class="exp-time">Julio 2023 — Agosto 2023</span>
-                        <h3>Vitalis BMH (Alemanya)</h3>
-                        <h4 data-key="job-erasmus">Técnico en Domótica (Erasmus+)</h4>
-                        <ul>
-                            <li>Implementación de sistemas inteligentes e IoT.</li>
-                            <li>Trabajo en equipo internacional en entorno inglés.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-card">
-                        <span class="exp-time">Enero 2024 — Mayo 2024</span>
+                    <div class="exp-box">
+                        <span class="date">GENER 2024 — MAIG 2024</span>
                         <h3>Escola Ignasi Iglesias</h3>
-                        <h4 data-key="job-edu">Prácticas Sistemas Microinformáticos</h4>
+                        <h4 data-key="job-edu">Tècnic de Suport IT (Pràctiques)</h4>
                         <ul>
-                            <li>Mantenimiento del parque informático educativo.</li>
-                            <li>Soporte directo a usuarios y gestión de redes.</li>
+                            <li>Manteniment del parc informàtic del centre educatiu.</li>
+                            <li>Instal·lació de software i gestió de la xarxa local (VLANs).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-dot"></div>
+                    <div class="exp-box">
+                        <span class="date">JULIOL 2023 — AGOST 2023</span>
+                        <h3>Vitalis BMH (Leipzig, Alemanya)</h3>
+                        <h4 data-key="job-erasmus">Tècnic en Domòtica (Erasmus+)</h4>
+                        <ul>
+                            <li>Configuració de sistemes IoT i automatització industrial.</li>
+                            <li>Treball en entorn internacional amb comunicació en anglès.</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills" class="container">
+        <section id="skills">
             <div class="section-header" data-aos="fade-up">
-                <h2><span data-key="num-04">04.</span> Tech Stack</h2>
+                <h2><span>05.</span> Arsenal Tècnic</h2>
             </div>
             <div class="skills-grid">
-                <div class="skill-group" data-aos="fade-up">
-                    <h3><i class="fas fa-server"></i> Sistemas</h3>
-                    <div class="skill-item">
-                        <div class="skill-info"><span>Linux (Debian/Ubuntu)</span><span>95%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span>Windows Server / AD</span><span>85%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
-                    </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Linux Admin (Debian/Ubuntu)</span><span>95%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 95%;"></div></div>
                 </div>
-                <div class="skill-group" data-aos="fade-up" data-aos-delay="100">
-                    <h3><i class="fas fa-network-wired"></i> Redes</h3>
-                    <div class="skill-item">
-                        <div class="skill-info"><span>Cisco Packet Tracer</span><span>90%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-info"><span>VLANs & Routing</span><span>80%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
-                    </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Windows Server / AD</span><span>85%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Cisco Networking</span><span>90%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>AWS Cloud Architecture</span><span>75%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
                 </div>
             </div>
         </section>
 
-        <section class="container">
-            <h2 class="section-header" data-aos="fade-up"><span>05.</span> Dades Addicionals</h2>
-            <div class="extra-grid">
-                <div class="lang-card" data-aos="fade-right">
-                    <h4 style="margin-bottom:15px;" data-key="lang-title">Idiomes</h4>
-                    <p style="color:var(--text-dim);">
-                        <strong>Català i Castellà:</strong> Natiu (C1).<br>
-                        <strong>Anglès:</strong> Nivell tècnic (Documentació).
-                    </p>
+        <section>
+            <div class="extra-flex">
+                <div class="card" data-aos="fade-right">
+                    <h3 data-key="lang-title">Idiomes</h3>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Català / Castellà</span><span>Natiu</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info"><span>Anglès Tècnic</span><span>Intermig</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+                    </div>
                 </div>
-                <div class="license-box" data-aos="fade-left">
+                <div class="license-card" data-aos="fade-left">
                     <i class="fas fa-id-card"></i>
                     <div>
-                        <p style="font-weight:600; text-transform:uppercase; font-size:0.8rem;">Licència</p>
-                        <h3>CARNET TIPO B</h3>
-                        <p style="font-size:0.9rem;">Vehicle propi i mobilitat geogràfica.</p>
+                        <p style="font-weight:700; text-transform:uppercase; font-size:0.8rem; opacity: 0.8;">Llicència de conduir</p>
+                        <h3 style="font-size:1.8rem; margin: 5px 0;">CARNET B</h3>
+                        <p style="font-size:0.9rem; font-weight:500;">Vehicle propi i disponibilitat per desplaçaments.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="container">
+        <section id="contact">
             <div class="section-header" data-aos="fade-up">
-                <h2><span data-key="num-06">06.</span> <span data-key="nav-contact">Contacte</span></h2>
+                <h2><span>06.</span> <span data-key="nav-contact">Contacte</span></h2>
             </div>
-            <div class="contact-flex">
+            <div class="contact-grid">
                 <div data-aos="fade-right">
-                    <h3 style="font-size: 2rem; margin-bottom: 15px;" data-key="contact-h3">Parlem?</h3>
-                    <p style="color:var(--text-dim); margin-bottom: 30px;" data-key="contact-p">Estic disponible per a noves oportunitats laborals o col·laboracions en projectes IT.</p>
-                    <div class="social-links" style="justify-content: flex-start;">
-                        <a href="https://github.com/adriiiii" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="tel:608996460"><i class="fas fa-phone"></i></a>
+                    <h3 style="font-size: 2rem; margin-bottom: 15px;">Parlem?</h3>
+                    <p style="color:var(--text-dim); margin-bottom: 25px;">Estic obert a noves oportunitats professionals i col·laboracions tècniques.</p>
+                    <div style="display:flex; gap:20px; font-size:1.5rem;">
+                        <a href="https://github.com/adriiiii" target="_blank" style="color:white;"><i class="fab fa-github"></i></a>
+                        <a href="tel:608996460" style="color:white;"><i class="fas fa-phone"></i></a>
+                        <a href="mailto:adriare2006@gmail.com" style="color:white;"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <form class="contact-form" data-aos="fade-left">
                     <input type="text" placeholder="Nom" required>
                     <input type="email" placeholder="Email" required>
-                    <textarea rows="4" placeholder="Missatge" required></textarea>
-                    <button type="submit" class="send-btn" data-key="btn-send">Enviar Missatge</button>
+                    <textarea rows="5" placeholder="El teu missatge..." required></textarea>
+                    <button type="submit" class="submit-btn" data-key="btn-send">Enviar Missatge</button>
                 </form>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p style="font-family: 'JetBrains Mono'; font-size: 0.8rem;">
-                © 2026 ADRIÀ RODRIGUEZ ESTRELLA • TORDERA, CATALUNYA
-            </p>
-        </div>
+    <footer style="padding: 40px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.85rem;">
+        <p>© 2026 ADRIÀ RODRIGUEZ ESTRELLA • TORDERA, CATALUNYA</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -435,37 +399,37 @@
 
         const translations = {
             ca: {
-                "nav-about": "Sobre mi", "nav-spec": "Especialització", "nav-exp": "Trajectòria", "nav-contact": "Contacte",
-                "hero-desc": "Gestionant infraestructures crítiques, desplegant nùvols i assegurant que els paquets arribin al seu destí.",
-                "about-p1": "Sóc Tècnic en sistemes microinformàtics i xarxes, actualment ampliant la meva formació superior (ASIX) amb un enfocament especial en arquitectures Cloud (AWS), administració de servidors i ciberseguretat. Em defineixo com una persona proactiva, capaç d'adaptar-me ràpidament a nous entorns i tecnologies.",
-                "about-p2": "La meva trajectòria m'ha permès desenvolupar habilitats tècniques sòlides i competències interpersonals klau a través del treball en equips internacionals i en sectors de gran responsabilitat, com el legal i l'educatiu.",
-                "spec-h1": "Server Administration", "spec-p1": "Instal·lació i configuració de Windows Server. Gestió de rols (AD DS, DNS, DHCP) i polítiques de grup (GPO).",
-                "spec-h2": "Network Engineering", "spec-p2": "Disseny i manteniment de xarxes LAN/WAN. Configuració de Routers i Switches CISCO i seguretat perimetral.",
-                "spec-h3": "Cloud Solutions (AWS)", "spec-p3": "Implementació de solucions al núvol amb AWS. Comprensió del model de responsabilitat compartida i costos cloud.",
-                "job-law": "Suport IT & Administrador Junior", "job-edu": "Pràctiques Sistemes Microinformàtics", "job-erasmus": "Tècnic en Domòtica (Erasmus+)",
-                "lang-title": "Idiomes", "contact-h3": "Parlem?", "contact-p": "Estic disponible per a noves oportunitats laborals.", "btn-send": "Enviar Missatge"
+                "nav-about": "Sobre mi", "nav-spec": "Tech", "nav-edu": "Estudis", "nav-exp": "Experiència", "nav-contact": "Contacte",
+                "hero-desc": "Administrador de sistemes especialitzat en infraestructures crítiques, cloud computing i seguretat de xarxes.",
+                "about-p1": "Sóc Tècnic en sistemes microinformàtics i xarxes, actualment ampliant la meva formació superior (ASIX) amb un enfocament especial en arquitectures Cloud (AWS), administració de servidors i ciberseguretat.",
+                "about-p2": "La meva trajectòria m'ha permès desenvolupar habilitats tècniques sòlides en equips internacionals i sectors de gran responsabilitat, com el legal i l'educatiu.",
+                "spec-h1": "Server Admin", "spec-p1": "Gestió avançada de Windows Server i Linux. Configuració de Rols (AD DS, DNS, GPO) i entorns virtualitzats.",
+                "spec-h2": "Networking", "spec-p2": "Disseny de xarxes LAN/WAN, configuració de VLANs i protocols d'enrutament en dispositius Cisco.",
+                "spec-h3": "Cloud Architecture", "spec-p3": "Desplegament i administració de serveis al núvol amb AWS. Automatització de processos i escalabilitat.",
+                "job-law": "Soporte IT & Administrador Junior", "job-edu": "Tècnic de Suport IT (Pràctiques)", "job-erasmus": "Tècnic en Domòtica (Erasmus+)",
+                "lang-title": "Idiomes", "btn-send": "Enviar Missatge"
             },
             es: {
-                "nav-about": "Sobre mí", "nav-spec": "Especialización", "nav-exp": "Trayectoria", "nav-contact": "Contacto",
-                "hero-desc": "Gestionando infraestructuras críticas, desplegando nubes y asegurando que los paquetes lleguen a su destino.",
+                "nav-about": "Sobre mí", "nav-spec": "Tech", "nav-edu": "Estudios", "nav-exp": "Trayectoria", "nav-contact": "Contacto",
+                "hero-desc": "Administrador de sistemas especializado en infraestructuras críticas, cloud computing y seguridad de redes.",
                 "about-p1": "Soy Técnico en sistemas microinformáticos y redes, actualmente ampliando mi formación superior (ASIX) con un enfoque especial en arquitecturas Cloud (AWS), administración de servidores y ciberseguretat.",
-                "about-p2": "Mi trayectoria me ha permitido desarrollar habilidades técnicas sólidas y competencias interpersonales clave a través del trabajo en equipos internacionales y en sectores de gran responsabilidad.",
-                "spec-h1": "Administración de Servidores", "spec-p1": "Instalación y configuración de Windows Server. Gestión de roles (AD DS, DNS, DHCP) y políticas de grupo (GPO).",
-                "spec-h2": "Ingeniería de Redes", "spec-p2": "Diseño y mantenimiento de redes LAN/WAN. Configuración de Routers y Switches CISCO y seguridad perimetral.",
-                "spec-h3": "Soluciones Cloud (AWS)", "spec-p3": "Implementación de soluciones en la nube con AWS. Comprensión del modelo de responsabilidad compartida.",
-                "job-law": "Soporte IT & Administrador Junior", "job-edu": "Prácticas Sistemas Microinformáticos", "job-erasmus": "Técnico en Domótica (Erasmus+)",
-                "lang-title": "Idiomas", "contact-h3": "¿Hablamos?", "contact-p": "Estoy disponible para nuevas oportunidades laborales.", "btn-send": "Enviar Mensaje"
+                "about-p2": "Mi trayectoria me ha permitido desarrollar habilidades técnicas sólidas en equipos internacionales y sectores de gran responsabilidad, como el legal y el educativo.",
+                "spec-h1": "Server Admin", "spec-p1": "Gestión avanzada de Windows Server y Linux. Configuración de Roles (AD DS, DNS, GPO) y entornos virtualizados.",
+                "spec-h2": "Networking", "spec-p2": "Diseño de redes LAN/WAN, configuración de VLANs y protocolos de enrutamiento en dispositivos Cisco.",
+                "spec-h3": "Cloud Architecture", "spec-p3": "Despliegue y administración de servicios en la nube con AWS. Automatización de procesos y escalabilidad.",
+                "job-law": "Soporte IT & Administrador Junior", "job-edu": "Técnico de Soporte IT (Prácticas)", "job-erasmus": "Técnico en Domótica (Erasmus+)",
+                "lang-title": "Idiomas", "btn-send": "Enviar Mensaje"
             }
         };
 
         function setLang(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 el.textContent = translations[lang][key];
             });
-            // Re-trigger progress bars width
+            // Re-trigger progress bars
             skillBars.forEach(bar => {
                 bar.style.width = bar.parentElement.previousElementSibling.lastElementChild.innerText;
             });
@@ -478,7 +442,7 @@
                     entry.target.style.width = entry.target.parentElement.previousElementSibling.lastElementChild.innerText;
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.1 });
         skillBars.forEach(bar => observer.observe(bar));
     </script>
 </body>
