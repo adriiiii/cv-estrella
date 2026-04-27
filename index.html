@@ -3,531 +3,351 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Adrià Rodriguez Estrella - Systems & Networks Professional Portfolio 2026">
+    <meta name="description" content="Portfolio de Adrià Rodriguez Estrella - Systems & Networks">
     <title>Adrià Rodriguez Estrella | Systems & Networks</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;600;700;800;900&family=JetBrains+Mono:ital,wght@0,100;0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* --- CORE VARIABLES --- */
         :root {
-            --accent-cyan: #06b6d4;
-            --accent-indigo: #6366f1;
-            --bg-deep: #030712;
+            --bg-dark: #050810;
             --bg-card: #0f172a;
-            --bg-card-hover: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.06);
-            --glass: rgba(15, 23, 42, 0.8);
-            --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-hover: #1e293b;
+            --primary: #22d3ee;
+            --secondary: #6366f1;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* --- GLOBAL RESET --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            cursor: default;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-primary);
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* --- SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(var(--accent-cyan), var(--accent-indigo)); 
-            border-radius: 10px; 
-        }
-
-        /* --- BACKGROUND DECORATION --- */
-        .bg-glow {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
-            z-index: -1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
 
         /* --- NAVIGATION --- */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
-            z-index: 9999;
-            padding: 25px 0;
-            transition: var(--transition-smooth);
-            border-bottom: 1px solid transparent;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            padding: 20px 0; background: rgba(5, 8, 16, 0.85); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
         }
+        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'JetBrains Mono'; font-weight: 800; color: var(--primary); text-decoration: none; font-size: 1.4rem; }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-dim); font-size: 0.9rem; transition: var(--transition); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .nav-links a:hover { color: var(--primary); }
 
-        nav.scrolled {
-            padding: 15px 0;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border-color);
+        /* --- LANGUAGE SELECTOR --- */
+        .lang-selector {
+            position: fixed; top: 90px; right: 30px; z-index: 2000;
+            display: flex; gap: 8px; background: var(--bg-card);
+            padding: 6px; border-radius: 12px; border: 1px solid var(--border);
         }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .lang-btn {
+            padding: 6px 14px; border-radius: 8px; border: none;
+            background: transparent; color: var(--text-dim);
+            font-family: 'JetBrains Mono'; font-size: 0.8rem;
+            cursor: pointer; transition: var(--transition);
         }
+        .lang-btn.active { background: var(--primary); color: var(--bg-dark); font-weight: 800; }
 
-        .nav-logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 800;
-            font-size: 1.4rem;
-            text-decoration: none;
-            color: var(--accent-cyan);
-            letter-spacing: -1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: var(--transition-smooth);
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-pretitle {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-cyan);
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 900;
-            line-height: 0.95;
-            margin-bottom: 30px;
-            letter-spacing: -2px;
-        }
-
-        .text-glow {
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 550px;
-            margin-bottom: 45px;
-        }
-
-        .profile-wrapper {
-            position: relative;
-            padding: 20px;
-        }
-
+        /* --- HERO --- */
+        .hero { height: 100vh; display: flex; align-items: center; padding-top: 60px; }
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+        .hero-h1 { font-size: clamp(3.5rem, 8vw, 5.5rem); font-weight: 800; line-height: 0.85; margin-bottom: 25px; letter-spacing: -2px; }
+        .hero-h1 span { background: linear-gradient(90deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-p { color: var(--text-dim); font-size: 1.3rem; max-width: 550px; margin-bottom: 40px; }
+        
+        .profile-container { position: relative; }
         .profile-img-box {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1/1;
-            border-radius: 30px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: var(--bg-card);
-            transform: perspective(1000px) rotateY(-10deg);
-            transition: var(--transition-smooth);
+            width: 100%; aspect-ratio: 1/1; border-radius: 40px; border: 1px solid var(--border);
+            overflow: hidden; transform: rotate(3deg); transition: var(--transition);
+            box-shadow: 25px 25px 0 rgba(34, 211, 238, 0.05);
         }
+        .profile-img-box:hover { transform: rotate(0) scale(1.03); border-color: var(--primary); }
+        .profile-img-box img { width: 100%; height: 100%; object-fit: cover; }
 
-        .profile-wrapper:hover .profile-img-box {
-            transform: perspective(1000px) rotateY(0deg);
-            border-color: var(--accent-cyan);
-        }
+        /* --- SECTIONS GENERAL --- */
+        section { padding: 120px 0; }
+        .section-header { margin-bottom: 60px; display: flex; align-items: center; gap: 20px; }
+        .section-header h2 { font-size: 2.5rem; font-weight: 800; }
+        .section-header .line { height: 1px; flex-grow: 1; background: var(--border); }
+        .section-num { font-family: 'JetBrains Mono'; color: var(--primary); font-size: 1.2rem; }
 
-        .profile-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(1.1);
-        }
-
-        /* --- ABOUT SECTION --- */
-        .section-padding { padding: 120px 0; }
-
-        .section-header {
-            margin-bottom: 60px;
-        }
-
-        .section-num {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-cyan);
-            font-size: 1.2rem;
-            margin-right: 15px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-        }
-
-        .section-title::after {
-            content: '';
-            height: 1px;
-            flex-grow: 1;
-            background: var(--border-color);
-            margin-left: 30px;
-        }
-
-        .about-text p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 25px;
-            max-width: 900px;
-            text-align: justify;
-        }
-
-        .about-text strong {
-            color: var(--accent-cyan);
-            font-weight: 600;
-        }
-
-        /* --- SPECIALIZATION GRID --- */
-        .spec-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
-        }
-
+        /* --- ESPECIALIZACIÓN (NUEVO APARTADO) --- */
+        .spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         .spec-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            border-radius: 24px;
-            transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            background: var(--bg-card); padding: 40px; border-radius: 24px;
+            border: 1px solid var(--border); transition: var(--transition);
         }
+        .spec-card:hover { border-color: var(--primary); transform: translateY(-10px); background: var(--bg-hover); }
+        .spec-card i { font-size: 3rem; color: var(--primary); margin-bottom: 25px; display: block; }
+        .spec-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
+        .tag-container { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+        .tag { background: rgba(255,255,255,0.05); padding: 5px 12px; border-radius: 6px; font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--text-dim); border: 1px solid var(--border); }
 
-        .spec-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, transparent 100%);
-            opacity: 0;
-            transition: var(--transition-smooth);
+        /* --- EXPERIENCE & EDUCATION --- */
+        .timeline { position: relative; padding-left: 30px; border-left: 2px solid var(--border); }
+        .timeline-item { position: relative; margin-bottom: 50px; }
+        .timeline-item::before {
+            content: ""; position: absolute; left: -41px; top: 5px;
+            width: 20px; height: 20px; background: var(--bg-dark);
+            border: 3px solid var(--primary); border-radius: 50%;
         }
+        .timeline-date { font-family: 'JetBrains Mono'; color: var(--primary); font-weight: 700; margin-bottom: 10px; display: block; }
+        .timeline-content h3 { font-size: 1.5rem; margin-bottom: 5px; }
+        .timeline-content span { color: var(--secondary); font-weight: 600; display: block; margin-bottom: 15px; }
 
-        .spec-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-cyan);
-            background: var(--bg-card-hover);
-        }
+        /* --- SKILLS GRID --- */
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+        .skill-cat h4 { color: var(--primary); font-family: 'JetBrains Mono'; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
+        .skill-list { list-style: none; }
+        .skill-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: var(--text-dim); }
+        .skill-list li i { color: var(--primary); font-size: 0.8rem; }
 
-        .spec-card:hover::before { opacity: 1; }
+        /* --- FOOTER --- */
+        footer { padding: 80px 0; border-top: 1px solid var(--border); text-align: center; }
+        .contact-link { font-size: 2rem; font-weight: 800; color: var(--text-main); text-decoration: none; transition: var(--transition); }
+        .contact-link:hover { color: var(--primary); }
+        .social-icons { display: flex; justify-content: center; gap: 30px; margin: 40px 0; }
+        .social-icons a { font-size: 1.8rem; color: var(--text-dim); transition: var(--transition); }
+        .social-icons a:hover { color: var(--primary); transform: translateY(-5px); }
 
-        .spec-icon {
-            font-size: 2.5rem;
-            color: var(--accent-cyan);
-            margin-bottom: 25px;
-            display: block;
-        }
-
-        .spec-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .spec-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-        }
-
-        .tech-pill-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .tech-pill {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            transition: var(--transition-smooth);
-        }
-
-        .spec-card:hover .tech-pill {
-            border-color: rgba(6, 182, 212, 0.4);
-            color: var(--text-primary);
-        }
-
-        /* --- CONTACT & FOOTER --- */
-        .footer {
-            padding: 100px 0 40px;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .contact-btn {
-            display: inline-block;
-            background: transparent;
-            border: 2px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            padding: 20px 50px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            text-decoration: none;
-            transition: var(--transition-smooth);
-            margin-bottom: 60px;
-            cursor: pointer;
-        }
-
-        .contact-btn:hover {
-            background: var(--accent-cyan);
-            color: var(--bg-deep);
-            box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .social-links a {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            transition: var(--transition-smooth);
-        }
-
-        .social-links a:hover {
-            color: var(--accent-cyan);
-            transform: scale(1.2);
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
+        @media (max-width: 900px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-p { margin-left: auto; margin-right: auto; }
-            .profile-wrapper { max-width: 400px; margin: 0 auto; }
-            .hero-title { font-size: 4rem; }
-        }
-
-        @media (max-width: 768px) {
-            .container { padding: 0 25px; }
+            .hero-p { margin: 0 auto 40px; }
             .nav-links { display: none; }
-            .hero-title { font-size: 3rem; }
-            .spec-grid { grid-template-columns: 1fr; }
+            .section-header h2 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow"></div>
-
-    <nav id="navbar">
-        <div class="container nav-content">
-            <a href="#" class="nav-logo">ADRIÀ.SYS</a>
+    <nav>
+        <div class="container nav-flex">
+            <a href="#" class="logo">ADRIÀ.SYS</a>
             <ul class="nav-links">
-                <li><a href="#about">Sobre mi</a></li>
-                <li><a href="#spec">Especialització</a></li>
-                <li><a href="#contact">Contacte</a></li>
+                <li><a href="#about" data-key="nav-about">Sobre mi</a></li>
+                <li><a href="#spec" data-key="nav-spec">Especialització</a></li>
+                <li><a href="#experience" data-key="nav-exp">Trajectòria</a></li>
+                <li><a href="#skills" data-key="nav-skills">Skills</a></li>
+                <li><a href="#contact" data-key="nav-contact">Contacte</a></li>
             </ul>
         </div>
     </nav>
 
-    <section class="hero container">
+    <div class="lang-selector">
+        <button class="lang-btn active" onclick="setLang('ca')">CAT</button>
+        <button class="lang-btn" onclick="setLang('es')">ESP</button>
+    </div>
+
+    <header class="hero container">
         <div class="hero-grid">
-            <div data-aos="fade-right" data-aos-duration="1000">
-                <span class="hero-pretitle">Adrià Rodriguez Estrella</span>
-                <h1 class="hero-title">SYSTEMS &<br><span class="text-glow">NETWORKS.</span></h1>
-                <p class="hero-p">
-                    Expert en administració de sistemes microinformàtics, arquitectures cloud i gestió avançada de xarxes en entorns crítics.
+            <div data-aos="fade-right">
+                <span style="font-family:'JetBrains Mono'; color:var(--primary); margin-bottom:10px; display:block;">Adrià Rodriguez Estrella</span>
+                <h1 class="hero-h1">SYSTEMS &<br><span>NETWORKS.</span></h1>
+                <p id="hero-desc" data-key="hero-desc" class="hero-p">
+                    Especialitzat en administració de sistemes microinformàtics, arquitectures cloud i gestió avançada de xarxes.
                 </p>
-                <div style="display: flex; gap: 20px; justify-content: inherit;">
-                    <a href="#contact" class="contact-btn" style="padding: 15px 35px; font-size: 1rem; margin-bottom: 0;">Connectem</a>
-                </div>
+                <a href="#contact" class="contact-link" style="font-size: 1.1rem; border: 1px solid var(--primary); padding: 15px 30px; border-radius: 12px; color: var(--primary);" data-key="nav-contact">Contacte</a>
             </div>
-            <div class="profile-wrapper" data-aos="zoom-in" data-aos-duration="1200">
+            <div class="profile-container" data-aos="zoom-in">
                 <div class="profile-img-box">
                     <img src="https://raw.githubusercontent.com/adriiiii/cv-estrella/a066329812b2bdf6da44a43b3f6c6f230614c051/Imagen_adri.png" alt="Adrià Rodriguez">
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section id="about" class="container section-padding">
-        <div class="section-header" data-aos="fade-up">
-            <h2 class="section-title"><span class="section-num">01.</span> Sobre mi</h2>
-        </div>
-        <div class="about-text" data-aos="fade-up" data-aos-delay="200">
-            <p>
-                Sóc Tècnic en sistemes microinformàtics i xarxes, actualment ampliant la meva formació superior (<strong>ASIX</strong>) amb un enfocament especial en arquitectures Cloud (AWS), administració de servidors i ciberseguretat. Em defineixo com una persona proactiva, capaç d'adaptar-me ràpidament a nous entorns i tecnologies, amb una orientació clara cap a l'eficiència operativa i el suport tècnic avançat.
-            </p>
-            <p>
-                La meva trajectòria m'ha permès desenvolupar habilitats tècniques sòlides i competències interpersonals clau a través del treball en equips internacionals i en sectors de gran responsabilitat, com el legal a <strong>Tarinas Law & Economy</strong> i l'educatiu. Tinc experiència en la resolució d'incidències, gestió d'infraestructures crítiques i manteniment de sistemes en entorns Windows, Linux i Cloud.
-            </p>
-        </div>
-    </section>
-
-    <section id="spec" class="container section-padding">
-        <div class="section-header" data-aos="fade-up">
-            <h2 class="section-title"><span class="section-num">02.</span> Especialització</h2>
-        </div>
+    <main class="container">
         
-        <div class="spec-grid">
-            <div class="spec-card" data-aos="fade-up">
-                <i class="fas fa-server spec-icon"></i>
-                <h3>Server Administration</h3>
-                <p>Implementació i manteniment integral de Windows Server (2016-2022). Domini de rols de domini i automatització.</p>
-                <div class="tech-pill-container">
-                    <span class="tech-pill">Active Directory</span>
-                    <span class="tech-pill">GPOs</span>
-                    <span class="tech-pill">PowerShell</span>
-                    <span class="tech-pill">DNS/DHCP</span>
+        <section id="about">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-num">01.</span>
+                <h2 data-key="nav-about">Sobre mi</h2>
+                <div class="line"></div>
+            </div>
+            <div style="font-size:1.2rem; color:var(--text-dim); max-width:900px;" data-aos="fade-up">
+                <p data-key="about-p1" style="margin-bottom:30px; text-align: justify;">
+                    Sóc Tècnic en sistemes microinformàtics i xarxes, actualment ampliant la meva formació superior (ASIX) amb un enfocament especial en arquitectures Cloud (AWS), administració de servidors i ciberseguretat. Em defineixo com una persona proactiva, capaç d'adaptar-me ràpidament a nous entorns i tecnologies, amb una orientació clara cap a l'eficiència operativa i el suport tècnic avançat.
+                </p>
+                <p data-key="about-p2" style="text-align: justify;">
+                    La meva trajectòria m'ha permès desenvolupar habilitats tècniques sòlides i competències interpersonals clau a través del treball en equips internacionals i en sectors de gran responsabilitat, com el legal i l'educatiu. Tinc experiència en la resolució d'incidències, gestió d'infraestructures crítiques i manteniment de sistemes en entorns Windows, Linux i Cloud.
+                </p>
+            </div>
+        </section>
+
+        <section id="spec">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-num">02.</span>
+                <h2 data-key="nav-spec">Especialització</h2>
+                <div class="line"></div>
+            </div>
+            <div class="spec-grid">
+                <div class="spec-card" data-aos="fade-up">
+                    <i class="fas fa-server"></i>
+                    <h3 data-key="spec-h1">Server Administration</h3>
+                    <p data-key="spec-p1">Instal·lació i configuració de Windows Server. Gestió avançada de rols (AD DS, DNS, DHCP) i polítiques de grup (GPO).</p>
+                    <div class="tag-container">
+                        <span class="tag">Active Directory</span><span class="tag">PowerShell</span><span class="tag">Hyper-V</span>
+                    </div>
+                </div>
+                <div class="spec-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-network-wired"></i>
+                    <h3 data-key="spec-h2">Network Engineering</h3>
+                    <p data-key="spec-p2">Disseny i manteniment de xarxes LAN/WAN. Configuració de Routers i Switches CISCO i seguretat perimetral.</p>
+                    <div class="tag-container">
+                        <span class="tag">VLAN</span><span class="tag">OSPF</span><span class="tag">Cisco IOS</span>
+                    </div>
+                </div>
+                <div class="spec-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-cloud"></i>
+                    <h3 data-key="spec-h3">Cloud Solutions (AWS)</h3>
+                    <p data-key="spec-p3">Implementació de solucions al núvol amb AWS. Comprensió del model de responsabilitat compartida i costos cloud.</p>
+                    <div class="tag-container">
+                        <span class="tag">EC2</span><span class="tag">S3</span><span class="tag">VPC</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="spec-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-network-wired spec-icon"></i>
-                <h3>Network Engineering</h3>
-                <p>Arquitectura de xarxes robustes. Configuració avançada d'equips Cisco i seguretat perimetral.</p>
-                <div class="tech-pill-container">
-                    <span class="tech-pill">Cisco IOS</span>
-                    <span class="tech-pill">VLANs</span>
-                    <span class="tech-pill">Firewalls</span>
-                    <span class="tech-pill">VPN</span>
+        <section id="experience">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-num">03.</span>
+                <h2 data-key="nav-exp">Trajectòria</h2>
+                <div class="line"></div>
+            </div>
+            <div class="timeline" data-aos="fade-up">
+                <div class="timeline-item">
+                    <span class="timeline-date">2024 — ACTUALITAT</span>
+                    <div class="timeline-content">
+                        <h3>Tarinas Law & Economy</h3>
+                        <span data-key="job-law">Suport IT & Gestió de Sistemes</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">2023 — 2024</span>
+                    <div class="timeline-content">
+                        <h3>Escola Ignasi Iglesias</h3>
+                        <span data-key="job-edu">Tècnic de Suport IT</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">ESTIU 2023</span>
+                    <div class="timeline-content">
+                        <h3>Vitalis BMH (Alemanya)</h3>
+                        <span data-key="job-erasmus">Erasmus+ Tècnic de Domòtica</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="spec-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-cloud spec-icon"></i>
-                <h3>Cloud Solutions</h3>
-                <p>Desplegament i gestió d'infraestructura al núvol utilitzant l'ecosistema d'Amazon Web Services.</p>
-                <div class="tech-pill-container">
-                    <span class="tech-pill">AWS EC2</span>
-                    <span class="tech-pill">S3</span>
-                    <span class="tech-pill">IAM</span>
-                    <span class="tech-pill">VPC</span>
+        <section id="skills">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-num">04.</span>
+                <h2 data-key="nav-skills">Skills</h2>
+                <div class="line"></div>
+            </div>
+            <div class="skills-container" data-aos="fade-up">
+                <div class="skill-cat">
+                    <h4>Systems</h4>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Linux (Ubuntu/Debian)</li>
+                        <li><i class="fas fa-check"></i> Windows Server</li>
+                        <li><i class="fas fa-check"></i> Virtualització</li>
+                    </ul>
+                </div>
+                <div class="skill-cat">
+                    <h4>Networking</h4>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Cisco Config</li>
+                        <li><i class="fas fa-check"></i> Seguretat de Xarxa</li>
+                        <li><i class="fas fa-check"></i> Monitoratge</li>
+                    </ul>
+                </div>
+                <div class="skill-cat">
+                    <h4>Programming</h4>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Python</li>
+                        <li><i class="fas fa-check"></i> Bash / Scripting</li>
+                        <li><i class="fas fa-check"></i> SQL Databases</li>
+                    </ul>
+                </div>
+                <div class="skill-cat">
+                    <h4 data-key="lang-title">Idiomes</h4>
+                    <ul class="skill-list">
+                        <li><i class="fas fa-check"></i> Català / Castellà (Natiu)</li>
+                        <li><i class="fas fa-check"></i> Anglès (Tècnic)</li>
+                    </ul>
                 </div>
             </div>
+        </section>
 
-            <div class="spec-card" data-aos="fade-up">
-                <i class="fas fa-code-branch spec-icon"></i>
-                <h3>Scripting & DB</h3>
-                <p>Automatització de fluxos de treball i gestió de dades mitjançant llenguatges de programació i SQL.</p>
-                <div class="tech-pill-container">
-                    <span class="tech-pill">Python</span>
-                    <span class="tech-pill">SQL</span>
-                    <span class="tech-pill">Git</span>
-                    <span class="tech-pill">PostgreSQL</span>
+        <section id="contact" style="text-align:center;">
+            <div data-aos="zoom-in">
+                <h2 style="font-size:3.5rem; margin-bottom:20px;" data-key="contact-h2">Vols parlar?</h2>
+                <p style="color:var(--text-dim); margin-bottom:40px; font-size:1.2rem;" data-key="contact-p">Estic obert a noves oportunitats i reptes tecnològics.</p>
+                <a href="mailto:adriare2006@gmail.com" class="contact-link">adriare2006@gmail.com</a>
+                <div class="social-icons">
+                    <a href="https://github.com/adriiiii" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="tel:608996460"><i class="fas fa-phone"></i></a>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="spec-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-microchip spec-icon"></i>
-                <h3>Hardware & Support</h3>
-                <p>Diagnòstic físic i de software. Suport de Nivel 2 en entorns corporatius i resolució de problemes crítica.</p>
-                <div class="tech-pill-container">
-                    <span class="tech-pill">Troubleshooting</span>
-                    <span class="tech-pill">Help Desk</span>
-                    <span class="tech-pill">Inventari IT</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="footer">
-        <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Parlem del següent projecte?</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 40px;">Disponible per a noves col·laboracions i reptes tècnics.</p>
-            <a href="mailto:adriare2006@gmail.com" class="contact-btn">adriare2006@gmail.com</a>
-            
-            <div class="social-links">
-                <a href="https://github.com/adriiiii" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="tel:608996460"><i class="fas fa-phone"></i></a>
-            </div>
-            
-            <p class="footer-text" style="font-family: 'JetBrains Mono'; font-size: 0.8rem; opacity: 0.5;">
-                © 2026 ADRIÀ RODRIGUEZ ESTRELLA • TORDERA
-            </p>
-        </div>
+    <footer>
+        <p style="color:var(--text-dim);">© 2026 ADRIÀ RODRIGUEZ ESTRELLA • TORDERA</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Inicialitzar animacions
-        AOS.init({ once: true });
+        AOS.init({ duration: 800, once: true });
 
-        // Efecte Navbar scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
+        const translations = {
+            ca: {
+                "nav-about": "Sobre mi", "nav-spec": "Especialització", "nav-exp": "Trajectòria", "nav-skills": "Skills", "nav-contact": "Contacte",
+                "hero-desc": "Especialitzat en administració de sistemes microinformàtics, arquitectures cloud i gestió avançada de xarxes.",
+                "about-p1": "Sóc Tècnic en sistemes microinformàtics i xarxes, actualment ampliant la meva formació superior (ASIX) amb un enfocament especial en arquitectures Cloud (AWS), administració de servidors i ciberseguretat. Em defineixo com una persona proactiva, capaç d'adaptar-me ràpidament a nous entorns i tecnologies, amb una orientació clara cap a l'eficiència operativa i el suport tècnic avançat.",
+                "about-p2": "La meva trajectòria m'ha permès desenvolupar habilitats tècniques sòlides i competències interpersonals clau a través del treball en equips internacionals i en sectors de gran responsabilitat, com el legal i l'educatiu. Tinc experiència en la resolució d'incidències, gestió d'infraestructures crítiques i manteniment de sistemes en entorns Windows, Linux i Cloud.",
+                "spec-h1": "Server Administration", "spec-p1": "Instal·lació i configuració de Windows Server. Gestió avançada de rols (AD DS, DNS, DHCP) i polítiques de grup (GPO).",
+                "spec-h2": "Network Engineering", "spec-p2": "Disseny i manteniment de xarxes LAN/WAN. Configuració de Routers i Switches CISCO i seguretat perimetral.",
+                "spec-h3": "Cloud Solutions (AWS)", "spec-p3": "Implementació de solucions al núvol amb AWS. Comprensió del model de responsabilitat compartida i costos cloud.",
+                "job-law": "Suport IT & Gestió de Sistemes", "job-edu": "Tècnic de Suport IT", "job-erasmus": "Erasmus+ Tècnic de Domòtica",
+                "lang-title": "Idiomes", "contact-h2": "Vols parlar?", "contact-p": "Estic obert a noves oportunitats i reptes tecnològics."
+            },
+            es: {
+                "nav-about": "Sobre mí", "nav-spec": "Especialización", "nav-exp": "Trayectoria", "nav-skills": "Habilidades", "nav-contact": "Contacto",
+                "hero-desc": "Especializado en administración de sistemas microinformáticos, arquitecturas cloud y gestión avanzada de redes.",
+                "about-p1": "Soy Técnico en sistemas microinformáticos y redes, actualmente ampliando mi formación superior (ASIX) con un enfoque especial en arquitecturas Cloud (AWS), administración de servidores y ciberseguridad. Me defino como una persona proactiva, capaz de adaptarme rápidamente a nuevos entornos y tecnologías, con una orientación clara hacia la eficiencia operativa y el soporte técnico avanzado.",
+                "about-p2": "Mi trayectoria me ha permitido desarrollar habilidades técnicas sólidas y competencias interpersonales clave a través del trabajo en equipos internacionales y en sectores de gran responsabilidad, como el legal y el educativo. Tengo experiencia en la resolución de incidencias, gestión de infraestructuras críticas y mantenimiento de sistemas en entornos Windows, Linux y Cloud.",
+                "spec-h1": "Administración de Servidores", "spec-p1": "Instalación y configuración de Windows Server. Gestión avanzada de roles (AD DS, DNS, DHCP) y políticas de grupo (GPO).",
+                "spec-h2": "Ingeniería de Redes", "spec-p2": "Diseño y mantenimiento de redes LAN/WAN. Configuración de Routers y Switches CISCO y seguridad perimetral.",
+                "spec-h3": "Soluciones Cloud (AWS)", "spec-p3": "Implementación de soluciones en la nube con AWS. Comprensión del modelo de responsabilidad compartida y costes cloud.",
+                "job-law": "Soporte IT & Gestión de Sistemas", "job-edu": "Técnico de Soporte IT", "job-erasmus": "Erasmus+ Técnico de Domótica",
+                "lang-title": "Idiomas", "contact-h2": "¿Hablamos?", "contact-p": "Estoy abierto a nuevas oportunidades y retos tecnológicos."
             }
-        });
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                el.textContent = translations[lang][key];
+            });
+        }
     </script>
 </body>
 </html>
