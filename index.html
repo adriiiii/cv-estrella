@@ -1,449 +1,981 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio de Adrià Rodriguez Estrella - Systems & Networks Specialist">
-    <title>Adrià Rodriguez | Systems & Networks Expert</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Adrià Rodriguez Estrella — Systems & Networks Specialist">
+<title>Adrià Rodriguez Estrella</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --ink: #0a0a0b;
+  --paper: #f5f3ee;
+  --paper2: #edeae3;
+  --paper3: #e4e0d7;
+  --accent: #1a1a2e;
+  --cyan: #00bcd4;
+  --cyan-dim: rgba(0,188,212,0.12);
+  --indigo: #3f4dbf;
+  --muted: #6b6860;
+  --border: rgba(10,10,11,0.1);
+  --card: rgba(255,255,255,0.6);
+  --shadow: 0 2px 20px rgba(0,0,0,0.06);
+  --r: 18px;
+  --transition: all 0.35s cubic-bezier(0.25,0.8,0.25,1);
+}
 
-    <style>
-        :root {
-            --bg-deep: #050810;
-            --bg-surface: #0f172a;
-            --bg-card: rgba(30, 41, 59, 0.4);
-            --accent-primary: #22d3ee;
-            --accent-secondary: #6366f1;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --border: rgba(255, 255, 255, 0.08);
-            --glass: rgba(255, 255, 255, 0.03);
-            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--paper3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
-        /* Base Styles */
-        * { box-sizing: border-box; margin: 0; padding: 0; cursor: default; }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; border: 2px solid var(--bg-deep); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
 
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-deep);
-            color: var(--text-main);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
+/* --- NOISE TEXTURE --- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
 
-        /* Decorative Background */
-        .bg-glow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(34, 211, 238, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(5, 8, 16, 1) 0%, transparent 100%);
-            z-index: -1;
-        }
+/* --- LAYOUT --- */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
-        a, button { cursor: pointer; transition: var(--transition); text-decoration: none; }
+/* --- NAV --- */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+  padding: 22px 0;
+  transition: var(--transition);
+}
+nav.scrolled {
+  background: rgba(245,243,238,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+}
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.nav-logo span { color: var(--cyan); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: var(--transition);
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
 
-        /* Navbar */
-        nav {
-            position: fixed; width: 100%; top: 0; z-index: 1000;
-            padding: 25px 0; transition: var(--transition);
-        }
-        nav.scrolled {
-            background: rgba(5, 8, 16, 0.8);
-            backdrop-filter: blur(15px);
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-        .nav-brand { font-family: 'JetBrains Mono'; font-weight: 800; color: var(--accent-primary); font-size: 1.4rem; letter-spacing: -1px; }
-        .nav-links { display: flex; gap: 35px; list-style: none; }
-        .nav-links a { 
-            color: var(--text-dim); font-size: 0.9rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 1.5px;
-        }
-        .nav-links a:hover { color: var(--accent-primary); }
+/* --- LANG SWITCHER --- */
+.lang-switch { display: flex; gap: 4px; background: var(--paper2); border-radius: 8px; padding: 3px; border: 1px solid var(--border); }
+.lang-btn {
+  background: none; border: none; font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; font-weight: 500; color: var(--muted);
+  padding: 4px 10px; border-radius: 6px; cursor: pointer;
+  transition: var(--transition); letter-spacing: 0.05em;
+}
+.lang-btn.active { background: var(--ink); color: var(--paper); }
+.lang-btn:hover:not(.active) { color: var(--ink); }
 
-        /* Hero Section */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; }
-        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
-        .hero-tag { font-family: 'JetBrains Mono'; color: var(--accent-primary); background: rgba(34, 211, 238, 0.1); padding: 5px 15px; border-radius: 50px; font-size: 0.9rem; display: inline-block; margin-bottom: 20px; }
-        .hero-h1 { font-size: clamp(3.5rem, 9vw, 5.5rem); font-weight: 800; line-height: 0.9; margin-bottom: 25px; letter-spacing: -2px; }
-        .hero-h1 span { background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-p { font-size: 1.25rem; color: var(--text-dim); margin-bottom: 40px; max-width: 600px; }
-        
-        .hero-btns { display: flex; gap: 20px; flex-wrap: wrap; }
-        .btn { padding: 18px 35px; border-radius: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 12px; font-size: 1rem; }
-        .btn-main { background: var(--accent-primary); color: var(--bg-deep); box-shadow: 0 10px 30px rgba(34, 211, 238, 0.2); }
-        .btn-main:hover { transform: translateY(-5px); filter: brightness(1.1); }
-        .btn-outline { border: 1px solid var(--border); color: var(--text-main); background: var(--glass); }
-        .btn-outline:hover { border-color: var(--accent-primary); background: rgba(34, 211, 238, 0.05); }
+/* --- HERO --- */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 0 80px;
+}
+.hero-inner { display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center; }
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem; font-weight: 500;
+  color: var(--cyan);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--cyan); display: inline-block; }
+.hero-h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3.2rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  color: var(--ink);
+}
+.hero-h1 em { font-style: normal; color: var(--indigo); }
+.hero-lead {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 520px;
+  margin-bottom: 44px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+.hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 28px; border-radius: 12px;
+  font-weight: 500; font-size: 0.92rem;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: var(--transition); font-family: 'DM Sans', sans-serif;
+}
+.btn-primary { background: var(--ink); color: var(--paper); }
+.btn-primary:hover { background: var(--indigo); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(63,77,191,0.2); }
+.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+.btn-ghost:hover { border-color: var(--ink); background: var(--paper2); transform: translateY(-2px); }
 
-        /* Profile Image */
-        .profile-wrapper { position: relative; width: 100%; display: flex; justify-content: center; }
-        .profile-blob {
-            width: 400px; height: 400px;
-            background: var(--bg-surface);
-            border: 2px solid var(--accent-primary);
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            overflow: hidden;
-            animation: morph 10s ease-in-out infinite;
-            box-shadow: 0 0 60px rgba(34, 211, 238, 0.1);
-        }
-        .profile-blob img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: 0.5s; }
-        .profile-blob:hover img { filter: grayscale(0%); transform: scale(1.05); }
+/* --- HERO IMAGE --- */
+.hero-image-wrap { position: relative; }
+.hero-image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--paper3);
+}
+.hero-image-frame img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  filter: grayscale(8%) contrast(1.02);
+  transition: filter 0.6s ease;
+}
+.hero-image-frame:hover img { filter: grayscale(0%) contrast(1.05); }
+.hero-badge {
+  position: absolute; bottom: -20px; left: -20px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 12px;
+}
+.badge-dot { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; flex-shrink: 0; animation: pulse 2.5s infinite; }
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)} 50%{box-shadow:0 0 0 8px rgba(34,197,94,0)} }
+.badge-text { font-size: 0.8rem; font-weight: 500; color: var(--ink); }
+.badge-sub { font-size: 0.72rem; color: var(--muted); }
 
-        @keyframes morph {
-            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
-            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-        }
+/* --- SECTION BASE --- */
+section { padding: 100px 0; }
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::before { content: ''; width: 20px; height: 1px; background: var(--muted); display: inline-block; }
+.section-h { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 16px; }
+.section-head { margin-bottom: 56px; }
 
-        /* Sections */
-        section { padding: 100px 0; }
-        .section-title { margin-bottom: 60px; position: relative; }
-        .section-title h2 { font-size: 2.5rem; font-weight: 800; display: flex; align-items: center; gap: 20px; }
-        .section-title h2::after { content: ""; height: 1px; flex-grow: 1; background: linear-gradient(90deg, var(--border), transparent); }
-        .section-title span { color: var(--accent-primary); font-family: 'JetBrains Mono'; font-size: 1.2rem; }
+/* --- DIVIDER --- */
+hr { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-        .bio-text { font-size: 1.2rem; color: var(--text-dim); text-align: justify; }
-        .bio-text b { color: var(--text-main); }
+/* --- ABOUT --- */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.about-text { font-size: 1.1rem; color: var(--muted); font-weight: 300; line-height: 1.75; }
+.about-text strong { color: var(--ink); font-weight: 500; }
+.about-text p + p { margin-top: 20px; }
+.info-chips { display: flex; flex-direction: column; gap: 14px; }
+.info-chip {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 20px; background: var(--card);
+  border: 1px solid var(--border); border-radius: 14px;
+  backdrop-filter: blur(8px);
+}
+.chip-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+.chip-value { font-size: 0.9rem; font-weight: 500; color: var(--ink); }
 
-        /* Project Featured */
-        .project-featured {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.5));
-            border: 1px solid var(--border); border-radius: 30px; padding: 50px;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
-            position: relative; overflow: hidden;
-        }
-        .project-info h3 { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-primary); }
-        .project-tags { display: flex; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; }
-        .tag { background: rgba(255,255,255,0.05); padding: 6px 16px; border-radius: 8px; font-family: 'JetBrains Mono'; font-size: 0.8rem; border: 1px solid var(--border); }
+/* --- SKILLS --- */
+.skills-bg { background: var(--paper2); border-radius: 32px; padding: 60px; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.skill-pill {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  transition: var(--transition);
+}
+.skill-pill:hover { border-color: var(--ink); transform: translateY(-3px); box-shadow: var(--shadow); }
+.skill-pill-icon { font-size: 1.3rem; margin-bottom: 12px; color: var(--indigo); }
+.skill-pill-name { font-size: 0.88rem; font-weight: 500; margin-bottom: 6px; }
+.skill-pill-level { font-size: 0.75rem; color: var(--muted); }
+.skill-bar { height: 3px; background: var(--paper3); border-radius: 2px; margin-top: 10px; overflow: hidden; }
+.skill-fill { height: 100%; background: linear-gradient(90deg, var(--indigo), var(--cyan)); border-radius: 2px; transform-origin: left; animation: none; }
 
-        /* Education */
-        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
-        .edu-card {
-            background: var(--bg-card); padding: 40px; border-radius: 24px; border: 1px solid var(--border);
-            transition: var(--transition); position: relative;
-        }
-        .edu-card:hover { border-color: var(--accent-primary); transform: translateY(-10px); background: rgba(34, 211, 238, 0.02); }
-        .edu-card .year { color: var(--accent-secondary); font-family: 'JetBrains Mono'; font-weight: 700; margin-bottom: 10px; display: block; }
-        .edu-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+/* --- PROJECTS --- */
+.project-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(63,77,191,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.project-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.1); transform: translateY(-4px); }
+.project-type { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+.project-title { font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 18px; }
+.project-desc { font-size: 1rem; color: var(--muted); line-height: 1.7; font-weight: 300; margin-bottom: 28px; }
+.project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--paper);
+}
+.project-visual {
+  background: var(--paper2);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+}
+.project-visual i { font-size: 5rem; color: var(--indigo); opacity: 0.3; }
 
-        /* Experience Timeline */
-        .timeline { position: relative; padding-left: 40px; }
-        .timeline::before { content: ""; position: absolute; left: 0; top: 0; width: 2px; height: 100%; background: linear-gradient(var(--accent-primary), var(--bg-deep)); }
-        .timeline-item { position: relative; margin-bottom: 60px; }
-        .timeline-dot { 
-            position: absolute; left: -49px; top: 8px; width: 20px; height: 20px; 
-            border-radius: 50%; background: var(--accent-primary); border: 4px solid var(--bg-deep);
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
-        }
-        .exp-content { background: var(--bg-card); padding: 40px; border-radius: 20px; border: 1px solid var(--border); }
-        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-        .exp-company { color: var(--accent-primary); font-weight: 600; font-size: 1.1rem; }
-        .exp-list { list-style: none; }
-        .exp-list li { color: var(--text-dim); margin-bottom: 12px; display: flex; gap: 15px; }
-        .exp-list li::before { content: "▹"; color: var(--accent-primary); font-weight: bold; }
+/* --- EDUCATION --- */
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+.edu-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 36px;
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+}
+.edu-card:hover { border-color: var(--ink); transform: translateY(-4px); box-shadow: var(--shadow); }
+.edu-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; font-weight: 500;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+  display: inline-block;
+  background: var(--cyan-dim);
+  padding: 4px 10px; border-radius: 6px;
+}
+.edu-degree { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+.edu-detail { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+.edu-school { font-weight: 500; color: var(--ink); margin-top: 12px; font-size: 0.85rem; }
 
-        /* Skills Expansion */
-        .skills-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .skill-group h4 { margin-bottom: 25px; font-family: 'JetBrains Mono'; color: var(--accent-secondary); text-transform: uppercase; }
-        .skill-bar-wrapper { margin-bottom: 25px; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .bar-bg { height: 10px; background: #1e293b; border-radius: 20px; overflow: hidden; }
-        .bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); width: 0; transition: width 2s cubic-bezier(0.1, 1, 0.1, 1); }
+/* --- EXPERIENCE --- */
+.exp-list { display: flex; flex-direction: column; gap: 0; }
+.exp-item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  position: relative;
+}
+.exp-item + .exp-item { margin-top: 2px; }
+.exp-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 36px 40px;
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+}
+.exp-card:hover { border-color: rgba(10,10,11,0.25); box-shadow: var(--shadow); }
+.exp-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; gap: 20px; }
+.exp-company { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+.exp-period {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; color: var(--muted);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  background: var(--paper2);
+  padding: 4px 10px; border-radius: 6px;
+}
+.exp-role { font-size: 0.88rem; color: var(--indigo); font-weight: 500; margin-bottom: 18px; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.exp-bullets li { font-size: 0.92rem; color: var(--muted); padding-left: 18px; position: relative; line-height: 1.55; }
+.exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--paper3); }
+.connector { width: 1px; height: 16px; background: var(--border); margin: 0 0 0 40px; }
 
-        /* Extra Info (Languages & License) */
-        .extras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-        .extra-card {
-            background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid var(--border);
-            display: flex; align-items: center; gap: 25px; transition: var(--transition);
-        }
-        .extra-card:hover { border-color: var(--accent-primary); background: rgba(34, 211, 238, 0.05); }
-        .extra-card i { font-size: 2.5rem; color: var(--accent-primary); }
-        .extra-card h4 { font-family: 'JetBrains Mono'; font-size: 0.9rem; color: var(--accent-secondary); text-transform: uppercase; margin-bottom: 5px; }
-        .extra-card p { font-size: 1.2rem; font-weight: 700; }
+/* --- LANGUAGES SECTION --- */
+.langs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+.lang-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  backdrop-filter: blur(8px);
+  transition: var(--transition);
+}
+.lang-card:hover { border-color: var(--ink); transform: translateY(-3px); }
+.lang-name { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+.lang-level { font-size: 0.78rem; color: var(--muted); margin-bottom: 14px; }
+.lang-dots { display: flex; gap: 5px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--paper3); }
+.dot.filled { background: var(--indigo); }
+.dot.half { background: linear-gradient(90deg, var(--indigo) 50%, var(--paper3) 50%); }
 
-        /* Contact */
-        .contact-box {
-            background: var(--bg-surface); border: 1px solid var(--border); border-radius: 30px;
-            padding: 60px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px;
-        }
-        .contact-form { display: flex; flex-direction: column; gap: 20px; }
-        .input-group input, .input-group textarea {
-            width: 100%; background: #050810; border: 1px solid var(--border);
-            padding: 18px; border-radius: 12px; color: white; font-family: inherit;
-        }
-        .input-group input:focus { border-color: var(--accent-primary); outline: none; }
+/* --- CONTACT --- */
+.contact-wrapper {
+  background: var(--ink);
+  border-radius: 32px;
+  padding: 72px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
+  color: var(--paper);
+}
+.contact-left .section-label { color: rgba(245,243,238,0.4); }
+.contact-left .section-label::before { background: rgba(245,243,238,0.4); }
+.contact-h { font-family: 'Syne', sans-serif; font-size: 2.4rem; font-weight: 800; letter-spacing: -0.03em; color: var(--paper); margin-bottom: 20px; line-height: 1.1; }
+.contact-sub { font-size: 1rem; color: rgba(245,243,238,0.55); line-height: 1.7; font-weight: 300; margin-bottom: 36px; }
+.contact-links { display: flex; flex-direction: column; gap: 14px; }
+.contact-link {
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none; color: rgba(245,243,238,0.75);
+  font-size: 0.95rem; font-weight: 300;
+  transition: var(--transition);
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.contact-link:hover { color: var(--paper); background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.18); }
+.contact-link i { color: var(--cyan); width: 18px; text-align: center; }
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-label { font-size: 0.75rem; color: rgba(245,243,238,0.45); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
+.form-input, .form-textarea {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--paper);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  width: 100%;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(245,243,238,0.25); }
+.form-input:focus, .form-textarea:focus { outline: none; border-color: var(--cyan); background: rgba(0,188,212,0.05); }
+.form-textarea { resize: vertical; min-height: 130px; }
+.btn-light { background: var(--paper); color: var(--ink); }
+.btn-light:hover { background: var(--cyan); color: var(--ink); transform: translateY(-2px); }
 
-        /* Language Switcher */
-        .lang-control { position: fixed; top: 100px; right: 40px; z-index: 100; display: flex; gap: 10px; background: var(--bg-surface); padding: 8px; border-radius: 12px; border: 1px solid var(--border); }
-        .lang-btn { background: none; border: none; color: var(--text-dim); font-family: 'JetBrains Mono'; padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; }
-        .lang-btn.active { background: var(--accent-primary); color: var(--bg-deep); font-weight: 800; }
+/* --- FOOTER --- */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-copy { font-size: 0.8rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+.footer-logo { font-family: 'DM Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--ink); text-decoration: none; }
+.footer-logo span { color: var(--cyan); }
 
-        @media (max-width: 1000px) {
-            .hero-grid, .project-featured, .contact-box, .skills-container, .extras-grid { grid-template-columns: 1fr; }
-            .hero { padding-top: 120px; text-align: center; }
-            .hero-p { margin: 0 auto 40px; }
-            .hero-btns { justify-content: center; }
-        }
-    </style>
+/* --- MISC --- */
+.mb-4 { margin-bottom: 4px; }
+.mt-48 { margin-top: 48px; }
+
+/* --- ANIMATIONS --- */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-left { opacity: 0; transform: translateX(-24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-left.visible { opacity: 1; transform: none; }
+.reveal-right { opacity: 0; transform: translateX(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-right.visible { opacity: 1; transform: none; }
+
+/* --- LICENCE / DRIVER --- */
+.extras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 48px; }
+.extra-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex; align-items: center; gap: 16px;
+  backdrop-filter: blur(8px);
+  transition: var(--transition);
+}
+.extra-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+.extra-icon { font-size: 1.4rem; color: var(--indigo); }
+.extra-info-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+.extra-info-val { font-size: 0.9rem; font-weight: 500; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 50px; }
+  .hero-image-wrap { order: -1; max-width: 320px; margin: 0 auto; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-lead { margin-left: auto; margin-right: auto; }
+  .hero-btns { justify-content: center; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .project-card { grid-template-columns: 1fr; gap: 32px; }
+  .contact-wrapper { grid-template-columns: 1fr; padding: 48px 32px; gap: 48px; }
+  .footer { flex-direction: column; gap: 12px; text-align: center; }
+  nav .nav-links { display: none; }
+  .skills-bg { padding: 40px 28px; }
+  .connector { margin-left: 28px; }
+}
+
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+  section { padding: 72px 0; }
+  .hero { padding-top: 100px; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .langs-grid { grid-template-columns: repeat(2, 1fr); }
+  .extras-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
 
-    <div class="bg-glow"></div>
-
-    <nav id="navbar">
-        <div class="container nav-flex">
-            <a href="#" class="nav-brand">ADRIÀ<span style="color:var(--accent-secondary)">.</span>ESTRELLA</a>
-            <ul class="nav-links">
-                <li><a href="#about" data-key="nav-about">Bio</a></li>
-                <li><a href="#projects" data-key="nav-proj">Projectes</a></li>
-                <li><a href="#education" data-key="nav-edu">Estudis</a></li>
-                <li><a href="#experience" data-key="nav-exp">Trajectòria</a></li>
-                <li><a href="#contact" data-key="nav-contact">Contacte</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <div class="lang-control">
-        <button class="lang-btn active" onclick="setLang('ca')">CAT</button>
-        <button class="lang-btn" onclick="setLang('es')">ESP</button>
+<!-- NAV -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">Adrià<span>.</span>RE</a>
+    <ul class="nav-links">
+      <li><a href="#about" data-key="nav-about">Sobre mi</a></li>
+      <li><a href="#projects" data-key="nav-proj">Projectes</a></li>
+      <li><a href="#education" data-key="nav-edu">Formació</a></li>
+      <li><a href="#experience" data-key="nav-exp">Experiència</a></li>
+      <li><a href="#contact" data-key="nav-contact">Contacte</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" onclick="setLang('ca',this)">CAT</button>
+        <button class="lang-btn" onclick="setLang('es',this)">ESP</button>
+        <button class="lang-btn" onclick="setLang('en',this)">ENG</button>
+      </div>
     </div>
+  </div>
+</nav>
 
-    <main class="container">
-        
-        <header class="hero">
-            <div class="hero-grid">
-                <div data-aos="fade-right">
-                    <span class="hero-tag">Systems & Networks Specialist</span>
-                    <h1 class="hero-h1">CONSTRUINT<br><span>INFRAESTRUCTURA.</span></h1>
-                    <p class="hero-p" data-key="hero-desc">Sóc l'Adrià, especialitzat en l'administració de sistemes, arquitectures cloud i seguretat de xarxes per a entorns empresarials crítics.</p>
-                    <div class="hero-btns">
-                        <a href="#contact" class="btn btn-main" data-key="nav-contact">Contacta amb mi</a>
-                        <a href="#" class="btn btn-outline">
-                            <i class="fas fa-download"></i> <span data-key="btn-cv">Descarregar CV (PDF)</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="profile-wrapper" data-aos="zoom-in">
-                    <div class="profile-blob">
-                        <img src="https://raw.githubusercontent.com/adriiiii/cv-estrella/a066329812b2bdf6da44a43b3f6c6f230614c051/Imagen_adri.png" alt="Adrià Rodriguez">
-                    </div>
-                </div>
-            </div>
-        </header>
+<!-- HERO -->
+<main>
+<div class="container">
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow reveal">Systems &amp; Networks Specialist</p>
+      <h1 class="hero-h1 reveal">CONSTRUINT<br><em data-key="hero-h1-accent">INFRAESTRUCTURA</em><br>DEL FUTUR.</h1>
+      <p class="hero-lead reveal" data-key="hero-desc">Sóc l'Adrià, especialitzat en l'administració de sistemes, arquitectures cloud i seguretat de xarxes per a entorns empresarials crítics.</p>
+      <div class="hero-btns reveal">
+        <a href="#contact" class="btn btn-primary" data-key="btn-contact">Contacta amb mi <i class="fas fa-arrow-right" style="font-size:0.8em"></i></a>
+        <a href="https://github.com/adriiiii/cv-estrella/blob/b6968fe32762565ca7a67b37dc53e5b53307feab/cv_estrella.pdf" target="_blank" class="btn btn-ghost">
+          <i class="fas fa-download" style="font-size:0.85em"></i> <span data-key="btn-cv">Descarregar CV</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-image-wrap reveal-right">
+      <div class="hero-image-frame">
+        <img src="https://raw.githubusercontent.com/adriiiii/cv-estrella/a066329812b2bdf6da44a43b3f6c6f230614c051/Imagen_adri.png" alt="Adrià Rodriguez Estrella">
+      </div>
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        <div>
+          <div class="badge-text" data-key="badge-text">Disponible per a projectes</div>
+          <div class="badge-sub">Barcelona · Remot</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <section id="about">
-            <div class="section-title" data-aos="fade-up">
-                <h2><span>01.</span> <span data-key="nav-about">Sobre mi</span></h2>
-            </div>
-            <div class="info-layout" data-aos="fade-up">
-                <div class="bio-text">
-                    <p data-key="about-p1">Actualment estic cursant el <b>Grau Superior en Administració de Sistemes Informàtics en Xarxa (ASIX)</b>, consolidant una base tècnica iniciada amb el grau mitjà de SMX.</p>
-                    <br>
-                    <p data-key="about-p2">He treballat en entorns de <b>suport IT nivell 1 i 2</b>, gestionant des de la microinformàtica física fins a servidors virtualitzats i xarxes complexes.</p>
-                </div>
-            </div>
-        </section>
+<hr>
 
-        <section id="projects">
-            <div class="section-title" data-aos="fade-up">
-                <h2><span>02.</span> <span data-key="nav-proj">Projectes</span></h2>
-            </div>
-            <div class="project-featured" data-aos="flip-up">
-                <div class="project-info">
-                    <span style="font-family:'JetBrains Mono'; color:var(--accent-secondary); font-size:0.9rem;">Web Application & Database</span>
-                    <h3>NoSQLPati</h3>
-                    <p style="color:var(--text-dim); margin-bottom: 25px;" data-key="proj-desc">Una solució integral dissenyada per a la gestió d'inventaris i organització de dades utilitzant tecnologies NoSQL.</p>
-                    <div class="project-tags">
-                        <span class="tag">MongoDB</span><span class="tag">Express.js</span><span class="tag">Node.js</span><span class="tag">UI/UX</span>
-                    </div>
-                    <a href="https://github.com/adriiiii/NoSQLPaTi" target="_blank" class="btn btn-main" style="padding: 12px 25px;">
-                        Veure a GitHub <i class="fab fa-github"></i>
-                    </a>
-                </div>
-                <div style="background: rgba(34, 211, 238, 0.05); height: 100%; border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border);">
-                    <i class="fas fa-database" style="font-size: 10rem; color: var(--accent-primary); opacity: 0.5;"></i>
-                </div>
-            </div>
-        </section>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head reveal">
+    <p class="section-label">01 — <span data-key="nav-about">Sobre mi</span></p>
+    <h2 class="section-h" data-key="about-h">Qui sóc</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal-left">
+      <p data-key="about-p1">Actualment estic cursant el <strong>Grau Superior en Administració de Sistemes Informàtics en Xarxa (ASIX)</strong>, consolidant una base tècnica iniciada amb el grau mitjà de SMX. La meva passió resideix en optimitzar la infraestructura tecnològica i garantir la seguretat de les dades.</p>
+      <p data-key="about-p2">He treballat en entorns de <strong>suport IT nivell 1 i 2</strong>, gestionant des de la microinformàtica física fins a servidors virtualitzats i xarxes complexes. Em considero una persona adaptable, amb experiència internacional i una mentalitat orientada a la resolució de problemes sota pressió.</p>
+    </div>
+    <div class="info-chips reveal-right">
+      <div class="info-chip">
+        <span class="chip-label" data-key="chip-loc">Ubicació</span>
+        <span class="chip-value">Catalunya, Espanya</span>
+      </div>
+      <div class="info-chip">
+        <span class="chip-label" data-key="chip-status">Estat</span>
+        <span class="chip-value" data-key="chip-status-val">Estudiant + Treballant</span>
+      </div>
+      <div class="info-chip">
+        <span class="chip-label" data-key="chip-spec">Especialitat</span>
+        <span class="chip-value">Sysadmin · Xarxes · Cloud</span>
+      </div>
+      <div class="info-chip">
+        <span class="chip-label" data-key="chip-email">Email</span>
+        <span class="chip-value"><a href="mailto:adriare2006@gmail.com" style="color:var(--indigo);text-decoration:none">adriare2006@gmail.com</a></span>
+      </div>
+    </div>
+  </div>
 
-        <section id="education">
-            <div class="section-title" data-aos="fade-up">
-                <h2><span>03.</span> <span data-key="nav-edu">Formació</span></h2>
-            </div>
-            <div class="edu-grid">
-                <div class="edu-card" data-aos="fade-right">
-                    <span class="year">2024 — 2026 (En curs)</span>
-                    <h3>Grau Superior ASIX</h3>
-                    <p>Inst. Sa Palomera, Blanes</p>
-                </div>
-                <div class="edu-card" data-aos="fade-left">
-                    <span class="year">2022 — 2024</span>
-                    <h3>Grau Mitjà SMX</h3>
-                    <p>Inst. Lluís Companys, Tordera</p>
-                </div>
-            </div>
-        </section>
+  <!-- EXTRAS: LANGUAGES + DRIVING LICENCE -->
+  <div class="extras-grid mt-48">
+    <div class="extra-card reveal">
+      <div class="extra-icon"><i class="fas fa-globe"></i></div>
+      <div>
+        <div class="extra-info-label" data-key="extra-lang">Català</div>
+        <div class="extra-info-val" data-key="extra-lang-native">Nadiu (C2)</div>
+      </div>
+    </div>
+    <div class="extra-card reveal">
+      <div class="extra-icon"><i class="fas fa-globe"></i></div>
+      <div>
+        <div class="extra-info-label">Castellà / Español</div>
+        <div class="extra-info-val" data-key="extra-lang-native2">Nadiu (C2)</div>
+      </div>
+    </div>
+    <div class="extra-card reveal">
+      <div class="extra-icon"><i class="fas fa-globe"></i></div>
+      <div>
+        <div class="extra-info-label">English</div>
+        <div class="extra-info-val" data-key="extra-en-level">Intermig (B1-B2)</div>
+      </div>
+    </div>
+    <div class="extra-card reveal">
+      <div class="extra-icon"><i class="fas fa-globe"></i></div>
+      <div>
+        <div class="extra-info-label">Deutsch</div>
+        <div class="extra-info-val" data-key="extra-de-level">Bàsic (A2)</div>
+      </div>
+    </div>
+    <div class="extra-card reveal">
+      <div class="extra-icon"><i class="fas fa-car"></i></div>
+      <div>
+        <div class="extra-info-label" data-key="extra-driving">Carnet de conduir</div>
+        <div class="extra-info-val">Classe B</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <section id="experience">
-            <div class="section-title" data-aos="fade-up">
-                <h2><span>04.</span> <span data-key="nav-exp">Trajectòria</span></h2>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-content">
-                        <div class="exp-header">
-                            <div>
-                                <h3>Tarinas Law & Economy</h3>
-                                <p class="exp-company" data-key="job-law">Soporte IT & Administrador Junior</p>
-                            </div>
-                            <span class="year">2024 — ACTUALITAT</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-up">
-                    <div class="timeline-dot"></div>
-                    <div class="exp-content">
-                        <div class="exp-header">
-                            <div>
-                                <h3>Vitalis BMH (Alemanya)</h3>
-                                <p class="exp-company" data-key="job-erasmus">Tècnic en Domòtica (Erasmus+)</p>
-                            </div>
-                            <span class="year">ESTIU 2023</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<hr>
 
-        <section id="skills">
-            <div class="section-title" data-aos="fade-up">
-                <h2><span>05.</span> Arsenal Tècnic</h2>
-            </div>
-            <div class="skills-container" data-aos="fade-up">
-                <div class="skill-group">
-                    <h4>Sistemes & Cloud</h4>
-                    <div class="skill-bar-wrapper">
-                        <div class="skill-info"><span>Linux (Debian/Ubuntu)</span><span>95%</span></div>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 95%;"></div></div>
-                    </div>
-                    <div class="skill-bar-wrapper">
-                        <div class="skill-info"><span>Windows Server / AD</span><span>85%</span></div>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 85%;"></div></div>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h4>Xarxes & Seguretat</h4>
-                    <div class="skill-bar-wrapper">
-                        <div class="skill-info"><span>Cisco Networking</span><span>90%</span></div>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 90%;"></div></div>
-                    </div>
-                    <div class="skill-bar-wrapper">
-                        <div class="skill-info"><span>Firewalls</span><span>75%</span></div>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 75%;"></div></div>
-                    </div>
-                </div>
-            </div>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-head reveal">
+    <p class="section-label">02 — <span data-key="skills-label">Arsenal tècnic</span></p>
+    <h2 class="section-h" data-key="skills-h">Habilitats</h2>
+  </div>
+  <div class="skills-bg reveal">
+    <div class="skills-grid">
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><i class="fab fa-linux"></i></div>
+        <div class="skill-pill-name">Linux (Debian/Ubuntu/CentOS)</div>
+        <div class="skill-pill-level">Expert · 95%</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><i class="fab fa-windows"></i></div>
+        <div class="skill-pill-name">Windows Server / AD</div>
+        <div class="skill-pill-level">Avançat · 85%</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><i class="fas fa-server"></i></div>
+        <div class="skill-pill-name">Proxmox / Hyper-V</div>
+        <div class="skill-pill-level">Avançat · 80%</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><i class="fas fa-network-wired"></i></div>
+        <div class="skill-pill-name">Cisco Routing / Switching</div>
+        <div class="skill-pill-level">Expert · 90%</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><i class="fas fa-shield-halved"></i></div>
+        <div class="skill-pill-name">Firewalls & Ciberseguretat</div>
+        <div class="skill-pill-level">Intermig · 75%</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><i class="fab fa-aws"></i></div>
+        <div class="skill-pill-name">AWS / Cloud Foundations</div>
+        <div class="skill-pill-level">Intermig · 70%</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><i class="fas fa-database"></i></div>
+        <div class="skill-pill-name">MongoDB / NoSQL</div>
+        <div class="skill-pill-level">Intermig · 72%</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div>
+      </div>
+      <div class="skill-pill">
+        <div class="skill-pill-icon"><i class="fab fa-node-js"></i></div>
+        <div class="skill-pill-name">Node.js / Express</div>
+        <div class="skill-pill-level">Intermig · 65%</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="extras-grid" data-aos="fade-up">
-                <div class="extra-card">
-                    <i class="fas fa-language"></i>
-                    <div>
-                        <h4 data-key="extra-lang-title">Idiomes</h4>
-                        <p data-key="extra-lang-desc">Català, Castellà i Anglès</p>
-                    </div>
-                </div>
-                <div class="extra-card">
-                    <i class="fas fa-car"></i>
-                    <div>
-                        <h4 data-key="extra-license-title">Permís de Conduir</h4>
-                        <p data-key="extra-license-desc">Carnet B (Vehicle Propi)</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<hr>
 
-        <section id="contact">
-            <div class="section-title" data-aos="fade-up">
-                <h2><span>06.</span> <span data-key="nav-contact">Contacte</span></h2>
-            </div>
-            <div class="contact-box" data-aos="zoom-in">
-                <div>
-                    <h3 style="font-size: 2.5rem; margin-bottom: 20px;">Treballem plegats?</h3>
-                    <div style="display:flex; flex-direction:column; gap:15px;">
-                        <a href="mailto:adriare2006@gmail.com" style="color:var(--accent-primary); font-size:1.1rem;"><i class="fas fa-envelope"></i> adriare2006@gmail.com</a>
-                        <a href="tel:608996460" style="color:var(--text-main); font-size:1.1rem;"><i class="fas fa-phone"></i> +34 608 996 460</a>
-                    </div>
-                </div>
-                <form class="contact-form">
-                    <div class="input-group"><input type="text" placeholder="Nom" required></div>
-                    <div class="input-group"><input type="email" placeholder="Email" required></div>
-                    <div class="input-group"><textarea rows="4" placeholder="Missatge" required></textarea></div>
-                    <button type="submit" class="btn btn-main" data-key="btn-send">Enviar missatge</button>
-                </form>
-            </div>
-        </section>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-head reveal">
+    <p class="section-label">03 — <span data-key="nav-proj">Projectes</span></p>
+    <h2 class="section-h" data-key="proj-h">Treball destacat</h2>
+  </div>
+  <div class="project-card reveal">
+    <div>
+      <p class="project-type">Web Application &amp; Database</p>
+      <h3 class="project-title">NoSQLPati</h3>
+      <p class="project-desc" data-key="proj-desc">Una solució integral dissenyada per a la gestió d'inventaris i organització de dades amb tecnologies NoSQL. El projecte se centra en l'escalabilitat i la velocitat d'accés a la informació en entorns dinàmics.</p>
+      <div class="project-tags">
+        <span class="tag">MongoDB</span>
+        <span class="tag">Express.js</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">UI/UX Design</span>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="https://nosqlpati.com/" target="_blank" class="btn btn-primary" style="padding:12px 22px;font-size:0.88rem">
+          <span data-key="btn-visit">Visitar projecte</span> <i class="fas fa-external-link-alt" style="font-size:0.75em"></i>
+        </a>
+        <a href="https://github.com/adriiiii/NoSQLPaTi" target="_blank" class="btn btn-ghost" style="padding:12px 22px;font-size:0.88rem">
+          <i class="fab fa-github" style="font-size:0.9em"></i> GitHub
+        </a>
+      </div>
+    </div>
+    <div class="project-visual">
+      <i class="fas fa-database"></i>
+    </div>
+  </div>
+</section>
 
-    </main>
+<hr>
 
-    <footer style="padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-dim); font-size: 0.9rem;">
-        <p>© 2026 ADRIÀ RODRIGUEZ ESTRELLA • CREAT AMB PASSÍO</p>
-    </footer>
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-head reveal">
+    <p class="section-label">04 — <span data-key="nav-edu">Formació</span></p>
+    <h2 class="section-h" data-key="edu-h">Estudis</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <span class="edu-year">2024 — 2026</span>
+      <h3 class="edu-degree" data-key="edu-1-deg">Grau Superior ASIX</h3>
+      <p class="edu-detail" data-key="edu-1-detail">Administració de Sistemes Informàtics en Xarxa. Especialització en ciberseguretat, servidors i cloud computing.</p>
+      <p class="edu-school">Inst. Sa Palomera — Blanes</p>
+    </div>
+    <div class="edu-card reveal">
+      <span class="edu-year">2022 — 2024</span>
+      <h3 class="edu-degree" data-key="edu-2-deg">Grau Mitjà SMX</h3>
+      <p class="edu-detail" data-key="edu-2-detail">Sistemes Microinformàtics i Xarxes. Fonaments de sistemes operatius, hardware i xarxes LAN.</p>
+      <p class="edu-school">Inst. Lluís Companys — Tordera</p>
+    </div>
+  </div>
+</section>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
+<hr>
 
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        });
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-head reveal">
+    <p class="section-label">05 — <span data-key="nav-exp">Experiència</span></p>
+    <h2 class="section-h" data-key="exp-h">Trajectòria professional</h2>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item reveal">
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <h3 class="exp-company">Tarinas Law &amp; Economy</h3>
+            <p class="exp-role" data-key="exp-1-role">Suport IT &amp; Administrador Junior</p>
+          </div>
+          <span class="exp-period">SET 2024 — <span data-key="exp-present">Actualitat</span></span>
+        </div>
+        <ul class="exp-bullets">
+          <li data-key="exp-1-b1">Gestió avançada de servidors sota entorns corporatius.</li>
+          <li data-key="exp-1-b2">Administració de seguretat de dades i polítiques de backup.</li>
+          <li data-key="exp-1-b3">Suport tècnic de segon nivell per a infraestructura legal.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="connector"></div>
+    <div class="exp-item reveal">
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <h3 class="exp-company">Escola Ignasi Iglesias</h3>
+            <p class="exp-role" data-key="exp-2-role">Tècnic de Suport IT (Pràctiques)</p>
+          </div>
+          <span class="exp-period">GEN 2024 — MAIG 2024</span>
+        </div>
+        <ul class="exp-bullets">
+          <li data-key="exp-2-b1">Manteniment integral del parc informàtic escolar.</li>
+          <li data-key="exp-2-b2">Configuració de punts d'accés i seguretat de xarxa interna.</li>
+          <li data-key="exp-2-b3">Suport directe a docents i administració.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="connector"></div>
+    <div class="exp-item reveal">
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <h3 class="exp-company">Vitalis BMH <span style="color:var(--muted);font-size:0.85em;font-weight:400">(Alemanya)</span></h3>
+            <p class="exp-role" data-key="exp-3-role">Tècnic en Domòtica — Erasmus+</p>
+          </div>
+          <span class="exp-period">JUL 2023 — AGO 2023</span>
+        </div>
+        <ul class="exp-bullets">
+          <li data-key="exp-3-b1">Instal·lació de sistemes de control intel·ligent a Leipzig.</li>
+          <li data-key="exp-3-b2">Treball en equip internacional amb anglès com a llengua vehicular.</li>
+          <li data-key="exp-3-b3">Implementació de tecnologies IoT en entorns residencials.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-        const texts = {
-            ca: {
-                "nav-about": "Sobre mi", "nav-proj": "Projectes", "nav-edu": "Estudis", "nav-exp": "Trajectòria", "nav-contact": "Contacte",
-                "hero-desc": "Sóc l'Adrià, especialitzat en l'administració de sistemes, arquitectures cloud i seguretat de xarxes.",
-                "btn-cv": "Descarregar CV (PDF)", "btn-send": "Enviar missatge",
-                "about-p1": "Actualment estic cursant el Grau Superior ASIX, consolidant una base tècnica de SMX.",
-                "about-p2": "He treballat en entorns de suport IT nivell 1 i 2, gestionant microinformàtica i servidors.",
-                "proj-desc": "Solució integral per a la gestió d'inventaris utilitzant NoSQL.",
-                "job-law": "Soporte IT & Administrador Junior", "job-erasmus": "Tècnic en Domòtica (Erasmus+)",
-                "extra-lang-title": "Idiomes", "extra-lang-desc": "Català, Castellà i Anglès",
-                "extra-license-title": "Permís de Conduir", "extra-license-desc": "Carnet B (Vehicle Propi)"
-            },
-            es: {
-                "nav-about": "Sobre mí", "nav-proj": "Proyectos", "nav-edu": "Estudios", "nav-exp": "Trayectoria", "nav-contact": "Contacto",
-                "hero-desc": "Soy Adrià, especializado en administración de sistemas, arquitecturas cloud y seguridad de redes.",
-                "btn-cv": "Descargar CV (PDF)", "btn-send": "Enviar mensaje",
-                "about-p1": "Actualmente curso el Grado Superior ASIX, tras mi base técnica en SMX.",
-                "about-p2": "He trabajado en soporte IT nivel 1 y 2, gestionando microinformática y servidores.",
-                "proj-desc": "Solución integral para la gestión de inventarios utilizando NoSQL.",
-                "job-law": "Soporte IT & Administrador Junior", "job-erasmus": "Técnico en Domótica (Erasmus+)",
-                "extra-lang-title": "Idiomas", "extra-lang-desc": "Catalán, Castellano e Inglés",
-                "extra-license-title": "Permiso de Conducir", "extra-license-desc": "Carnet B (Vehículo Propio)"
-            }
-        };
+<hr>
 
-        function setLang(lang) {
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-            document.querySelectorAll('[data-key]').forEach(el => {
-                el.textContent = texts[lang][el.getAttribute('data-key')];
-            });
-        }
-    </script>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-head reveal">
+    <p class="section-label">06 — <span data-key="nav-contact">Contacte</span></p>
+  </div>
+  <div class="contact-wrapper reveal">
+    <div class="contact-left">
+      <h2 class="contact-h" data-key="contact-h">Treballem<br>plegats?</h2>
+      <p class="contact-sub" data-key="contact-sub">Estic disponible per a nous reptes professionals o projectes interessants en l'àmbit de la infraestructura IT.</p>
+      <div class="contact-links">
+        <a href="mailto:adriare2006@gmail.com" class="contact-link">
+          <i class="fas fa-envelope"></i> adriare2006@gmail.com
+        </a>
+        <a href="tel:608996460" class="contact-link">
+          <i class="fas fa-phone"></i> +34 608 996 460
+        </a>
+        <a href="https://github.com/adriiiii" target="_blank" class="contact-link">
+          <i class="fab fa-github"></i> github.com/adriiiii
+        </a>
+        <a href="https://github.com/adriiiii/cv-estrella/blob/b6968fe32762565ca7a67b37dc53e5b53307feab/cv_estrella.pdf" target="_blank" class="contact-link">
+          <i class="fas fa-file-pdf"></i> <span data-key="btn-cv">Descarregar CV (PDF)</span>
+        </a>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-field">
+        <label class="form-label" data-key="form-name">Nom</label>
+        <input class="form-input" type="text" placeholder="Anna García" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="anna@empresa.com" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label" data-key="form-msg">Missatge</label>
+        <textarea class="form-textarea" placeholder="Explica'm el teu projecte..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-light" data-key="btn-send">
+        Enviar missatge <i class="fas fa-paper-plane" style="font-size:0.8em"></i>
+      </button>
+    </form>
+  </div>
+</section>
+
+</div><!-- end container -->
+</main>
+
+<footer>
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+    <p class="footer-copy">© 2026 Adrià Rodriguez Estrella</p>
+    <a href="#" class="footer-logo">Adrià<span>.</span>RE</a>
+  </div>
+</footer>
+
+<script>
+// --- Scroll reveal
+const reveals = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// --- Navbar scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// --- i18n
+const t = {
+  ca: {
+    'nav-about':'Sobre mi','nav-proj':'Projectes','nav-edu':'Formació','nav-exp':'Experiència','nav-contact':'Contacte',
+    'hero-h1-accent':'INFRAESTRUCTURA',
+    'hero-desc':'Sóc l\'Adrià, especialitzat en l\'administració de sistemes, arquitectures cloud i seguretat de xarxes per a entorns empresarials crítics.',
+    'btn-contact':'Contacta amb mi','btn-cv':'Descarregar CV','btn-send':'Enviar missatge','btn-visit':'Visitar projecte',
+    'badge-text':'Disponible per a projectes',
+    'about-h':'Qui sóc',
+    'about-p1':'Actualment estic cursant el <strong>Grau Superior en Administració de Sistemes Informàtics en Xarxa (ASIX)</strong>, consolidant una base tècnica iniciada amb el grau mitjà de SMX. La meva passió resideix en optimitzar la infraestructura tecnològica i garantir la seguretat de les dades.',
+    'about-p2':'He treballat en entorns de <strong>suport IT nivell 1 i 2</strong>, gestionant des de la microinformàtica física fins a servidors virtualitzats i xarxes complexes. Em considero una persona adaptable, amb experiència internacional i una mentalitat orientada a la resolució de problemes sota pressió.',
+    'chip-loc':'Ubicació','chip-status':'Estat','chip-status-val':'Estudiant + Treballant','chip-spec':'Especialitat','chip-email':'Correu',
+    'extra-lang':'Català','extra-lang-native':'Nadiu (C2)','extra-lang-native2':'Natiu (C2)','extra-en-level':'Intermig (B1-B2)','extra-de-level':'Bàsic (A2)','extra-driving':'Carnet de conduir',
+    'skills-label':'Arsenal tècnic','skills-h':'Habilitats',
+    'proj-h':'Treball destacat',
+    'proj-desc':'Una solució integral dissenyada per a la gestió d\'inventaris i organització de dades amb tecnologies NoSQL. El projecte se centra en l\'escalabilitat i la velocitat d\'accés a la informació en entorns dinàmics.',
+    'edu-h':'Estudis',
+    'edu-1-deg':'Grau Superior ASIX','edu-1-detail':'Administració de Sistemes Informàtics en Xarxa. Especialització en ciberseguretat, servidors i cloud computing.',
+    'edu-2-deg':'Grau Mitjà SMX','edu-2-detail':'Sistemes Microinformàtics i Xarxes. Fonaments de sistemes operatius, hardware i xarxes LAN.',
+    'exp-h':'Trajectòria professional','exp-present':'Actualitat',
+    'exp-1-role':'Suport IT & Administrador Junior',
+    'exp-1-b1':'Gestió avançada de servidors sota entorns corporatius.',
+    'exp-1-b2':'Administració de seguretat de dades i polítiques de backup.',
+    'exp-1-b3':'Suport tècnic de segon nivell per a infraestructura legal.',
+    'exp-2-role':'Tècnic de Suport IT (Pràctiques)',
+    'exp-2-b1':'Manteniment integral del parc informàtic escolar.',
+    'exp-2-b2':'Configuració de punts d\'accés i seguretat de xarxa interna.',
+    'exp-2-b3':'Suport directe a docents i administració.',
+    'exp-3-role':'Tècnic en Domòtica — Erasmus+',
+    'exp-3-b1':'Instal·lació de sistemes de control intel·ligent a Leipzig.',
+    'exp-3-b2':'Treball en equip internacional amb anglès com a llengua vehicular.',
+    'exp-3-b3':'Implementació de tecnologies IoT en entorns residencials.',
+    'contact-h':'Treballem\nplegats?','contact-sub':'Estic disponible per a nous reptes professionals o projectes interessants en l\'àmbit de la infraestructura IT.',
+    'form-name':'Nom','form-msg':'Missatge'
+  },
+  es: {
+    'nav-about':'Sobre mí','nav-proj':'Proyectos','nav-edu':'Estudios','nav-exp':'Experiencia','nav-contact':'Contacto',
+    'hero-h1-accent':'INFRAESTRUCTURA',
+    'hero-desc':'Soy Adrià, especializado en administración de sistemas, arquitecturas cloud y seguridad de redes para entornos empresariales críticos.',
+    'btn-contact':'Contáctame','btn-cv':'Descargar CV','btn-send':'Enviar mensaje','btn-visit':'Visitar proyecto',
+    'badge-text':'Disponible para proyectos',
+    'about-h':'Quién soy',
+    'about-p1':'Actualmente estoy cursando el <strong>Grado Superior en Administración de Sistemas Informáticos en Red (ASIX)</strong>, consolidando una base técnica iniciada con el grado medio SMX. Mi pasión reside en optimizar la infraestructura tecnológica y garantizar la seguridad de los datos.',
+    'about-p2':'He trabajado en entornos de <strong>soporte IT nivel 1 y 2</strong>, gestionando desde la microinformática física hasta servidores virtualizados y redes complejas. Me considero una persona adaptable, con experiencia internacional y una mentalidad orientada a la resolución de problemas bajo presión.',
+    'chip-loc':'Ubicación','chip-status':'Estado','chip-status-val':'Estudiando + Trabajando','chip-spec':'Especialidad','chip-email':'Correo',
+    'extra-lang':'Catalán','extra-lang-native':'Nativo (C2)','extra-lang-native2':'Nativo (C2)','extra-en-level':'Intermedio (B1-B2)','extra-de-level':'Básico (A2)','extra-driving':'Carnet de conducir',
+    'skills-label':'Arsenal técnico','skills-h':'Habilidades',
+    'proj-h':'Trabajo destacado',
+    'proj-desc':'Una solución integral diseñada para la gestión de inventarios y organización de datos utilizando tecnologías NoSQL. El proyecto se centra en la escalabilidad y la velocidad de acceso a la información en entornos dinámicos.',
+    'edu-h':'Estudios',
+    'edu-1-deg':'Grado Superior ASIX','edu-1-detail':'Administración de Sistemas Informáticos en Red. Especialización en ciberseguridad, servidores y cloud computing.',
+    'edu-2-deg':'Grado Medio SMX','edu-2-detail':'Sistemas Microinformáticos y Redes. Fundamentos de sistemas operativos, hardware y redes LAN.',
+    'exp-h':'Trayectoria profesional','exp-present':'Actualidad',
+    'exp-1-role':'Soporte IT & Administrador Junior',
+    'exp-1-b1':'Gestión avanzada de servidores en entornos corporativos.',
+    'exp-1-b2':'Administración de seguridad de datos y políticas de backup.',
+    'exp-1-b3':'Soporte técnico de segundo nivel para infraestructura legal.',
+    'exp-2-role':'Técnico de Soporte IT (Prácticas)',
+    'exp-2-b1':'Mantenimiento integral del parque informático escolar.',
+    'exp-2-b2':'Configuración de puntos de acceso y seguridad de red interna.',
+    'exp-2-b3':'Soporte directo a docentes y administración.',
+    'exp-3-role':'Técnico en Domótica — Erasmus+',
+    'exp-3-b1':'Instalación de sistemas de control inteligente en Leipzig.',
+    'exp-3-b2':'Trabajo en equipo internacional con inglés como lengua vehicular.',
+    'exp-3-b3':'Implementación de tecnologías IoT en entornos residenciales.',
+    'contact-h':'¿Trabajamos\njuntos?','contact-sub':'Estoy disponible para nuevos retos profesionales o proyectos interesantes en el ámbito de la infraestructura IT.',
+    'form-name':'Nombre','form-msg':'Mensaje'
+  },
+  en: {
+    'nav-about':'About','nav-proj':'Projects','nav-edu':'Education','nav-exp':'Experience','nav-contact':'Contact',
+    'hero-h1-accent':'INFRASTRUCTURE',
+    'hero-desc':'I\'m Adrià, specialized in systems administration, cloud architectures, and network security for critical enterprise environments.',
+    'btn-contact':'Get in touch','btn-cv':'Download CV','btn-send':'Send message','btn-visit':'Visit project',
+    'badge-text':'Available for projects',
+    'about-h':'Who I am',
+    'about-p1':'I\'m currently studying the <strong>Higher Degree in Computer Systems and Networks Administration (ASIX)</strong>, building on technical foundations from my previous IT systems degree. My passion lies in optimizing technological infrastructure and ensuring data security.',
+    'about-p2':'I\'ve worked in <strong>IT support levels 1 and 2</strong>, managing everything from physical hardware to virtualized servers and complex networks. I consider myself an adaptable person, with international experience and a problem-solving mindset under pressure.',
+    'chip-loc':'Location','chip-status':'Status','chip-status-val':'Studying + Working','chip-spec':'Specialty','chip-email':'Email',
+    'extra-lang':'Catalan','extra-lang-native':'Native (C2)','extra-lang-native2':'Native (C2)','extra-en-level':'Intermediate (B1-B2)','extra-de-level':'Basic (A2)','extra-driving':'Driving licence',
+    'skills-label':'Technical stack','skills-h':'Skills',
+    'proj-h':'Featured work',
+    'proj-desc':'A comprehensive solution designed for inventory management and data organization using NoSQL technologies. The project focuses on scalability and fast data access in dynamic environments.',
+    'edu-h':'Education',
+    'edu-1-deg':'Higher Degree — ASIX','edu-1-detail':'Computer Systems and Networks Administration. Specialization in cybersecurity, servers, and cloud computing.',
+    'edu-2-deg':'Intermediate Degree — SMX','edu-2-detail':'Microcomputer Systems and Networks. Fundamentals of operating systems, hardware, and LAN networks.',
+    'exp-h':'Professional journey','exp-present':'Present',
+    'exp-1-role':'IT Support & Junior Administrator',
+    'exp-1-b1':'Advanced server management in corporate environments.',
+    'exp-1-b2':'Data security administration and backup policy management.',
+    'exp-1-b3':'Second-level technical support for legal infrastructure.',
+    'exp-2-role':'IT Support Technician (Internship)',
+    'exp-2-b1':'Comprehensive maintenance of the school\'s computer hardware.',
+    'exp-2-b2':'Configuration of access points and internal network security.',
+    'exp-2-b3':'Direct support to teachers and administration.',
+    'exp-3-role':'Home Automation Technician — Erasmus+',
+    'exp-3-b1':'Installation of smart control systems in Leipzig, Germany.',
+    'exp-3-b2':'International teamwork using English as the working language.',
+    'exp-3-b3':'Implementation of IoT technologies in residential environments.',
+    'contact-h':'Let\'s work\ntogether?','contact-sub':'I\'m available for new professional challenges or interesting projects in the IT infrastructure field.',
+    'form-name':'Name','form-msg':'Message'
+  }
+};
+
+function setLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const d = t[lang];
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const k = el.getAttribute('data-key');
+    if (d[k] !== undefined) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = d[k];
+      } else if (d[k].includes('<strong>')) {
+        el.innerHTML = d[k];
+      } else {
+        el.textContent = d[k];
+      }
+    }
+  });
+  // Hero H1 multi-line stays, only accent changes
+  document.documentElement.setAttribute('lang', lang);
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  btn.textContent = '✓ Missatge enviat!';
+  btn.style.background = '#22c55e';
+  btn.style.color = '#fff';
+  setTimeout(() => {
+    btn.textContent = 'Enviar missatge';
+    btn.style.background = '';
+    btn.style.color = '';
+    e.target.reset();
+  }, 3000);
+}
+</script>
 </body>
 </html>
