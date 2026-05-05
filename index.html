@@ -106,7 +106,7 @@ nav.scrolled {
   display: flex; align-items: center;
   padding: 120px 0 80px;
 }
-.hero-inner { display: grid; grid-template-columns: 1fr 420px; gap: 80px; align-items: center; }
+.hero-inner { display: grid; grid-template-columns: 1fr 340px; gap: 60px; align-items: center; }
 .hero-eyebrow {
   font-family: 'DM Mono', monospace;
   font-size: 0.78rem; font-weight: 500;
@@ -118,9 +118,9 @@ nav.scrolled {
 .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--cyan); display: inline-block; }
 .hero-h1 {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(3.2rem, 7vw, 5.5rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
-  line-height: 0.92;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   margin-bottom: 28px;
   color: var(--ink);
@@ -152,13 +152,13 @@ nav.scrolled {
 .hero-image-frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 4/5;
+  aspect-ratio: 3/4;
   border-radius: 28px;
   overflow: hidden;
   background: var(--paper3);
 }
 .hero-image-frame img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 15%;
   filter: grayscale(8%) contrast(1.02);
   transition: filter 0.6s ease;
 }
@@ -503,15 +503,10 @@ footer {
     </div>
     <div class="hero-image-wrap reveal-right">
       <div class="hero-image-frame">
-        <!-- FOTO ACTUALITZADA al nou commit -->
-        <img src="descarga.jpg" alt="Adrià Rodriguez Estrella">
+        <img src="https://raw.githubusercontent.com/adriiiii/cv-estrella/a066329812b2bdf6da44a43b3f6c6f230614c051/Imagen_adri.png" alt="Adrià Rodriguez Estrella">
       </div>
       <div class="hero-badge">
         <div class="badge-dot"></div>
-        <div>
-          <div class="badge-text" data-key="badge-text">Disponible per a projectes</div>
-          <div class="badge-sub">Barcelona · Remot</div>
-        </div>
       </div>
     </div>
   </div>
@@ -726,7 +721,7 @@ footer {
             <h3 class="exp-company">Tarinas Law &amp; Economy</h3>
             <p class="exp-role" data-key="exp-1-role">Suport IT &amp; Administrador Junior</p>
           </div>
-          <span class="exp-period">SET 2024 — <span data-key="exp-present">Actualitat</span></span>
+          <span class="exp-period">SET 2026 — <span data-key="exp-present">Actualitat</span></span>
         </div>
         <ul class="exp-bullets">
           <li data-key="exp-1-b1">Gestió avançada de servidors sota entorns corporatius.</li>
@@ -960,6 +955,7 @@ function setLang(lang, btn) {
       }
     }
   });
+  // Hero H1 multi-line stays, only accent changes
   document.documentElement.setAttribute('lang', lang);
 }
 
